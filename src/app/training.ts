@@ -60,11 +60,11 @@ console.log(formatText("маринад", "capitalize"));
 
 // Задание №9
 
-function deleteSymbolFromString(text: string, symbol: string): string {
+function deleteSymbol(text: string, symbol: string): string {
   return text.replaceAll(symbol, '');
 }
 
-console.log(deleteSymbolFromString("свитло 3 часа", "в"))
+console.log(deleteSymbol("свитло 3 часа", "в"))
 
 // Задание №10
 
