@@ -31,8 +31,6 @@
 }
 
 .main-info {
-
-
   .background-main {
     background-image: url('/images/mountains-bg.png');
     background-repeat: no-repeat;
@@ -121,7 +119,6 @@
   .participants-input-description {
     @include desc-item-search-program
   }
-
 
   .find-program-btn {
     margin-bottom: 25px;
