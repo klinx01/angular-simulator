@@ -1,0 +1,136 @@
+  .header-container {
+    display: flex;
+    color: var(--primary-color);
+    justify-content: space-between;
+    align-items: center; 
+    height: 72px;
+
+    .company-name {
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-top: 9px;
+      gap: 9px
+    }
+
+    .navigation a {
+      color: var(--primary-color);
+      text-decoration: none;
+      padding: 0 24px;
+    }
+
+    .consultation-btn {
+      background-color: #1A3E3E;
+      border-radius: 4px;
+      border: none;
+      color: var(--primary-color);
+      padding: 12px 24px;
+      cursor: pointer;
+    }
+}
+
+.main-info {
+
+
+  .background-main {
+    background-image: url('/images/mountains-bg.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 985px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: cover;
+  }
+
+  .motivational-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, 50%);
+    text-transform: uppercase;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    font-size: 50px;
+    width: 1080px;
+  }
+
+  .background-search-program {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 161px;
+    position: absolute;
+    bottom: 0;
+    transform: translate(17%, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .search-form {
+    width: 270px;
+    height: 52px;
+    border-radius: 8px;
+    gap: 8px;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border:  1px solid #ccc;
+  }
+
+  .search-form img {
+    padding: 0px 16px;
+    cursor: pointer;
+  }
+
+  .search-form span {
+    padding: 0px 16px;
+  }
+
+  .search-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding: 0px 16px;
+  }
+
+  .search-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @mixin desc-item-search-program {
+  color: var(--primary-color);
+  flex-direction: column;
+}
+
+  .location-input-description {
+    @include desc-item-search-program
+  }
+
+  .calendar-input-description {
+    @include desc-item-search-program
+  }
+
+  .participants-input-description {
+    @include desc-item-search-program
+  }
+
+
+  .find-program-btn {
+    margin-bottom: 25px;
+    height: 52px;
+    padding: 16px 36px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
