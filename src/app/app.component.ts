@@ -11,38 +11,32 @@ import { Collection } from './Collection.js';
 })
 
 export class AppComponent {
-  companyName: string = 'румтибет'
+
+  numbers: Collection<number> = new Collection([1, 2, 3, 4]);
+  products: Collection<string> = new Collection(['молоко', 'хлеб', 'колбаса', 'яблоко']);
+  companyName: string = 'румтибет';
+
    constructor() {
     this.saveLastVisit();
     this.saveVisitCount();
+    this.isPrimaryColor(Color.BLACK);
   }
 
-  getLastVisit(): string | null {
-    return localStorage.getItem('lastVisit');
-  }
+  isPrimaryColor(color: Color): boolean {
+  return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
+}
 
   saveLastVisit(): void {
-    const nowDate = new Date().toISOString();
-    localStorage.setItem('lastVisit', nowDate);
+    const nowDate: string = new Date().toISOString();
+    localStorage.setItem('last-visit', nowDate);
   }
 
   saveVisitCount(): void {
-    const visit = localStorage.getItem('visits');
-    const currentvisit = visit ? Number(visit) : 0;
-    const next = currentvisit + 1;
-    localStorage.setItem('visits', String(next));
+    const visit: string | null = localStorage.getItem('visits');
+    const currentVisit: number = visit ? Number(visit) : 0;
+    const next: string = String(currentVisit + 1);
+    localStorage.setItem('visits', next);
   }
+
 }
-
-function isPrimaryColor(color: Color): boolean {
-  if (color === Color.RED || color === Color.GREEN || color === Color.BLUE) {
-    return true;
-  } else {
-  return false;
-  }
-}
-
-const numbers = new Collection<number>([1, 2, 3, 4]);
-
-const products = new Collection<string>(['молоко', 'хлеб', 'колбаса', 'яблоко']);
 
