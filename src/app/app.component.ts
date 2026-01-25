@@ -34,9 +34,8 @@ export class AppComponent {
   saveVisitCount(): void {
     const visit: string | null = localStorage.getItem('visits');
     const currentVisit: number = visit ? Number(visit) : 0;
-    const newVisitValue: string = String(currentVisit + 1);
-    localStorage.setItem('visits', newVisitValue);
+    const newVisit: string = String(currentVisit + 1);
+    localStorage.setItem('visits', newVisit);
   }
 
 }
-
