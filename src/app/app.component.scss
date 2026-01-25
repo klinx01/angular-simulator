@@ -109,15 +109,15 @@
 }
 
   .location-input-description {
-    @include desc-item-search-program
+    @include desc-item-search-program;
   }
 
   .calendar-input-description {
-    @include desc-item-search-program
+    @include desc-item-search-program;
   }
 
   .participants-input-description {
-    @include desc-item-search-program
+    @include desc-item-search-program;
   }
 
   .find-program-btn {

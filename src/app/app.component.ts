@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import './training.ts'
 import { Color } from '../enums/Color'
-import { Collection } from './Collection.js';
+import { Collection } from './collection.js';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   isPrimaryColor(color: Color): boolean {
-  return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
+    return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
 }
 
   saveLastVisit(): void {
@@ -34,8 +34,8 @@ export class AppComponent {
   saveVisitCount(): void {
     const visit: string | null = localStorage.getItem('visits');
     const currentVisit: number = visit ? Number(visit) : 0;
-    const next: string = String(currentVisit + 1);
-    localStorage.setItem('visits', next);
+    const newVisitValue: string = String(currentVisit + 1);
+    localStorage.setItem('visits', newVisitValue);
   }
 
 }
