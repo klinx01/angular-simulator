@@ -126,7 +126,7 @@ export class AppComponent {
     }
   }
 
-  addOne(): void {
+   addOne(): void {
      this.counter = this.counter + 1;
   }
 
@@ -142,7 +142,7 @@ export class AppComponent {
     this.headerContent = 'timer';
   }
 
-  currentTime(): void {
+  private currentTime(): void {
     this.currentDate = new Date().toLocaleString();
   }
 
