@@ -2,10 +2,10 @@ import { Component, input } from '@angular/core';
 import './training.ts'
 import { Color } from '../enums/Color'
 import { Collection } from './collection.js';
-import { IOffers } from '../interfaces/IOffers.js';
+import { IOffer } from '../interfaces/IOffer.js';
 import { FormsModule } from '@angular/forms';
-import { ILocations } from '../interfaces/ILocations.js';
-import { IParticipants } from '../interfaces/IParticipants.js';
+import { ILocation } from '../interfaces/ILocation.js';
+import { IParticipant } from '../interfaces/IParticipant.js';
 
 @Component({
   selector: 'app-root',
@@ -18,71 +18,34 @@ export class AppComponent {
   numbers: Collection<number> = new Collection([1, 2, 3, 4]);
   products: Collection<string> = new Collection(['молоко', 'хлеб', 'колбаса', 'яблоко']);
   companyName: string = 'румтибет';
-
   selectedLocation: string = "";
   selectedParticipant: string = "";
   dateHike: string = "";
   currentDate: string = "";
   liveInput: string = '';
-  handleLoaded: boolean = false
+  isLoadReady: boolean = false;
   counter: number = 0;
-  headerContent: string = 'timer';
+  currentFunctionality: string = 'timer';
 
-   participants: IParticipants[] = [
-    {
-      id: 1,
-      name: 'Сиега'
-    },
-    {
-      id: 2,
-      name: 'Вадик'
-    },
-    {
-      id: 3,
-      name: 'Владислав'
-    },
-    {
-      id: 4,
-      name: 'Мария'
-    },
-    {
-      id: 5,
-      name: 'Павлик'
-    },
-    {
-      id: 6,
-      name: 'Эмануель'
-    }
-  ]
+  participants: IParticipant[] = [
+    {id: 1, name: 'Сиега'},
+    {id: 2, name: 'Вадик'},
+    {id: 3, name: 'Владислав'},
+    {id: 4, name: 'Мария'},
+    {id: 5, name: 'Павлик'},
+    {id: 6, name: 'Эмануель'},
+  ];
 
-  locations: ILocations[] = [
-    {
-      id: 1,
-      name: 'Шри-Ланка'
-    },
-    {
-      id: 2,
-      name: 'Бали'
-    },
-    {
-      id: 3,
-      name: 'Турция'
-    },
-    {
-      id: 4,
-      name: 'Мальдивы'
-    },
-    {
-      id: 5,
-      name: 'Испания'
-    },
-    {
-      id: 6,
-      name: 'Кенния'
-    }
-  ]
+  locations: ILocation[] = [
+    {id: 1, name: 'Шри-Ланка'},
+    {id: 2, name: 'Бали'},
+    {id: 3, name: 'Турция'},
+    {id: 4, name: 'Мальдивы'},
+    {id: 5, name: 'Испания'},
+    {id: 6, name: 'Кенния'},
+  ];
 
-  offers: IOffers[] = [
+  offers: IOffer[] = [
     {
       id: 1,
       title: 'Опытный гид',
@@ -101,7 +64,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       img: 'program-icon-town'
     }
-  ]
+  ];
 
   constructor() {
     this.saveLastVisit();
@@ -110,39 +73,35 @@ export class AppComponent {
     this.isFormValid();
 
     setInterval(() => {
-      this.currentTime();
+      this.updateCurrentTime();
     }, 1000);
 
     setTimeout(() => {
-      this.handleLoaded = true
-    }, 2000)
+      this.isLoadReady = true
+    }, 2000);
   }
 
   isFormValid(): boolean {
-    if (this.selectedLocation !== "" && this.dateHike !== "" && this.selectedParticipant !== "") {
-      return true;
-    } else {
-      return false;
-    }
+    return !!this.selectedLocation && !!this.dateHike && !!this.selectedParticipant;
   }
 
-   addOne(): void {
-     this.counter = this.counter + 1;
+   increaseCounter(): void {
+     this.counter += 1;
   }
 
-  removeOne(): void {
-    this.counter = this.counter - 1;
+  decreaseCounter(): void {
+    this.counter -= 1;
   }
 
   showClicker(): void {
-    this.headerContent = 'clicker';
+    this.currentFunctionality = 'clicker';
   }
 
-  changeDate(): void {
-    this.headerContent = 'timer';
+  showDate(): void {
+    this.currentFunctionality = 'timer';
   }
 
-  private currentTime(): void {
+  private updateCurrentTime(): void {
     this.currentDate = new Date().toLocaleString();
   }
 

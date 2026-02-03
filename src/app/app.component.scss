@@ -206,15 +206,15 @@
   }
 
   @mixin search-program-template() {
-  color: var(--primary-color);
-  background: none;
-  border: none;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 14px 16px;
-  width: 100%;
-  appearance: none;
-  cursor: pointer;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 16px;
+    width: 100%;
+    appearance: none;
+    cursor: pointer;
   }
 
   .search-form {
@@ -286,10 +286,10 @@
   }
 
   @mixin desc-item-search-program {
-  color: var(--primary-color);
-  flex-direction: column;
-  margin-left: 6px
-}
+    color: var(--primary-color);
+    flex-direction: column;
+    margin-left: 6px
+  }
 
   .location-input-description {
     @include desc-item-search-program();
