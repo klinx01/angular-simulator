@@ -28,21 +28,21 @@ export class AppComponent {
   currentFunctionality: string = 'timer';
 
   participants: IParticipant[] = [
-    {id: 1, name: 'Сиега'},
-    {id: 2, name: 'Вадик'},
-    {id: 3, name: 'Владислав'},
-    {id: 4, name: 'Мария'},
-    {id: 5, name: 'Павлик'},
-    {id: 6, name: 'Эмануель'},
+    { id: 1, name: 'Сиега' },
+    { id: 2, name: 'Вадик' },
+    { id: 3, name: 'Владислав' },
+    { id: 4, name: 'Мария' },
+    { id: 5, name: 'Павлик' },
+    { id: 6, name: 'Эмануель' },
   ];
 
   locations: ILocation[] = [
-    {id: 1, name: 'Шри-Ланка'},
-    {id: 2, name: 'Бали'},
-    {id: 3, name: 'Турция'},
-    {id: 4, name: 'Мальдивы'},
-    {id: 5, name: 'Испания'},
-    {id: 6, name: 'Кенния'},
+    { id: 1, name: 'Шри-Ланка' },
+    { id: 2, name: 'Бали' },
+    { id: 3, name: 'Турция' },
+    { id: 4, name: 'Мальдивы' },
+    { id: 5, name: 'Испания' },
+    { id: 6, name: 'Кенния' },
   ];
 
   offers: IOffer[] = [
