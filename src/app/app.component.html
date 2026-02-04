@@ -1,4 +1,4 @@
-@if (!isLoadReady) {
+@if (isLoading) {
   <div class="load-icon">
     <img src="/images/load-icon.svg" alt="loading">
   </div>
@@ -33,9 +33,9 @@
       </div>
     } @else if (currentFunctionality === 'timer') {
       <div class="timer-wrapper">
-      <div class="timer fw-600 fs-16">
-        <p>{{ currentDate }}</p>
-      </div>
+        <div class="timer fw-600 fs-16">
+          <p>{{ currentDate }}</p>
+        </div>
       <div>
         <button id="show-clicker-btn" class="primary-button show-clicker-btn fs-16 fw-600" (click)="showClicker()">Показать кликер</button>
       </div>

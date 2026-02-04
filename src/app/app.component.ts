@@ -23,7 +23,7 @@ export class AppComponent {
   dateHike: string = "";
   currentDate: string = "";
   liveInput: string = '';
-  isLoadReady: boolean = false;
+  isLoading: boolean = true;
   counter: number = 0;
   currentFunctionality: string = 'timer';
 
@@ -77,7 +77,7 @@ export class AppComponent {
     }, 1000);
 
     setTimeout(() => {
-      this.isLoadReady = true
+      this.isLoading = false;
     }, 2000);
   }
 
