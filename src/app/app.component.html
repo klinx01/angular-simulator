@@ -1,50 +1,156 @@
+@if (isLoading) {
+  <div class="load-icon">
+    <img src="/images/load-icon.svg" alt="loading">
+  </div>
+  <div class="background-loading"></div>
+}
+
 <header class="container">
-  <div class="header-container">
-    <div class="company-name">
-      <img src="/images/mountains-logo.png" alt="mountains">
-      <span>{{ companyName }}</span>
+  <div class="header-wrapper">
+    <div class="header-container">
+      <div class="company-name">
+        <img src="/images/mountains-logo.png" alt="mountains">
+        <span>{{ companyName }}</span>
+      </div>
+      <nav class="navigation fs-16 fw-600">
+        <a id="home" href="#">Главная</a>
+        <a id="guide" href="#">Про гида</a>
+        <a id="program-tour" href="#">Программа тура</a>
+        <a id="price" href="#">Стоимость</a>
+        <a id="blog" href="#">Блог</a>
+        <a id="contacts" href="#">Контакты</a>
+        <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
+      </nav>
     </div>
-    <nav class="navigation fs-16 fw-600">
-      <a href="#">Главная</a>
-      <a href="#">Про гида</a>
-      <a href="#">Программа тура</a>
-      <a href="#">Стоимость</a>
-      <a href="#">Блог</a>
-      <a href="#">Контакты</a>
-      <button class="consultation-btn fs-16 fw-600">Консультация</button>
-    </nav>
+    @if (currentFunctionality === 'clicker') {
+      <div class="clicker-wrapper">
+        <div class="clicker">
+          <button id="counter-plus" class="click-plus" (click)="increaseCounter()">+</button>
+          <span>{{ counter }}</span>
+          <button id="counter-minus" class="click-minus" [disabled]="counter === 0" (click)="decreaseCounter()">-</button>
+        </div>
+        <button id="show-date-btn" class="primary-button show-data-btn" (click)="showDate()">Показать дату</button>
+      </div>
+    } @else if (currentFunctionality === 'timer') {
+      <div class="timer-wrapper">
+        <div class="timer fw-600 fs-16">
+          <p>{{ currentDate }}</p>
+        </div>
+      <div>
+        <button id="show-clicker-btn" class="primary-button show-clicker-btn fs-16 fw-600" (click)="showClicker()">Показать кликер</button>
+      </div>
+    </div>
+    }
   </div>
 </header>
 
 <section class="main-info">
   <div class="background-main"></div>
-  <div class="container motivational-title fw-400">
-    <p>Насладись прогулкой в горах <br> с командой единомышленников</p>
-  </div>
-  <div class="background-search-program container">
-    <div class="search-form-wrapper fw-700 fs-16">
-      <div class="search-form-group">
-        <div class="search-form">
-          <span>Локация для тура</span>
-          <img src="/images/down-arrow.svg">
-        </div>
-          <span class="location-input-description fw-400 fs-14">выберите из списка</span>
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="title-wrapper fw-400">
+        <h1 class="motivational-title fw-400">Насладись прогулкой в горах <br> с командой единомышленников</h1>
       </div>
-      <div class="search-form-group">
-        <div class="search-form">
-          <span>Дата похода</span>
-          <img src="/images/calendar.svg">
+      <div class="background-search-program container">
+        <div class="search-form-wrapper fw-700 fs-16">
+          <div class="search-form-group">
+            <div class="search-form">
+              <select id="location-tour" class="location-tour" [(ngModel)]="selectedLocation">
+                <option class="location-tour-option" value="" disabled>Локация для тура</option>
+                @for (location of locations; track location.id) {
+                  <option [value]="location.id">{{ location.name }}</option>
+                }
+              </select>
+              <div class="down-arrow-icon">
+                <img src="/images/down-arrow.svg">
+              </div>
+            </div>
+              <span class="location-input-description fw-400 fs-14">выберите из списка</span>
+          </div>
+          <div class="search-form-group">
+            <div class="search-form">
+              <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
+              <img src="/images/calendar.svg">
+            </div>
+            <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
+          </div>
+          <div class="search-form-group">
+            <div class="search-form">
+              <select id="participant-select" class="participant" [(ngModel)]="selectedParticipant">
+                <option class="participant-option" value="" disabled>Участники</option>
+                @for (participant of participants; track participant.id) {
+                  <option [value]="participant.id">{{ participant.name }}</option>
+                }
+              </select>
+              <div class="down-arrow-icon">
+                <img src="/images/down-arrow.svg">
+              </div>
+            </div>
+            <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
+          </div>
         </div>
-        <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
+          <button id="find-program-btn" class="find-program-btn secondary-button fw-700 fs-16" [disabled]="!isFormValid()">Найти программу</button>
       </div>
-      <div class="search-form-group">
-        <div class="search-form">
-          <span>Участники</span>
-          <img src="/images/down-arrow.svg">
+      <div class="live-input-wrapper">
+        <div class="input-container">
+          <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
+            <img src="/images/right-arrow-icon.svg" alt="right-arrow">
         </div>
-        <span class="participants-input-description fw-400 fs-14">минимум 4 человека</span>
+        <p>{{ liveInput }}</p>
       </div>
     </div>
-      <button class="find-program-btn fw-700 fs-16">Найти программу</button>
+  </div>
+</section>
+
+<section class="hike-wrapper">
+  <div class="mountains-wrapper container" >
+    <img class="mountains-img-1" src="/images/mountain-photo-1.png" alt="mountain">
+    <img class="mountains-img-2" src="/images/mountain-photo-2.png" alt="mountain">
+    <div class="video-play-icon">
+      <a id="play-video-btn" href="#">
+        <div class="video-play-bg"></div>
+        <img class="triangle-icon" src="/images/video-play-icon.svg" alt="play-video">
+      </a>
+    </div>
+    <div class="about-hike">
+      <span class="section-super-title">о нашем походе</span>
+      <h2 class="sub-title section-title ">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <button id="program-tour-btn" class="tour-program-btn primary-button">Программа тура</button>
+    </div>
+  </div>
+</section>
+
+<section class="best-program">
+  <div class="best-program-info">
+    <div class="program-info">
+      <div>
+        <span class="section-super-title">наше предложение</span>
+        <h2 class="section-title">Лучшие программы для тебя</h2>
+      </div>
+      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+    </div>
+    <div class="program-wrapper">
+      @for (offer of offers; track offer.id) {
+        <div class="animation">
+          <div class="offer">
+            <div class="icon-program">
+              <img [src]="'/images/' + offer.img + '.svg'" alt="tour-program-icon">
+            </div>
+            <div>
+              <span class="fw-700 fs-18">{{ offer.title }}</span>
+              <p class="program-description fs-14">{{ offer.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button id="program-price" class="program-price primary-button">Стоимость программ</button>
+  </div>
+  <div class="wrapper-img-tour">
+    <img src="/images/tour-photo-1.png" alt="tour-photo" width="250" height="250" >
+    <img src="/images/tour-photo-2.png" alt="tour-photo" width="250" height="250" >
+    <img src="/images/tour-photo-3.png" alt="tour-photo" width="250" height="250" >
+    <img src="/images/tour-photo-4.png" alt="tour-photo" width="250" height="250" >
   </div>
 </section>

@@ -1,8 +1,12 @@
 @use './fonts';
 @use './normalize';
+@use './button';
 
 * {
   font-family: 'Nunito Sans';
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
 }
 
 .container {
@@ -14,6 +18,24 @@
 :root {
   --primary-color: #FDFDFD;
   --secondary-color: #1A3E3E;
+}
+
+.section-super-title {
+  color: #F2BE22;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.section-title {
+  font-size: 32px;
+  line-height: 120%;
+  font-weight: 800;
+  margin-top: 0px;
+}
+
+.section-description {
+  font-size: 18px;
+  line-height: 150%;
 }
 
 .fs-14 {
@@ -28,6 +50,10 @@
   font-size: 18px;
 }
 
+.fs-24 {
+  font-size: 24px;
+}
+
 .fw-400 {
   font-weight: 400;
 }
@@ -38,4 +64,8 @@
 
 .fw-700 {
   font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
 }

@@ -1,3 +1,37 @@
+.load-icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+.background-loading {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 30%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+
   .header-container {
     display: flex;
     color: var(--primary-color);
@@ -21,16 +55,76 @@
     }
 
     .consultation-btn {
-      background-color: #1A3E3E;
-      border-radius: 4px;
-      border: none;
-      color: var(--primary-color);
-      padding: 12px 24px;
-      cursor: pointer;
+        width: 157px;
+        height: 44px;
     }
+  }
+
+  .clicker-wrapper {
+    width: 270px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-end;
+
+  @mixin clicker-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+    .clicker {
+      color: var(--primary-color);
+      display: flex;
+      gap: 15px;
+
+      .click-plus {
+        @include clicker-btn();
+
+        width: 11px;
+      }
+
+      .click-minus {
+        @include clicker-btn();
+
+        width: 8px;
+      }
+    }
+
+  }
+
+  .timer-wrapper {
+    width: 375px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-end;
+
+    .timer {
+      color: var(--primary-color);
+      width: 168px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .show-clicker-btn {
+      width: 157px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 12px 11px;
+    }
+  }
 }
 
 .main-info {
+  height: 913px;
+  padding-bottom: 82px;
+
   .background-main {
     background-image: url('/images/mountains-bg.png');
     background-repeat: no-repeat;
@@ -43,11 +137,16 @@
     background-size: cover;
   }
 
+  .content-wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   .motivational-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-55%, 50%);
+    margin-bottom: 40px;
     text-transform: uppercase;
     color: var(--primary-color);
     letter-spacing: 2px;
@@ -58,13 +157,64 @@
   .background-search-program {
     background-color: rgba(255, 255, 255, 0.2);
     height: 161px;
-    position: absolute;
-    bottom: 0;
-    transform: translate(17%, 50%);
+    margin: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+  }
+
+  .live-input-wrapper {
+    width: 470px;
+    height: 52px;
+    color: var(--primary-color);
+    display: flex;
+    padding-top: 15px;
+
+    p {
+      padding: 18px ;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .input-container {
+      position: relative;
+      min-width: 270px;
+      height: 52px;
+      border: 1px solid var(--primary-color);
+      border-radius: 8px;
+
+      img {
+        position: absolute;
+        top: 37%;
+        right: 5%;
+      }
+    }
+
+    .live-input {
+      width: 252px;
+      height: 52px;
+      padding: 14px 12px;
+      background: none;
+      border: none;
+      color: var(--primary-color);
+
+      &::placeholder {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  @mixin search-program-template() {
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 16px;
+    width: 100%;
+    appearance: none;
+    cursor: pointer;
   }
 
   .search-form {
@@ -77,6 +227,41 @@
     justify-content: space-between;
     align-items: center;
     border:  1px solid #ccc;
+
+    .location-tour {
+      @include search-program-template();
+
+      option {
+        background-color: gray;
+      }
+    }
+
+    .participant {
+      @include search-program-template();
+
+      option {
+        background-color: gray;
+      }
+    }
+
+    .date-hike {
+      color: var(--primary-color);
+      background: transparent;
+      padding-left: 14px;
+      border: none;
+
+      &::placeholder {
+        color: var(--primary-color);
+        font-weight: 700;
+        font-size: 16px;
+      }
+    }
+
+    .down-arrow-icon {
+        position: absolute;
+        right: 16px;
+        z-index: -1;
+      }
   }
 
   .search-form img {
@@ -84,11 +269,8 @@
     cursor: pointer;
   }
 
-  .search-form span {
-    padding: 0px 16px;
-  }
-
   .search-form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -104,30 +286,169 @@
   }
 
   @mixin desc-item-search-program {
-  color: var(--primary-color);
-  flex-direction: column;
-}
+    color: var(--primary-color);
+    flex-direction: column;
+    margin-left: 6px
+  }
 
   .location-input-description {
-    @include desc-item-search-program;
+    @include desc-item-search-program();
   }
 
   .calendar-input-description {
-    @include desc-item-search-program;
+    @include desc-item-search-program();
   }
 
   .participants-input-description {
-    @include desc-item-search-program;
+    @include desc-item-search-program();
   }
 
   .find-program-btn {
     margin-bottom: 25px;
     height: 52px;
-    padding: 16px 36px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+    &:disabled {
+      opacity: 75%;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.hike-wrapper {
+  position: relative;
+  padding: 100px 0px;
+  height: 726px;
+
+  .mountains-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 526px;
+  }
+
+  .mountains-img-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .mountains-img-2 {
+    position: absolute;
+    bottom: 0;
+    left: 11%;
+    z-index: 0;
+  }
+
+  .video-play-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 58%;
+    left: 24%;
+    z-index: 2;
+
+    .video-play-bg {
+      width: 50px;
+      height: 50px;
+      background-color: #FDFDFD99;
+      border-radius: 100px;
+    }
+
+    .triangle-icon {
+      position: absolute;
+      left: 40%;
+      top: 34%;
+    }
+  }
+
+  .about-hike {
+    position: absolute;
+    right: 0;
+    width: 580px;
+    height: 398px;
+
+    .sub-title {
+      margin-bottom: 40px;
+    }
+
+    .desc-about-hike {
+      line-height: 150%;
+    }
+
+    .tour-program-btn {
+      margin-top: 22px;
+      height: 52px;
+      width: 200px;
+    }
+  }
+}
+
+.best-program {
+  background-color: #F3F5F4;
+  height: 771px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 90px;
+
+  .best-program-info {
+    width: 580px;
+    height: 591px;
+
+    .program-info {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .wrapper-img-tour {
+    width: 510px;
+    height: 510px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .program-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .offer {
+    display: flex;
+    justify-content: space-between;
+
+    .program-description {
+      display: flex;
+      margin-top: 4px;
+      gap: 40px
+    }
+  }
+
+  .icon-program {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+  }
+
+  .program-price {
+    width: 236px;
+    height: 52px;
+  }
+
+  .animation {
+     transition: 0.1s ease-out;
+  }
+
+  .animation:hover {
+     transform: scale(1.1)
   }
 }
