@@ -437,6 +437,7 @@
     display: flex;
     align-items: center;
     margin-right: 16px;
+    
   }
 
   .program-price {
@@ -450,5 +451,219 @@
 
   .animation:hover {
      transform: scale(1.1)
+  }
+}
+
+@mixin blur {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+}
+
+.popular-direction-wrapper {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .direction-rating-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 244px;
+    height: 52px;
+    align-self: center;
+    margin-top: 50px;
+  }
+
+  .often-choice-users {
+    display: flex;
+    justify-content: center;
+  }
+
+  .popular-directions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .wrapper-photo-directions {
+    gap: 20px;
+    display: flex;
+    color: var(--primary-color);
+
+    .direction-photo {
+      position: relative;
+      width: 380px;
+      height: 500px;
+    }
+
+    .rating-wrapper {
+      @include blur();
+
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      gap: 4px;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+      width: 65px;
+      right: 0;
+      top: 50px;
+      height: 32px;
+      color: var(--secondary-color);
+      position: absolute;
+    }
+
+    .blur-photo {
+      @include blur();
+
+      width: 380px;
+      height: 90px;
+      bottom: 0;
+      z-index: 0;
+      position: absolute;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+    }
+
+    .wrapper-direction-info {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 32px;
+      bottom: 23px;
+      z-index: 1;
+    }
+
+    .direction-price {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      bottom: 25px;
+      right: 32px;
+      width: 86px;
+      height: 40px;
+      z-index: 1;
+    }
+  }
+}
+
+.travel-blog-bg {
+  margin-top: 95px;
+  background-color: #F3F5F4;
+  height: 1036px;
+
+  .travel-blog-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 85px 0px 40px 0px;
+  }
+
+  .blog-news {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 648px;
+    gap: 24px 20px;
+
+    .others-material {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: 52px;
+    }
+
+    .news-card {
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      width: 580px;
+      height: 312px;
+      box-shadow: 0px 0px 15px 0px #18121E1F;
+      gap: 24px;
+      border-radius: 10px;
+
+      .card-title:hover {
+        cursor: pointer;
+        color: var(--secondary-color);
+        text-decoration-line: underline;
+      }
+
+      .card-info {
+        display: flex;
+        flex-direction: column;
+        width: 294px;
+        height: 280px;
+        padding: 16px 16px 16px 0px;
+        margin: 16px 16px 16px 0px;
+        gap: 24px;
+
+        .card-footer {
+          margin-top: auto;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .card-photo-wrapper {
+        padding: 16px 0px 16px 16px;
+      }
+
+      .read-article {
+        cursor: pointer;
+        background-color: none;
+        border: none;
+        color: var(--secondary-color);
+      }
+
+      .card-date {
+        color: #F2BE22;
+      }
+    }
+  }
+}
+
+.status-msg {
+  color: var(--primary-color);
+  z-index: 5;
+  right: 1%;
+  top: 5%;
+  position: fixed;
+  width: 350px;
+  height: 70px;
+  background-color: #0F172A99;
+  border: 1px solid #000000;
+  border-radius: 10px;
+
+  .close-icon-msg {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    padding: 7px 7px 0px 0px;
+  }
+
+  .msg-wrapper {
+    display: flex;
+    gap: 15px;
+
+    .msg-icon {
+    padding: 15px 0px 15px 15px;
+    }
+
+    .msg-info {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0px;
+      gap: 5px;
+    }
   }
 }
