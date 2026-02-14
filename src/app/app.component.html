@@ -116,7 +116,12 @@
       <span class="section-super-title">о нашем походе</span>
       <h2 class="sub-title section-title ">Исследуйте все горные массивы мира вместе с нами</h2>
       <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-      <button id="program-tour-btn" class="tour-program-btn primary-button">Программа тура</button>
+      @if (currentMessage === Message.WARN) {
+        <ng-container
+        [ngTemplateOutlet]="statusMsg"
+        [ngTemplateOutletContext]="{ type: Message.WARN, msg: 'Произошла ошибка, повторите попытку позже' }"></ng-container>
+      }
+      <button id="warn-type-btn" class="tour-program-btn primary-button" (click)="showWarnMsg()">Программа тура</button>
     </div>
   </div>
 </section>
@@ -145,12 +150,102 @@
         </div>
       }
     </div>
-    <button id="program-price" class="program-price primary-button">Стоимость программ</button>
+    @if (currentMessage === Message.INFO) {
+      <ng-container
+      [ngTemplateOutlet]="statusMsg"
+      [ngTemplateOutletContext]="{ type: Message.INFO, msg: 'Владислав лакер' }"></ng-container>
+    }
+    <button id="info-type-btn" class="program-price primary-button" (click)="showInfoMsg()">Стоимость программ</button>
   </div>
   <div class="wrapper-img-tour">
-    <img src="/images/tour-photo-1.png" alt="tour-photo" width="250" height="250" >
-    <img src="/images/tour-photo-2.png" alt="tour-photo" width="250" height="250" >
-    <img src="/images/tour-photo-3.png" alt="tour-photo" width="250" height="250" >
-    <img src="/images/tour-photo-4.png" alt="tour-photo" width="250" height="250" >
+    <img src="/images/tour-photo-1.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/tour-photo-2.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/tour-photo-3.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/tour-photo-4.png" alt="tour-photo" width="250" height="250">
   </div>
 </section>
+
+<section>
+  <div class="popular-direction-wrapper container">
+      <span class="often-choice-users section-super-title">по версии отдыхающих</span>
+      <h2 class="popular-directions section-title">Популярные направления</h2>
+    <div class="wrapper-photo-directions container">
+      @for (direction of directions; track direction.id) {
+        <div>
+          <div class="direction-photo">
+            <img [src]="'/images/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
+            <div class="rating-wrapper">
+              <img src="/images/star-icon.svg" alt="star">
+              <span class="rating fw-700">{{ direction.rating }}</span>
+            </div>
+            <div class="wrapper-direction-info">
+              <span class="direction-name fs-24 fw-700">{{ direction.name }}</span>
+              <span class="direction-description fs-14">{{ direction.description }}</span>
+            </div>
+            <div class="direction-price">
+              <span class="fs-20 fw-700">{{ direction.price}} $</span>
+            </div>
+            <div class="blur-photo"></div>
+          </div>
+        </div>
+      }
+    </div>
+    @if (currentMessage === Message.SUCCESS) {
+      <ng-container
+      [ngTemplateOutlet]="statusMsg"
+      [ngTemplateOutletContext]="{ type: Message.SUCCESS, msg: 'Принимаю вас' }"></ng-container>
+    }
+    <button id="success-type-btn" class="direction-rating-btn primary-button fw-600" (click)="showSuccessMsg()">Рейтинг направлений</button>
+  </div>
+</section>
+
+<section>
+  <div class="travel-blog-bg">
+    <div class="travel-blog-title">
+      <span class="section-super-title">делимся впечатлениями</span>
+      <h2 class="section-title">Блог о путешествиях</h2>
+    </div>
+    <div class="blog-news container">
+      @for (newsCard of newsCards; track newsCard.id) {
+        <div class="news-card" [class.fake-link]="newsCard.id === selectedCardId" (mouseenter)="selectedCard(newsCard.id)">
+          <div class="card-photo-wrapper">
+            <img [src]="'/images/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
+          </div>
+          <div class="card-info">
+            <h2 class="fw-700 fs-24">{{ newsCard.title }}</h2>
+            <p class="fs-14">{{ newsCard.description }}</p>
+            <div class="card-footer">
+              <span class="card-date fs-14 fw-700">{{ newsCard.date }}</span>
+              <a id="read-article" class="read-article">
+                <span class="read-article fs-14 fw-700">читать статью</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+      @if (currentMessage === Message.ERROR) {
+        <ng-container
+        [ngTemplateOutlet]="statusMsg"
+        [ngTemplateOutletContext]="{ type: Message.ERROR, msg: 'Произошла ошибка, повторите попытку позже' }"></ng-container>
+      }
+      <button id="error-type-btn" class="others-material primary-button" (click)="showErrorMsg()">Другие материалы</button>
+    </div>
+  </div>
+</section>
+
+<ng-template #statusMsg let-type="type" let-msg="msg">
+  <div class="status-msg">
+    <button id="close-msg-btn" class="close-icon-msg" (click)="closeMsg()">
+      <img src="/images/close-icon.svg" alt="">
+    </button>
+    <div class="msg-wrapper">
+      <div class="msg-icon">
+        <img src="/images/msg-icon.svg" alt="">
+      </div>
+      <div class="msg-info">
+        <span class="fw-700 fs-16">{{ type }}</span>
+        <p class="fs-14">{{ msg }}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
