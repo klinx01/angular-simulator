@@ -590,17 +590,10 @@
       gap: 24px;
       border-radius: 10px;
 
-      &.fake-link {
-        h2 {
-          color: var(--secondary-color);
-          text-decoration-line: underline;
-        }
-
-        .cursor {
-          position: absolute;
-          top: 37%;
-          right: 90px;
-        }
+      .card-title:hover {
+        cursor: pointer;
+        color: var(--secondary-color);
+        text-decoration-line: underline;
       }
 
       .card-info {

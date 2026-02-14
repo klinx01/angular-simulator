@@ -207,12 +207,12 @@
     </div>
     <div class="blog-news container">
       @for (newsCard of newsCards; track newsCard.id) {
-        <div class="news-card" [class.fake-link]="newsCard.id === selectedCardId" (mouseenter)="selectedCard(newsCard.id)">
+        <div class="news-card">
           <div class="card-photo-wrapper">
             <img [src]="'/images/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
           </div>
           <div class="card-info">
-            <h2 class="fw-700 fs-24">{{ newsCard.title }}</h2>
+            <h2 class="fw-700 fs-24 card-title">{{ newsCard.title }}</h2>
             <p class="fs-14">{{ newsCard.description }}</p>
             <div class="card-footer">
               <span class="card-date fs-14 fw-700">{{ newsCard.date }}</span>

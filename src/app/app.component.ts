@@ -148,10 +148,6 @@ export class AppComponent {
     }, 2000);
   }
 
-  selectedCard(newsCardId: number): void {
-    this.selectedCardId = newsCardId;
-  }
-
   isFormValid(): boolean {
     return !!this.selectedLocation && !!this.dateHike && !!this.selectedParticipant;
   }
