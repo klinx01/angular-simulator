@@ -167,8 +167,8 @@
 
 <section>
   <div class="popular-direction-wrapper container">
-      <span class="often-choice-users section-super-title">по версии отдыхающих</span>
-      <h2 class="popular-directions section-title">Популярные направления</h2>
+    <span class="often-choice-users section-super-title">по версии отдыхающих</span>
+    <h2 class="popular-directions section-title">Популярные направления</h2>
     <div class="wrapper-photo-directions container">
       @for (direction of directions; track direction.id) {
         <div>
@@ -236,11 +236,11 @@
 <ng-template #statusMsg let-type="type" let-msg="msg">
   <div class="status-msg">
     <button id="close-msg-btn" class="close-icon-msg" (click)="closeMsg()">
-      <img src="/images/close-icon.svg" alt="">
+      <img src="/images/close-icon.svg" alt="close-btn">
     </button>
     <div class="msg-wrapper">
       <div class="msg-icon">
-        <img src="/images/msg-icon.svg" alt="">
+        <img src="/images/msg-icon.svg" alt="close-btn">
       </div>
       <div class="msg-info">
         <span class="fw-700 fs-16">{{ type }}</span>
