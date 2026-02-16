@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import './training.ts'
 import { Color } from '../enums/Color'
 import { Collection } from './collection.js';
@@ -11,6 +11,7 @@ import { INewsCard } from '../interfaces/INewsCard.js';
 import { NgTemplateOutlet } from "@angular/common";
 import { Message } from '../enums/Message.js';
 import { LocalStorageService } from '../local-storage.service.js'
+import { MessageService } from '../message.service.js';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { LocalStorageService } from '../local-storage.service.js'
 })
 export class AppComponent {
 
-  localStorageService: LocalStorageService = inject(LocalStorageService);
+  messageService: MessageService = inject(MessageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
   numbers: Collection<number> = new Collection([1, 2, 3, 4]);
   products: Collection<string> = new Collection(['молоко', 'хлеб', 'колбаса', 'яблоко']);
   companyName: string = 'румтибет';
@@ -33,8 +35,7 @@ export class AppComponent {
   counter: number = 0;
   currentFunctionality: string = 'timer';
   selectedCardId!: number;
-  Message = Message;
-  currentMessage!: Message | null;
+  message =  Message;
 
   participants: IParticipant[] = [
     { id: 1, name: 'Сиега' },
@@ -158,38 +159,6 @@ export class AppComponent {
 
   decreaseCounter(): void {
     this.counter -= 1;
-  }
-
-  closeMsg(): void {
-    this.currentMessage = null;
-  }
-
-  showWarnMsg(): void {
-    this.currentMessage = Message.WARN;
-    setTimeout(() => {
-      this.currentMessage = null;
-    }, 3000);
-  }
-
-  showInfoMsg(): void {
-    this.currentMessage = Message.INFO;
-    setTimeout(() => {
-      this.currentMessage = null;
-    }, 3000);
-  }
-
-  showErrorMsg(): void {
-    this.currentMessage = Message.ERROR;
-    setTimeout(() => {
-      this.currentMessage = null;
-    }, 3000);
-  }
-
-  showSuccessMsg(): void {
-    this.currentMessage = Message.SUCCESS;
-    setTimeout(() => {
-      this.currentMessage = null;
-    }, 3000);
   }
 
   showClicker(): void {

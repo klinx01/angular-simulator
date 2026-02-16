@@ -116,12 +116,7 @@
       <span class="section-super-title">о нашем походе</span>
       <h2 class="sub-title section-title ">Исследуйте все горные массивы мира вместе с нами</h2>
       <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-      @if (currentMessage === Message.WARN) {
-        <ng-container
-        [ngTemplateOutlet]="statusMsg"
-        [ngTemplateOutletContext]="{ type: Message.WARN, msg: 'Произошла ошибка, повторите попытку позже' }"></ng-container>
-      }
-      <button id="warn-type-btn" class="tour-program-btn primary-button" (click)="showWarnMsg()">Программа тура</button>
+      <button id="warn-type-btn" class="tour-program-btn primary-button" (click)="messageService.addMessage(message.WARN, 'Предупреждение')">Программа тура</button>
     </div>
   </div>
 </section>
@@ -150,12 +145,7 @@
         </div>
       }
     </div>
-    @if (currentMessage === Message.INFO) {
-      <ng-container
-      [ngTemplateOutlet]="statusMsg"
-      [ngTemplateOutletContext]="{ type: Message.INFO, msg: 'Владислав лакер' }"></ng-container>
-    }
-    <button id="info-type-btn" class="program-price primary-button" (click)="showInfoMsg()">Стоимость программ</button>
+    <button id="info-type-btn" class="program-price primary-button" (click)="messageService.addMessage(message.INFO, 'Владислав лакер')">Стоимость программ</button>
   </div>
   <div class="wrapper-img-tour">
     <img src="/images/tour-photo-1.png" alt="tour-photo" width="250" height="250">
@@ -183,19 +173,19 @@
               <span class="direction-description fs-14">{{ direction.description }}</span>
             </div>
             <div class="direction-price">
-              <span class="fs-20 fw-700">{{ direction.price}} $</span>
+              <span class="fs-20 fw-700">{{ direction.price }} $</span>
             </div>
             <div class="blur-photo"></div>
           </div>
         </div>
       }
     </div>
-    @if (currentMessage === Message.SUCCESS) {
-      <ng-container
-      [ngTemplateOutlet]="statusMsg"
-      [ngTemplateOutletContext]="{ type: Message.SUCCESS, msg: 'Принимаю вас' }"></ng-container>
-    }
-    <button id="success-type-btn" class="direction-rating-btn primary-button fw-600" (click)="showSuccessMsg()">Рейтинг направлений</button>
+    <button 
+      id="success-type-btn"
+      class="direction-rating-btn primary-button fw-600"
+      (click)="messageService.addMessage(message.SUCCESS, 'я принимаю тебя')"
+      >
+      Рейтинг направлений</button>
   </div>
 </section>
 
@@ -223,19 +213,20 @@
           </div>
         </div>
       }
-      @if (currentMessage === Message.ERROR) {
-        <ng-container
-        [ngTemplateOutlet]="statusMsg"
-        [ngTemplateOutletContext]="{ type: Message.ERROR, msg: 'Произошла ошибка, повторите попытку позже' }"></ng-container>
-      }
-      <button id="error-type-btn" class="others-material primary-button" (click)="showErrorMsg()">Другие материалы</button>
+      <button id="error-type-btn" class="others-material primary-button" (click)="messageService.addMessage(message.ERROR, 'Ошибка!')">Другие материалы</button>
     </div>
   </div>
 </section>
 
-<ng-template #statusMsg let-type="type" let-msg="msg">
+<div class="message-wrapper">
+  @for (message of messageService.messages; track message.id) {
+    <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }"></ng-container>
+  }
+</div>
+
+<ng-template #msg let-message="message" >
   <div class="status-msg">
-    <button id="close-msg-btn" class="close-icon-msg" (click)="closeMsg()">
+    <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message.id)">
       <img src="/images/close-icon.svg" alt="close-btn">
     </button>
     <div class="msg-wrapper">
@@ -243,8 +234,8 @@
         <img src="/images/msg-icon.svg" alt="close-btn">
       </div>
       <div class="msg-info">
-        <span class="fw-700 fs-16">{{ type }}</span>
-        <p class="fs-14">{{ msg }}</p>
+        <span class="fw-700 fs-16">{{ message.type }}</span>
+        <p class="fs-14">{{ message.text }}</p>
       </div>
     </div>
   </div>

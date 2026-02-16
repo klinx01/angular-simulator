@@ -630,14 +630,19 @@
   }
 }
 
-.status-msg {
-  color: var(--primary-color);
-  z-index: 5;
+.message-wrapper {
   right: 1%;
   top: 5%;
   position: fixed;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 5px;
+}
+
+.status-msg {
+  color: var(--primary-color);
+  z-index: 5;
   width: 350px;
-  height: 70px;
   background-color: #0F172A99;
   border: 1px solid #000000;
   border-radius: 10px;
@@ -656,7 +661,7 @@
     gap: 15px;
 
     .msg-icon {
-    padding: 15px 0px 15px 15px;
+      padding: 15px 0px 15px 15px;
     }
 
     .msg-info {
