@@ -1,6 +1,6 @@
 @if (isLoading) {
   <div class="load-icon">
-    <img src="/images/load-icon.svg" alt="loading">
+    <img src="/images/icon/load-icon.svg" alt="loading">
   </div>
   <div class="background-loading"></div>
 }
@@ -62,7 +62,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/down-arrow.svg">
+                <img src="/images/arrow/down-arrow.svg">
               </div>
             </div>
               <span class="location-input-description fw-400 fs-14">выберите из списка</span>
@@ -70,7 +70,7 @@
           <div class="search-form-group">
             <div class="search-form">
               <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
-              <img src="/images/calendar.svg">
+              <img src="/images/icon/calendar.svg">
             </div>
             <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
           </div>
@@ -83,7 +83,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/down-arrow.svg">
+                <img src="/images/arrow/down-arrow.svg">
               </div>
             </div>
             <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
@@ -94,7 +94,7 @@
       <div class="live-input-wrapper">
         <div class="input-container">
           <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
-            <img src="/images/right-arrow-icon.svg" alt="right-arrow">
+            <img src="/images/arrow/right-arrow-icon.svg" alt="right-arrow">
         </div>
         <p>{{ liveInput }}</p>
       </div>
@@ -104,12 +104,12 @@
 
 <section class="hike-wrapper">
   <div class="mountains-wrapper container" >
-    <img class="mountains-img-1" src="/images/mountain-photo-1.png" alt="mountain">
-    <img class="mountains-img-2" src="/images/mountain-photo-2.png" alt="mountain">
+    <img class="mountains-img-1" src="/images/nature-photo/mountain-photo-1.png" alt="mountain">
+    <img class="mountains-img-2" src="/images/nature-photo/mountain-photo-2.png" alt="mountain">
     <div class="video-play-icon">
       <a id="play-video-btn" href="#">
         <div class="video-play-bg"></div>
-        <img class="triangle-icon" src="/images/video-play-icon.svg" alt="play-video">
+        <img class="triangle-icon" src="/images/icon/video-play-icon.svg" alt="play-video">
       </a>
     </div>
     <div class="about-hike">
@@ -135,7 +135,7 @@
         <div class="animation">
           <div class="offer">
             <div class="icon-program">
-              <img [src]="'/images/' + offer.img + '.svg'" alt="tour-program-icon">
+              <img [src]="'/images/icon/' + offer.img + '.svg'" alt="tour-program-icon">
             </div>
             <div>
               <span class="fw-700 fs-18">{{ offer.title }}</span>
@@ -148,10 +148,10 @@
     <button id="info-type-btn" class="program-price primary-button" (click)="messageService.addMessage(message.INFO, 'Владислав лакер')">Стоимость программ</button>
   </div>
   <div class="wrapper-img-tour">
-    <img src="/images/tour-photo-1.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/tour-photo-2.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/tour-photo-3.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/tour-photo-4.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photo/tour-photo-1.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photo/tour-photo-2.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photo/tour-photo-3.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photo/tour-photo-4.png" alt="tour-photo" width="250" height="250">
   </div>
 </section>
 
@@ -163,9 +163,9 @@
       @for (direction of directions; track direction.id) {
         <div>
           <div class="direction-photo">
-            <img [src]="'/images/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
+            <img [src]="'/images/nature-photo/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
             <div class="rating-wrapper">
-              <img src="/images/star-icon.svg" alt="star">
+              <img src="/images/icon/star-icon.svg" alt="star">
               <span class="rating fw-700">{{ direction.rating }}</span>
             </div>
             <div class="wrapper-direction-info">
@@ -199,7 +199,7 @@
       @for (newsCard of newsCards; track newsCard.id) {
         <div class="news-card">
           <div class="card-photo-wrapper">
-            <img [src]="'/images/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
+            <img [src]="'/images/nature-photo/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
           </div>
           <div class="card-info">
             <h2 class="fw-700 fs-24 card-title">{{ newsCard.title }}</h2>
@@ -227,11 +227,11 @@
 <ng-template #msg let-message="message" >
   <div class="status-msg">
     <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message)">
-      <img src="/images/close-icon.svg" alt="close-btn">
+      <img src="/images/icon/close-icon.svg" alt="close-btn">
     </button>
     <div class="msg-wrapper">
       <div class="msg-icon">
-        <img src="/images/msg-icon.svg" alt="close-btn">
+        <img src="/images/icon/message-icon.svg" alt="close-btn">
       </div>
       <div class="msg-info">
         <span class="fw-700 fs-16">{{ message.type }}</span>
