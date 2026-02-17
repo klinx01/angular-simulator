@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { IMessage } from './interfaces/IMessage';
+import { Message } from './enums/Message';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MessageService {
+
+  messages: IMessage[] = [];
+
+  addMessage(type: Message, text: string): void {
+    const newMessage: IMessage = { type, text };
+    this.messages = [...this.messages, newMessage];
+
+    setTimeout(() => {
+      this.closeMessage(newMessage);
+    }, 5000);
+  }
+
+  closeMessage(message: IMessage): void {
+    this.messages = this.messages.filter((m: IMessage) => m !== message);
+  }
+
+}
