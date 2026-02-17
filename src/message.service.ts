@@ -10,7 +10,7 @@ export class MessageService {
   messages: IMessage[] = [];
 
   addMessage(type: Message, text: string): void {
-    const newMessage: IMessage = { type, text }
+    const newMessage: IMessage = { type, text };
     this.messages = [...this.messages, newMessage];
 
     setTimeout(() => {
