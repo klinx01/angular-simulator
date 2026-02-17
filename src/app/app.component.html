@@ -219,14 +219,14 @@
 </section>
 
 <div class="message-wrapper">
-  @for (message of messageService.messages; track message.id) {
+  @for (message of messageService.messages; track message) {
     <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }"></ng-container>
   }
 </div>
 
 <ng-template #msg let-message="message" >
   <div class="status-msg">
-    <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message.id)">
+    <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message)">
       <img src="/images/close-icon.svg" alt="close-btn">
     </button>
     <div class="msg-wrapper">

@@ -35,7 +35,7 @@ export class AppComponent {
   counter: number = 0;
   currentFunctionality: string = 'timer';
   selectedCardId!: number;
-  message =  Message;
+  message: typeof Message = Message;
 
   participants: IParticipant[] = [
     { id: 1, name: 'Сиега' },
