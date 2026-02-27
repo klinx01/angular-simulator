@@ -1,11 +1,9 @@
 @if (isLoading) {
   <div class="load-icon">
-    <img src="/images/icon/load-icon.svg" alt="loading">
+    <img src="/images/icons/load-icon.svg" alt="loading">
   </div>
   <div class="background-loading"></div>
 }
-
-<app-header></app-header>
 
 <section class="main-info">
   <div class="background-main"></div>
@@ -25,7 +23,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/arrow/down-arrow.svg">
+                <img src="/images/icons/down-arrow-icon.svg">
               </div>
             </div>
               <span class="location-input-description fw-400 fs-14">выберите из списка</span>
@@ -33,7 +31,7 @@
           <div class="search-form-group">
             <div class="search-form">
               <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
-              <img src="/images/icon/calendar-icon.svg">
+              <img src="/images/icons/calendar-icon.svg">
             </div>
             <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
           </div>
@@ -46,7 +44,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/arrow/down-arrow.svg">
+                <img src="/images/icons/down-arrow-icon.svg">
               </div>
             </div>
             <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
@@ -54,13 +52,13 @@
         </div>
         <button id="find-program-btn" class="find-program-btn secondary-button fw-700 fs-16" [disabled]="!isFormValid()">Найти программу</button>
       </div>
-      <div class="live-input-wrapper">
-        <div class="input-container">
-          <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
-            <img src="/images/arrow/right-arrow.svg" alt="right-arrow">
+        <div class="live-input-wrapper">
+          <div class="input-container">
+            <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
+              <img src="/images/icons/right-arrow-icon.svg" alt="right-arrow">
+          </div>
+          <p>{{ liveInput }}</p>
         </div>
-        <p>{{ liveInput }}</p>
-      </div>
     </div>
   </div>
 </section>
@@ -69,12 +67,12 @@
 
 <section class="hike-wrapper">
   <div class="mountains-wrapper container" >
-    <img class="mountains-img-1" src="/images/nature-photo/mountain-photo-1.png" alt="mountain">
-    <img class="mountains-img-2" src="/images/nature-photo/mountain-photo-2.png" alt="mountain">
+    <img class="mountains-img-1" src="/images/nature-photos/mountain-photo-1.png" alt="mountain">
+    <img class="mountains-img-2" src="/images/nature-photos/mountain-photo-2.png" alt="mountain">
     <div class="video-play-icon">
       <a id="play-video-btn" href="#">
         <div class="video-play-bg"></div>
-        <img class="triangle-icon" src="/images/icon/video-play-icon.svg" alt="play-video">
+        <img class="triangle-icon" src="/images/icons/video-play-icon.svg" alt="play-video">
       </a>
     </div>
     <div class="about-hike">
@@ -106,7 +104,7 @@
         <div class="animation">
           <div class="offer">
             <div class="icon-program">
-              <img [src]="'/images/icon/' + offer.img + '.svg'" alt="tour-program-icon">
+              <img [src]="'/images/icons/' + offer.img + '.svg'" alt="tour-program-icon">
             </div>
             <div>
               <span class="fw-700 fs-18">{{ offer.title }}</span>
@@ -125,10 +123,10 @@
     </button>
   </div>
   <div class="wrapper-img-tour">
-    <img src="/images/nature-photo/tour-photo-1.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photo/tour-photo-2.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photo/tour-photo-3.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photo/tour-photo-4.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-1.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-2.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-3.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-4.png" alt="tour-photo" width="250" height="250">
   </div>
 </section>
 
@@ -140,9 +138,9 @@
       @for (direction of directions; track direction.id) {
         <div>
           <div class="direction-photo">
-            <img [src]="'/images/nature-photo/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
+            <img [src]="'/images/nature-photos/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
             <div class="rating-wrapper">
-              <img src="/images/icon/star-icon.svg" alt="star">
+              <img src="/images/icons/star-icon.svg" alt="star">
               <span class="rating fw-700">{{ direction.rating }}</span>
             </div>
             <div class="wrapper-direction-info">
@@ -177,7 +175,7 @@
       @for (newsCard of newsCards; track newsCard.id) {
         <div class="news-card">
           <div class="card-photo-wrapper">
-            <img [src]="'/images/nature-photo/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
+            <img [src]="'/images/nature-photos/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
           </div>
           <div class="card-info">
             <h2 class="fw-700 fs-24 card-title">{{ newsCard.title }}</h2>
@@ -208,42 +206,14 @@
     <h2 class="section-title">Делимся впечатлениями</h2>
   </div>
   <div class="container gallery">
-    <img class="ballons" src="/images/nature-photo/ballons.png" alt="ballons">
-    <img class="seeker-table" src="/images/nature-photo/seeker-table.png" alt="seeker-table">
-    <img class="dubai-hotel" src="/images/nature-photo/dubai-hotel.png" alt="dubai-hotel">
-    <img class="beach" src="/images/nature-photo/beach.png" alt="beach">
-    <img class="mesa" src="/images/nature-photo/mesa.png" alt="mesa">
-    <img class="photographer-table" src="/images/nature-photo/photographer-table.png" alt="photographer-table">
+    <img class="ballons" src="/images/nature-photos/ballons.png" alt="ballons">
+    <img class="seeker-table" src="/images/nature-photos/seeker-table.png" alt="seeker-table">
+    <img class="dubai-hotel" src="/images/nature-photos/dubai-hotel.png" alt="dubai-hotel">
+    <img class="beach" src="/images/nature-photos/beach.png" alt="beach">
+    <img class="mesa" src="/images/nature-photos/mesa.png" alt="mesa">
+    <img class="photographer-table" src="/images/nature-photos/photographer-table.png" alt="photographer-table">
   </div>
   <div class="pinterest-btn-wrapper">
     <button id="pinterest-btn" class="primary-button pinterest-btn">Наш pinterest</button>
   </div>
-  <div class="container email-input-container">
-    <div class="relevant-info">
-      <span class="relevant fs-18 fw-400">актуально</span>
-      <h2 class="mailings fw-800 fs">Получайте полезные рассылки о путешествиях</h2>
-    </div>
-    <div>
-      <div>
-        <div class="email-info-wrapper">
-          <div class="email-input-wrapper">
-            <p class="fw-600 fs-16">Введите e-mail адрес</p>
-            <input class="email-input" placeholder="name@domain.com" type="email">
-          </div>
-          <div>
-            <button id="subscribe-btn" class="subscribe-btn primary-button">Подписаться на новости</button>
-          </div>
-        </div>
-      </div>
-      <div class="agreement">
-        <p class="fw-600 fs-14">подписываясь на новости, вы автоматически соглашаетесь с
-          <span>условиями обработки персональных данных</span>
-          и
-          <span>правилами рекламных рассылок</span>
-        </p>
-      </div>
-    </div>
-  </div>
 </section>
-
-<app-footer></app-footer>

@@ -9,6 +9,9 @@
     justify-content: space-between;
     align-items: center;
     height: 72px;
+    position: relative;
+    z-index: 1;
+    padding: 18px 0px 14px 0px;
 
     .company-name {
       display: flex;
@@ -27,22 +30,27 @@
 
     .active-link {
       text-decoration: underline !important;
-      color: lightgreen !important;
+      color: #71b7b7 !important;
     }
 
     .consultation-btn {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
       width: 157px;
       height: 44px;
     }
   }
 
   .clicker-wrapper {
+    margin-top: 7px;
     width: 270px;
     height: 44px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: flex-end;
+    position: relative;
+
 
     @mixin clicker-btn {
       background: none;
@@ -60,12 +68,16 @@
         @include clicker-btn();
 
         width: 11px;
+        position: relative;
+        z-index: 1;
       }
 
       .click-minus {
         @include clicker-btn();
 
         width: 8px;
+        position: relative;
+        z-index: 1;
       }
     }
   }
@@ -77,6 +89,8 @@
     justify-content: space-between;
     align-items: center;
     align-self: flex-end;
+    position: relative;
+    margin-top: 7px;
 
     .timer {
       color: var(--primary-color);
@@ -92,18 +106,23 @@
       display: flex;
       align-items: center;
       padding: 12px 11px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
     }
   }
 }
 
-.background-main {
-  background-image: url('/images/background/mountains-bg.png');
-  background-repeat: no-repeat;
+.show-data-btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  height: 44px;
+  width: 157px;
+  padding: 12px 11px;
+}
+
+.background-header {
+  background-color: rgba(24, 18, 30, 0.5);
   width: 100%;
-  height: 200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
+  height: 141px;
   background-size: cover;
 }

@@ -7,11 +7,11 @@
 <ng-template #msg let-message="message" >
   <div class="status-msg">
     <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message)">
-      <img src="/images/icon/close-icon.svg" alt="close-btn">
+      <img src="/images/icons/close-icon.svg" alt="close-btn">
     </button>
     <div class="msg-wrapper">
       <div class="msg-icon">
-        <img src="/images/icon/message-icon.svg" alt="message-icon">
+        <img src="/images/icons/message-icon.svg" alt="message-icon">
       </div>
       <div class="msg-info">
         <span class="fw-700 fs-16">{{ message.type }}</span>

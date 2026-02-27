@@ -40,6 +40,10 @@ export class HeaderComponent {
   ];
 
   constructor() {
+    setTimeout(() => {
+      this.updateCurrentTime();
+    }, 0);
+
     setInterval(() => {
       this.updateCurrentTime();
     }, 1000);

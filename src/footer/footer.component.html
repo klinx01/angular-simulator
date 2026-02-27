@@ -1,4 +1,31 @@
-<footer>
+<div class="container email-input-container">
+    <div class="relevant-info">
+      <span class="relevant fs-18 fw-400">актуально</span>
+      <h2 class="mailings fw-800 fs">Получайте полезные рассылки о путешествиях</h2>
+    </div>
+    <div>
+      <div>
+        <div class="email-info-wrapper">
+          <div class="email-input-wrapper">
+            <p class="fw-600 fs-16">Введите e-mail адрес</p>
+            <input class="email-input" placeholder="name@domain.com" type="email">
+          </div>
+          <div>
+            <button id="subscribe-btn" class="subscribe-btn primary-button">Подписаться на новости</button>
+          </div>
+        </div>
+      </div>
+      <div class="agreement">
+        <p class="fw-600 fs-14">подписываясь на новости, вы автоматически соглашаетесь с
+          <span>условиями обработки персональных данных</span>
+          и
+          <span>правилами рекламных рассылок</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<footer class="super-footer">
   <div class="footer">
     <div class="container footer-container">
       <div class="footer-wrapper">
@@ -13,16 +40,16 @@
               </div>
               <nav class="socials">
                 <a id="telegram" href="#">
-                  <img src="/images/icon/tg-icon.svg" alt="Telegram">
+                  <img src="/images/icons/tg-icon.svg" alt="Telegram">
                 </a>
                 <a id="vk" href="#">
-                  <img src="/images/icon/vk-icon.svg" alt="VK">
+                  <img src="/images/icons/vk-icon.svg" alt="VK">
                 </a>
                 <a id="pinterest" href="#">
-                  <img src="/images/icon/pinterest-icon.svg" alt="Pinterest">
+                  <img src="/images/icons/pinterest-icon.svg" alt="Pinterest">
                 </a>
                 <a id="skype" href="#">
-                  <img src="/images/icon/skype-icon.svg" alt="Skype">
+                  <img src="/images/icons/skype-icon.svg" alt="Skype">
                 </a>
               </nav>
             </div>
@@ -33,7 +60,7 @@
           <div class="service-name-cointainer">
             @for (service of services; track $index) {
               <div class="service-name-wrapper">
-                <img src="/images/arrow/small-right-arrow.svg" alt="right-arrow">
+                <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
                 <a id="service-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                   <span class="fw-400 fs-14">{{ service }}</span>
                 </a>
@@ -47,7 +74,7 @@
         <div class="info-name-cointainer">
           @for (inf of info; track $index) {
             <div class="info-name-wrapper">
-              <img src="/images/arrow/small-right-arrow.svg" alt="right-arrow">
+              <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
               <a id="info-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                 <span class="fw-400 fs-14">{{ inf }}</span>
               </a>

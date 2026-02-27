@@ -22,6 +22,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -32,7 +33,7 @@
   padding-bottom: 82px;
 
   .background-main {
-    background-image: url('/images/background/mountains-bg.png');
+    background-image: url('/images/backgrounds/mountains-bg.png');
     background-repeat: no-repeat;
     width: 100%;
     height: 985px;
@@ -45,7 +46,7 @@
 
   .content-wrapper {
     display: flex;
-    height: 100%;
+    height: 99%;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -75,26 +76,19 @@
     height: 52px;
     color: var(--primary-color);
     display: flex;
-    padding-top: 15px;
+    padding-top: 11px;
 
     p {
-      padding: 18px ;
+      padding: 18px;
       font-weight: 700;
       font-size: 16px;
     }
 
     .input-container {
-      position: relative;
       min-width: 270px;
       height: 52px;
       border: 1px solid var(--primary-color);
       border-radius: 8px;
-
-      img {
-        position: absolute;
-        top: 37%;
-        right: 5%;
-      }
     }
 
     .live-input {
@@ -132,7 +126,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border:  1px solid #ccc;
+    border: 1px solid #ccc;
 
     .location-tour {
       @include search-program-template();
@@ -164,10 +158,10 @@
     }
 
     .down-arrow-icon {
-        position: absolute;
-        right: 16px;
-        z-index: -1;
-      }
+      position: absolute;
+      right: 16px;
+      z-index: -1;
+    }
   }
 
   .search-form img {
@@ -343,7 +337,7 @@
     display: flex;
     align-items: center;
     margin-right: 16px;
-    
+
   }
 
   .program-price {
@@ -352,11 +346,11 @@
   }
 
   .animation {
-     transition: 0.1s ease-out;
+    transition: 0.1s ease-out;
   }
 
   .animation:hover {
-     transform: scale(1.1)
+    transform: scale(1.1)
   }
 }
 
@@ -593,70 +587,5 @@
   .pinterest-btn {
     width: 178px;
     height: 52px;
-  }
-}
-
-.email-input-container {
-  position: relative;
-  z-index: 10;
-  background-color: #FDFDFD;
-  margin-bottom: -94px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 196px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 15px 0px #18121E1F;
-
-  .relevant-info {
-    width: 380px;
-
-    .relevant {
-      color: #F2BE22;
-    }
-
-    .mailings {
-      font-size: 26px;
-    }
-  }
-
-  .agreement {
-    margin-top: 8px;
-    width: 536px;
-    display: flex;
-    align-items: end;
-
-    span {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
-
-  .email-info-wrapper {
-    display: flex;
-    justify-content: space-between;
-    width: 536px;
-    height: 72px;
-    align-items: end;
-
-    .email-input-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .email-input {
-      width: 280px;
-      background-color: #F3F5F4;
-      height: 44px;
-      border: none;
-      border-radius: 4px;
-      padding: 16px;
-    }
-
-    .subscribe-btn {
-      width: 240px;
-      height: 44px;
-    }
   }
 }

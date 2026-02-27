@@ -11,13 +11,10 @@ import { Message } from '../enums/Message.js';
 import { LocalStorageService } from '../local-storage.service.js'
 import { MessageService } from '../message.service.js';
 import { RouterOutlet } from '@angular/router';
-import { MessageComponent } from "../message/message.component";
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'home-page',
-  imports: [FormsModule, RouterOutlet, MessageComponent, HeaderComponent, FooterComponent],
+  imports: [FormsModule, RouterOutlet],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
