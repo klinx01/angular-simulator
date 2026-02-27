@@ -1,0 +1,109 @@
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+
+  .header-container {
+    display: flex;
+    color: var(--primary-color);
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+
+    .company-name {
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-top: 9px;
+      gap: 9px
+    }
+
+    .navigation a {
+      color: var(--primary-color);
+      text-decoration: none;
+      padding: 0 24px;
+    }
+
+    .active-link {
+      text-decoration: underline !important;
+      color: lightgreen !important;
+    }
+
+    .consultation-btn {
+      width: 157px;
+      height: 44px;
+    }
+  }
+
+  .clicker-wrapper {
+    width: 270px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-end;
+
+    @mixin clicker-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+
+    .clicker {
+      color: var(--primary-color);
+      display: flex;
+      gap: 15px;
+
+      .click-plus {
+        @include clicker-btn();
+
+        width: 11px;
+      }
+
+      .click-minus {
+        @include clicker-btn();
+
+        width: 8px;
+      }
+    }
+  }
+
+  .timer-wrapper {
+    width: 375px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-end;
+
+    .timer {
+      color: var(--primary-color);
+      width: 168px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .show-clicker-btn {
+      width: 157px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 12px 11px;
+    }
+  }
+}
+
+.background-main {
+  background-image: url('/images/background/mountains-bg.png');
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-size: cover;
+}

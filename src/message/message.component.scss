@@ -1,0 +1,55 @@
+.message-wrapper {
+  right: 1%;
+  top: 5%;
+  position: fixed;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 5px;
+}
+
+.status-msg {
+  color: var(--primary-color);
+  z-index: 5;
+  width: 350px;
+  background-color: #0F172A99;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  animation: slideDown 0.4s ease-out forwards;
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-60px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .close-icon-msg {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    padding: 7px 7px 0px 0px;
+  }
+
+  .msg-wrapper {
+    display: flex;
+    gap: 15px;
+
+    .msg-icon {
+      padding: 15px 0px 15px 15px;
+    }
+
+    .msg-info {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0px;
+      gap: 5px;
+    }
+  }
+}

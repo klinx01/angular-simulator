@@ -1,0 +1,129 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1A3E3E;
+  height: 587px;
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-wrapper {
+    display: flex;
+    gap: 20px;
+  }
+
+  .company-info {
+    width: 480px;
+    height: 263px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+
+    .footer-title {
+      color: var(--primary-color);
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .company-description {
+      color: var(--primary-color);
+      margin-bottom: 80px;
+      line-height: 20px;
+      max-width: 456px;
+    }
+
+    .company-contacts {
+      display: flex;
+      gap: 24px;
+
+      a {
+        color: var(--primary-color);
+      }
+    }
+
+    .company-socials {
+      gap: 32px;
+      flex-direction: column;
+      display: flex;
+      color: var(--primary-color);
+    }
+  }
+
+  .our-services {
+    color: var(--primary-color);
+    width: 280px;
+    height: 232px;
+
+    .service-name-cointainer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h3 {
+      margin-bottom: 20px;
+    }
+
+    .service-name-wrapper {
+      display: flex;
+      gap: 8px;
+
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .important-info {
+    width: 280px;
+    height: 200px;
+
+    h3 {
+      margin-bottom: 20px;
+      color: var(--primary-color)
+    }
+
+    .info-name-cointainer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .info-name-wrapper {
+        display: flex;
+        gap: 8px;
+
+        a {
+          color: var(--primary-color);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.bottom-footer {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  background-color: #18121E;
+  width: 100%;
+  height: 66px;
+
+  .personal-data {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
