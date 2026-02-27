@@ -8,7 +8,14 @@
         </div>
         <nav class="navigation fs-16 fw-600">
           @for (nav of navigations; track nav.name) {
-            <a [id]="nav.id" [routerLink]="nav.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">{{nav.name}}</a>
+            <a
+              [id]="nav.id"
+              [routerLink]="nav.path"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              {{ nav.name }}
+            </a>
           }
           <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
         </nav>

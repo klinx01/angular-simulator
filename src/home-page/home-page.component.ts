@@ -21,7 +21,6 @@ import { RouterOutlet } from '@angular/router';
 export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   numbers: Collection<number> = new Collection([1, 2, 3, 4]);
   products: Collection<string> = new Collection(['молоко', 'хлеб', 'колбаса', 'яблоко']);
@@ -133,8 +132,6 @@ export class HomePageComponent {
   ];
 
   constructor() {
-    this.saveLastVisit();
-    this.saveVisitCount();
     this.isPrimaryColor(Color.BLACK);
     this.isFormValid();
 
@@ -149,17 +146,6 @@ export class HomePageComponent {
 
   private isPrimaryColor(color: Color): boolean {
     return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
-  }
-
-  private saveLastVisit(): void {
-    const nowDate: string = new Date().toISOString();
-    this.localStorageService.setValue('last-visit', nowDate);
-  }
-
-  private saveVisitCount(): void {
-    const visit = this.localStorageService.getValue('visits');
-    const currentVisit: number = visit ? Number(visit) : 0;
-    this.localStorageService.setValue('visits', currentVisit + 1);
   }
 
 }

@@ -16,24 +16,6 @@ export class HeaderComponent {
   counter: number = 0;
   currentDate!: string;
 
-  participants = [
-    'Сиега',
-    'Вадик',
-    'Владислав',
-    'Мария',
-    'Павлик',
-    'Эмануель'
-  ];
-
-  locations = [
-    'Шри-Ланка',
-    'Бали',
-    'Турция',
-    'Мальдивы',
-    'Испания',
-    'Кенния'
-  ];
-
   navigations: INavigation[] = [
     { id: 'home-page', name: 'Главная', path: '/' },
     { id: 'users', name: 'Пользователи', path: '/users' }

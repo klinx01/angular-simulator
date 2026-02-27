@@ -10,6 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class MessageComponent {
 
-messageService: MessageService = inject(MessageService);
+  messageService: MessageService = inject(MessageService);
 
 }
