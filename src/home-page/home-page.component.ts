@@ -8,7 +8,6 @@ import { IParticipant } from '../interfaces/IParticipant';
 import { IDirection } from '../interfaces/IDirection.js';
 import { INewsCard } from '../interfaces/INewsCard.js';
 import { Message } from '../enums/Message.js';
-import { LocalStorageService } from '../local-storage.service.js'
 import { MessageService } from '../message.service.js';
 import { RouterOutlet } from '@angular/router';
 
@@ -30,7 +29,6 @@ export class HomePageComponent {
   dateHike!: string;
   liveInput!: string;
   isLoading: boolean = true;
-
   selectedCardId!: number;
   message: typeof Message = Message;
 

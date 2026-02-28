@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
-  services = [
+  services: string[] = [
     'Прогулки в горы летом',
     'Зимние походы в горы',
     'Посещение храмов в горах',
@@ -17,7 +17,7 @@ export class FooterComponent {
     'Поездка в Африку'
   ];
 
-  info = [
+  info: string[] = [
    'Как собрать в долгий поход?',
    'Жизненно важные предметы для похода',
    'Медицинская страховка, гарантии безопасности',
