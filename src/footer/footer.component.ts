@@ -24,8 +24,4 @@ export class FooterComponent {
    'Если вы врач - загляните сюда'
   ];
 
-  constructor() {
-
-  }
-
 }

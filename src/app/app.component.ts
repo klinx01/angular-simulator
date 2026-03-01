@@ -26,7 +26,7 @@ export class AppComponent {
   }
 
   private saveVisitCount(): void {
-    const visit = this.localStorageService.getValue('visits');
+    const visit: unknown = this.localStorageService.getValue('visits');
     const currentVisit: number = visit ? Number(visit) : 0;
     this.localStorageService.setValue('visits', currentVisit + 1);
   }
