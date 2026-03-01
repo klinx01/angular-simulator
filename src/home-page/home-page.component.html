@@ -1,0 +1,219 @@
+@if (isLoading) {
+  <div class="load-icon">
+    <img src="/images/icons/load-icon.svg" alt="loading">
+  </div>
+  <div class="background-loading"></div>
+}
+
+<section class="main-info">
+  <div class="background-main"></div>
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="title-wrapper fw-400">
+        <h1 class="motivational-title fw-400">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+      </div>
+      <div class="background-search-program container">
+        <div class="search-form-wrapper fw-700 fs-16">
+          <div class="search-form-group">
+            <div class="search-form">
+              <select id="location-tour" class="location-tour" [(ngModel)]="selectedLocation">
+                <option class="location-tour-option" value="" disabled>Локация для тура</option>
+                @for (location of locations; track location.id) {
+                  <option [value]="location.id">{{ location.name }}</option>
+                }
+              </select>
+              <div class="down-arrow-icon">
+                <img src="/images/icons/down-arrow-icon.svg">
+              </div>
+            </div>
+              <span class="location-input-description fw-400 fs-14">выберите из списка</span>
+          </div>
+          <div class="search-form-group">
+            <div class="search-form">
+              <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
+              <img src="/images/icons/calendar-icon.svg">
+            </div>
+            <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
+          </div>
+          <div class="search-form-group">
+            <div class="search-form">
+              <select id="participant-select" class="participant" [(ngModel)]="selectedParticipant">
+                <option class="participant-option" value="" disabled>Участники</option>
+                @for (participant of participants; track participant.id) {
+                  <option [value]="participant.id">{{ participant.name }}</option>
+                }
+              </select>
+              <div class="down-arrow-icon">
+                <img src="/images/icons/down-arrow-icon.svg">
+              </div>
+            </div>
+            <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
+          </div>
+        </div>
+        <button id="find-program-btn" class="find-program-btn secondary-button fw-700 fs-16" [disabled]="!isFormValid()">Найти программу</button>
+      </div>
+        <div class="live-input-wrapper">
+          <div class="input-container">
+            <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
+              <img src="/images/icons/right-arrow-icon.svg" alt="right-arrow">
+          </div>
+          <p>{{ liveInput }}</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<router-outlet></router-outlet>
+
+<section class="hike-wrapper">
+  <div class="mountains-wrapper container" >
+    <img class="mountains-img-1" src="/images/nature-photos/mountain-photo-1.png" alt="mountain">
+    <img class="mountains-img-2" src="/images/nature-photos/mountain-photo-2.png" alt="mountain">
+    <div class="video-play-icon">
+      <a id="play-video-btn" href="#">
+        <div class="video-play-bg"></div>
+        <img class="triangle-icon" src="/images/icons/video-play-icon.svg" alt="play-video">
+      </a>
+    </div>
+    <div class="about-hike">
+      <span class="section-super-title">о нашем походе</span>
+      <h2 class="sub-title section-title ">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <button
+        id="warn-type-btn"
+        class="tour-program-btn primary-button"
+        (click)="messageService.showWarn('Предупреждение')"
+        >
+        Программа тура
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="best-program">
+  <div class="best-program-info">
+    <div class="program-info">
+      <div>
+        <span class="section-super-title">наше предложение</span>
+        <h2 class="section-title">Лучшие программы для тебя</h2>
+      </div>
+      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+    </div>
+    <div class="program-wrapper">
+      @for (offer of offers; track offer.id) {
+        <div class="animation">
+          <div class="offer">
+            <div class="icon-program">
+              <img [src]="'/images/icons/' + offer.img + '.svg'" alt="tour-program-icon">
+            </div>
+            <div>
+              <span class="fw-700 fs-18">{{ offer.title }}</span>
+              <p class="program-description fs-14">{{ offer.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button
+      id="info-type-btn"
+      class="program-price primary-button"
+      (click)="messageService.showInfo('Владислав лакер')"
+      >
+      Стоимость программ
+    </button>
+  </div>
+  <div class="wrapper-img-tour">
+    <img src="/images/nature-photos/tour-photo-1.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-2.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-3.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-4.png" alt="tour-photo" width="250" height="250">
+  </div>
+</section>
+
+<section>
+  <div class="popular-direction-wrapper container">
+    <span class="often-choice-users section-super-title">по версии отдыхающих</span>
+    <h2 class="popular-directions section-title">Популярные направления</h2>
+    <div class="wrapper-photo-directions container">
+      @for (direction of directions; track direction.id) {
+        <div>
+          <div class="direction-photo">
+            <img [src]="'/images/nature-photos/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
+            <div class="rating-wrapper">
+              <img src="/images/icons/star-icon.svg" alt="star">
+              <span class="rating fw-700">{{ direction.rating }}</span>
+            </div>
+            <div class="wrapper-direction-info">
+              <span class="direction-name fs-24 fw-700">{{ direction.name }}</span>
+              <span class="direction-description fs-14">{{ direction.description }}</span>
+            </div>
+            <div class="direction-price">
+              <span class="fs-20 fw-700">{{ direction.price }} $</span>
+            </div>
+            <div class="blur-photo"></div>
+          </div>
+        </div>
+      }
+    </div>
+    <button 
+      id="success-type-btn"
+      class="direction-rating-btn primary-button fw-600"
+      (click)="messageService.showSuccess('я принимаю тебя')"
+      >
+      Рейтинг направлений
+    </button>
+  </div>
+</section>
+
+<section>
+  <div class="travel-blog-bg">
+    <div class="travel-blog-title">
+      <span class="section-super-title">делимся впечатлениями</span>
+      <h2 class="section-title">Блог о путешествиях</h2>
+    </div>
+    <div class="blog-news container">
+      @for (newsCard of newsCards; track newsCard.id) {
+        <div class="news-card">
+          <div class="card-photo-wrapper">
+            <img [src]="'/images/nature-photos/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
+          </div>
+          <div class="card-info">
+            <h2 class="fw-700 fs-24 card-title">{{ newsCard.title }}</h2>
+            <p class="fs-14">{{ newsCard.description }}</p>
+            <div class="card-footer">
+              <span class="card-date fs-14 fw-700">{{ newsCard.date }}</span>
+              <a id="read-article" class="read-article">
+                <span class="read-article fs-14 fw-700">читать статью</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+      <button
+        id="error-type-btn"
+        class="others-material primary-button"
+        (click)="messageService.showError('Ошибка!')"
+        >
+         Другие материалы
+      </button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="photo-report">
+    <span class="section-super-title">фото-отчет</span>
+    <h2 class="section-title">Делимся впечатлениями</h2>
+  </div>
+  <div class="container gallery">
+    <img class="ballons" src="/images/nature-photos/ballons.png" alt="ballons">
+    <img class="seeker-table" src="/images/nature-photos/seeker-table.png" alt="seeker-table">
+    <img class="dubai-hotel" src="/images/nature-photos/dubai-hotel.png" alt="dubai-hotel">
+    <img class="beach" src="/images/nature-photos/beach.png" alt="beach">
+    <img class="mesa" src="/images/nature-photos/mesa.png" alt="mesa">
+    <img class="photographer-table" src="/images/nature-photos/photographer-table.png" alt="photographer-table">
+  </div>
+  <div class="pinterest-btn-wrapper">
+    <button id="pinterest-btn" class="primary-button pinterest-btn">Наш pinterest</button>
+  </div>
+</section>

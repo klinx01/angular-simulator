@@ -1,0 +1,47 @@
+<div class="background-header">
+  <header class="container">
+    <div class="header-wrapper">
+      <div class="header-container">
+        <div class="company-name">
+          <img src="/images/mountains-logo.png" alt="mountains">
+          <span>{{ companyName }}</span>
+        </div>
+        <nav class="navigation fs-16 fw-600">
+          @for (nav of navigations; track nav.name) {
+            <a
+              [id]="nav.id"
+              [routerLink]="nav.path"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              {{ nav.name }}
+            </a>
+          }
+          <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
+        </nav>
+      </div>
+      @if (currentFunctionality === 'clicker') {
+        <div class="clicker-wrapper">
+          <div class="clicker">
+            <button id="counter-plus" class="click-plus" (click)="increaseCounter()">+</button>
+            <span>{{ counter }}</span>
+            <button id="counter-minus" class="click-minus" [disabled]="counter === 0" (click)="decreaseCounter()">-</button>
+          </div>
+          <button id="show-date-btn" class="primary-button show-data-btn fs-16 fw-600" (click)="showDate()">Показать дату</button>
+        </div>
+      } @else if (currentFunctionality === 'timer') {
+        <div class="timer-wrapper">
+          <div class="timer fw-600 fs-16">
+            <p>{{ currentDate }}</p>
+          </div>
+          <div>
+            <button id="show-clicker-btn" class="primary-button show-clicker-btn fs-16 fw-600" (click)="showClicker()">Показать кликер</button>
+          </div>
+        </div>
+      }
+    </div>
+  </header>
+</div>
+
+
+
