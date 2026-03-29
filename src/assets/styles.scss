@@ -20,6 +20,10 @@
   --secondary-color: #1A3E3E;
 }
 
+.gray-color {
+  color: #667C7C;
+}
+
 .section-super-title {
   color: #F2BE22;
   font-size: 24px;
@@ -38,8 +42,20 @@
   line-height: 150%;
 }
 
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
 .fs-14 {
   font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
 }
 
 .fs-16 {
@@ -58,6 +74,10 @@
   font-size: 24px;
 }
 
+.fs-26 {
+  font-size: 26px;
+}
+
 .fw-400 {
   font-weight: 400;
 }
@@ -72,5 +92,9 @@
 
 .fw-800 {
   font-weight: 800;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 

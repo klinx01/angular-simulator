@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserService } from '../user.service';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { IUser } from '../interfaces/IUser';
 
 @Component({
   selector: 'app-user-page',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss',
 })
 export class UserPageComponent {
+
+  userService: UserService = inject(UserService);
+
+  users$: Observable<IUser[]> = this.userService.loadUsers();
 
 }

@@ -1,5 +1,5 @@
 <div class="message-wrapper">
-  @for (message of messageService.messages; track $index) {
+  @for (message of messageService.message$ | async; track $index) {
     <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }"></ng-container>
   }
 </div>

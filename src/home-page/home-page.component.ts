@@ -28,7 +28,6 @@ export class HomePageComponent {
   selectedParticipant: string = '';
   dateHike!: string;
   liveInput!: string;
-  isLoading: boolean = true;
   selectedCardId!: number;
   message: typeof Message = Message;
 
@@ -132,10 +131,6 @@ export class HomePageComponent {
   constructor() {
     this.isPrimaryColor(Color.BLACK);
     this.isFormValid();
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
   }
 
   isFormValid(): boolean {
