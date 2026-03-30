@@ -9,7 +9,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MessageService {
 
   private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
-
   message$: Observable<IMessage[]> = this.messagesSubject.asObservable();
 
   private addMessage(type: Message, text: string): void {
@@ -39,7 +38,7 @@ export class MessageService {
 
   closeMessage(message: IMessage): void {
     const updatedMessages: IMessage[] = this.messagesSubject.getValue()
-    .filter((m: IMessage) => m !== message);
+      .filter((m: IMessage) => m !== message);
     this.messagesSubject.next(updatedMessages);
   }
 

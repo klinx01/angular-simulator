@@ -3,7 +3,7 @@ import { LoaderService } from '../loader.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-loader-component',
+  selector: 'app-loader',
   imports: [AsyncPipe],
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss',
@@ -11,11 +11,5 @@ import { AsyncPipe } from '@angular/common';
 export class LoaderComponent {
 
   loaderService: LoaderService = inject(LoaderService);
-
-  constructor() {
-    this.loaderService.loader$.subscribe(isLoading => {
-      document.body.classList.toggle('no-scroll', isLoading);
-    });
-  }
 
 }

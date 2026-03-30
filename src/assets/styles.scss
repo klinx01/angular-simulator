@@ -9,6 +9,11 @@
   margin: 0px;
 }
 
+body:has(app-loader .background-loading) {
+  overflow: hidden;
+}
+
+
 .container {
   display: block;
   width: 1180px;
