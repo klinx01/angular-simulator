@@ -14,6 +14,7 @@ export class UserService {
   messageService: MessageService = inject(MessageService)
   loaderService: LoaderService = inject(LoaderService);
   userApiService: UserApiService = inject(UserApiService);
+  
   private userSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.userSubject.asObservable();
 
