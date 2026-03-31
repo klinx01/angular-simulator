@@ -19,7 +19,7 @@ export class UserService {
   users$: Observable<IUser[]> = this.userSubject.asObservable();
 
   setUsers(users: IUser[]): void {
-    this.userSubject.next(users)
+    this.userSubject.next(users);
   }
 
   getUsers(): IUser[] {
@@ -31,11 +31,10 @@ export class UserService {
     return this.userApiService.getUsers()
       .pipe(
         catchError(() => {
-          this.messageService.showError('Ошибка! пользователи но прогрузились')
+          this.messageService.showError('Ошибка! пользователи но прогрузились');
           return of([]);
         }),
-        finalize(() => {
-            this.loaderService.hideLoader();
+        finalize(() => { this.loaderService.hideLoader();
         })
       );
   }
