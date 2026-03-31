@@ -4,10 +4,11 @@ import { MessageComponent } from '../message/message.component';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
 import { LocalStorageService } from '../local-storage.service';
+import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MessageComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, MessageComponent, HeaderComponent, FooterComponent, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
