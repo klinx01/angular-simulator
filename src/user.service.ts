@@ -34,8 +34,8 @@ export class UserService {
           this.messageService.showError('Ошибка! пользователи но прогрузились');
           return of([]);
         }),
-        finalize(() => { this.loaderService.hideLoader();
-        })
+        finalize(() => this.loaderService.hideLoader()
+        )
       );
   }
 
