@@ -1,0 +1,67 @@
+<div class="form-container">
+  <form [formGroup]="loginForm">
+    <div>
+      <label>Name</label>
+      <input formControlName="name" id="name">
+    </div>
+    <div>
+      <label>Username</label>
+      <input formControlName="username" id="username">
+    </div>
+    <div>
+      <label>Email</label>
+      <input formControlName="email" id="email">
+    </div>
+    <div>
+      <label>Phone</label>
+      <input formControlName="phone" type="tel" id="phone">
+    </div>
+    <div>
+      <label>Website</label>
+      <input formControlName="website" id="website">
+    </div>
+    <div formGroupName="address">
+      <div>
+        <label>City</label>
+        <input formControlName="city" id="city">
+      </div>
+      <div>
+        <label>Street</label>
+        <input formControlName="street" id="street">
+      </div>
+      <div>
+        <label>Suite</label>
+        <input formControlName="suite" id="suite">
+      </div>
+      <div>
+        <label>Zipcode</label>
+        <input formControlName="zipcode" id="zipcode">
+      </div>
+      <div formGroupName="geo">
+        <div>
+          <label>lat</label>
+          <input formControlName="lat" id="lat">
+        </div>
+        <div>
+          <label>lng</label>
+          <input formControlName="lng" id="lng">
+        </div>
+      </div>
+    </div>
+    <div formGroupName="company">
+      <div>
+        <label>Company name</label>
+        <input formControlName="name" id="company-name">
+      </div>
+      <div>
+        <label>Mission</label>
+        <input formControlName="catchPhrase" id="catchPhrase">
+      </div>
+      <div>
+        <label>Specialization</label>
+        <input formControlName="bs" id="bs">
+      </div>
+    </div>
+  </form>
+  <button type="submit" (click)="onSubmit()" [disabled]="loginForm.invalid">Отправить</button>
+</div>

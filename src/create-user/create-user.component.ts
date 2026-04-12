@@ -1,0 +1,50 @@
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { IUser } from '../interfaces/IUser';
+
+@Component({
+  selector: 'app-create-user',
+  imports: [ReactiveFormsModule],
+  templateUrl: './create-user.component.html',
+  styleUrl: './create-user.component.scss',
+})
+export class CreateUserComponent {
+
+  @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+  private fb: FormBuilder = inject(FormBuilder);
+
+  loginForm: FormGroup = this.fb.group({
+    id: [Date.now()],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(25)]],
+    website: ['', [Validators.maxLength(100)]],
+    address: this.fb.group({
+      city: ['', [Validators.required, Validators.maxLength(50)]],
+      street : ['', [Validators.required, Validators.maxLength(100)]],
+      suite : ['', [Validators.minLength(3), Validators.maxLength(100)]],
+      zipcode : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+      geo: this.fb.group({
+        lat: ['', [Validators.required]],
+        lng: ['', [Validators.required]]
+      })
+    }),
+    company: this.fb.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      catchPhrase: ['', Validators.maxLength(200)],
+      bs: ['', Validators.maxLength(100)]
+    })
+  });
+
+  onSubmit(): void {
+    const user = this.loginForm.value;
+    user.id = Date.now();
+    user.website = user.website || 'Неизвестно';
+    user.address.suite = user.address.suite || 'Неизвестно';
+    user.company.catchPhrase = user.company.catchPhrase || 'Неизвестно';
+    user.company.bs = user.company.bs || 'Неизвестно';
+    this.createUser.emit(user);
+  }
+
+}
