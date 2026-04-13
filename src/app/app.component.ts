@@ -13,7 +13,7 @@ import { LoaderComponent } from "../loader/loader.component";
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  
+
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   constructor() {

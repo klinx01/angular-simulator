@@ -30,7 +30,7 @@ export class UserService {
   }
 
   loadUsers(): Observable<IUser[]> {
-    const users = this.localStorageService.getValue('users') as IUser[] || null;
+    const users: IUser[] = this.localStorageService.getValue('users') as IUser[] || null;
 
     if (users) {
       this.userSubject.next(users);
@@ -40,7 +40,6 @@ export class UserService {
     this.loaderService.showLoader();
     return this.userApiService.getUsers()
       .pipe(
-        tap(users => this.setUsers(users)),
         catchError(() => {
           this.messageService.showError('Ошибка! пользователи но прогрузились');
           this.setUsers([]);

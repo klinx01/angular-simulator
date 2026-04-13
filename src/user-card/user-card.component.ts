@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
+import { required } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-user-card',
@@ -9,11 +10,11 @@ import { IUser } from '../interfaces/IUser';
 })
 export class UserCardComponent {
 
-  @Input() user!: IUser;
-  @Output() deleteUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+  @Input({ required: true }) user!: IUser;
+  @Output() onleDeleteUser: EventEmitter<IUser> = new EventEmitter<IUser>();
 
   onDelete(): void {
-    this.deleteUser.emit(this.user);
+    this.onleDeleteUser.emit(this.user);
   }
 
 }

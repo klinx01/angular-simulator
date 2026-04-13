@@ -8,11 +8,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class UsersFilterComponent {
 
-  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() OnSearch: EventEmitter<string> = new EventEmitter<string>();
 
   OnInput(event: Event): void {
-    const inputValue = (event.target as HTMLInputElement).value;
-    this.search.emit(inputValue);
+    const inputValue: string = (event.target as HTMLInputElement).value;
+    this.OnSearch.emit(inputValue);
   }
 
 }

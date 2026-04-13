@@ -27,7 +27,7 @@
             </div>
             <div class="contact-template">
               <span class="gray-color fw-400 fs-14">Веб-сайт:</span>
-              <p class="fw-700 fs-14">{{ user.website }}</p>
+              <p class="fw-700 fs-14">{{ user.website || 'Неизвестно' }}</p>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
               <span class="gray-color fw-400 fs-14">Офис:</span>
             </div>
             <div>
-              <span class="fw-700 fs-14">{{ user.address.suite }}</span>
+              <span class="fw-700 fs-14">{{ user.address.suite || 'Неизвестно' }}</span>
             </div>
           </div>
           <div class="address">
@@ -102,7 +102,7 @@
               <span class="gray-color fw-400 fs-14">Миссия:</span>
             </div>
             <div>
-              <p class="gray-color fw-700 fs-13">{{ user.company.catchPhrase }}</p>
+              <p class="gray-color fw-700 fs-13">{{ user.company.catchPhrase || 'Неизвестно' }}</p>
             </div>
           </div>
           <div class="company-info-bs">
@@ -110,7 +110,7 @@
               <span class="gray-color fw-400 fs-14">Специализация:</span>
             </div>
             <div>
-              <span class="fw-700 fs-14">{{ user.company.bs }}</span>
+              <span class="fw-700 fs-14">{{ user.company.bs || 'Неизвестно' }}</span>
             </div>
           </div>
         </div>
