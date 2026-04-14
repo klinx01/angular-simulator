@@ -24,22 +24,6 @@
   margin-bottom: 40px;
 }
 
-.refresh-btn {
-  align-items: center;
-  position: absolute;
-  left: 0;
-  bottom: 70px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 80px;
-  height: 80px;
-  z-index: 20;
-  background-color: #D4A373;
-  border-radius: 100px;
-}
-
-
 .card-super-wrapper {
   display: flex;
   justify-content: center;
@@ -55,7 +39,6 @@
   width: 1460px;
   margin: 30px;
 }
-
 
 .error-card {
   display: flex;

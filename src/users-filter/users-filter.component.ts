@@ -14,13 +14,14 @@ export class UsersFilterComponent implements OnInit {
   @Output() onFilter: EventEmitter<string> = new EventEmitter<string>();
 
    searchControl: FormControl<string | null> = new FormControl('');
+   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.searchControl.valueChanges.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       tap((value: string | null) => this.onFilter.emit(value || '')),
-      takeUntilDestroyed()
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe();
   }
 
