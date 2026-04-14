@@ -1,14 +1,14 @@
 <h1 class="main-title">Список Пользователей</h1>
 <div class="form-wrapper">
-  <app-create-user (userCreated)="addUser($event)"></app-create-user>
-  <app-users-filter (OnSearch)="onSearch($event)"></app-users-filter>
+  <app-create-user (onCreateUser)="this.userService.addUser($event)"></app-create-user>
+  <app-users-filter (onFilter)="onFilter($event)"></app-users-filter>
 </div>
 <div class="super-card-container">
   <div class="card-container">
     <div class="card-super-wrapper">
       <div class="card-wrapper">
         @for (user of filteredUsers$ | async; track user.id) {
-          <app-user-card [user]="user" (onDeleteUser)="deleteUser($event)" />
+          <app-user-card [user]="user" (onDeleteUser)="this.userService.deleteUser($event)" />
         } @empty {
           <div class="error-card">
             <span class="fw-800 fs-26">Нет пользователей для отображения</span>

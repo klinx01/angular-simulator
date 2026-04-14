@@ -15,46 +15,31 @@ import { UsersFilterComponent } from "../users-filter/users-filter.component";
   styleUrl: './user-page.component.scss',
 })
 export class UserPageComponent implements OnInit {
-
+  
+  ngOnInit(): void {
+    this.userService.loadUsers().subscribe();
+  }
+  
   userService: UserService = inject(UserService);
   userApiService: UserApiService = inject(UserApiService);
-  
+
   users$: Observable<IUser[]> = this.userService.users$;
-  filter!: string;
   filteredUsers$: Observable<IUser[]> = this.users$;
 
-  onSearch(value: string): void {
-    this.filter = value;
+   onFilter(value: string): void {
     this.filteredUsers$ = this.users$.pipe(
       map((users: IUser[]) => {
-        if (!this.filter) {
-          return users;
-        }
-        return users.filter(u => u.name.toLowerCase().includes(this.filter.toLowerCase()));
-      }
-    ));
+        if (!value) return users;
+        return users.filter(u => u.name.toLowerCase().includes(value.toLowerCase())
+        );
+      })
+    );
   }
-
-  deleteUser(user: IUser): void {
-    const currentUsers: IUser[] = this.userService.getUsers();
-    const updatedUsers: IUser[] = currentUsers.filter((u: IUser) => u.id !== user.id);
-    this.userService.setUsers(updatedUsers);
-  }
-
-  addUser(user: IUser): void {
-    const users: IUser[] = this.userService.getUsers();
-    const updatedUsers: IUser[] = [...users, user];
-    this.userService.setUsers(updatedUsers);
-  }
-
+  
   refreshUsers(): void {
-    this.userApiService.getUsers().pipe(
+    this.userService.loadUsers().pipe(
       tap((users: IUser[]) => this.userService.setUsers(users))
     ).subscribe();
-  }
-
-  ngOnInit() {
-     this.userService.loadUsers().subscribe();
   }
 
 }

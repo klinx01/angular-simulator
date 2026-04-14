@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form [formGroup]="loginForm">
+  <form [formGroup]="userForm">
     <div>
       <label>Name</label>
       <input formControlName="name" id="name">
@@ -63,5 +63,5 @@
       </div>
     </div>
   </form>
-  <button type="submit" (click)="onSubmit()" [disabled]="loginForm.invalid">Отправить</button>
+  <button type="submit" (click)="onSubmit()" [disabled]="userForm.invalid">Отправить</button>
 </div>

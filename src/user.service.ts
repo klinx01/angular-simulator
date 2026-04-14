@@ -22,15 +22,27 @@ export class UserService {
 
   setUsers(users: IUser[]): void {
     this.userSubject.next(users);
-    this.localStorageService.setValue('users', users);
+    this.localStorageService.setValue<IUser[]>('users', users);
   }
 
   getUsers(): IUser[] {
     return this.userSubject.getValue();
   }
 
+  deleteUser(id: number): void {
+    const currentUsers: IUser[] = this.getUsers();
+    const updatedUsers: IUser[] = currentUsers.filter((u: IUser) => u.id !== id);
+    this.setUsers(updatedUsers);
+  }
+
+  addUser(user: IUser): void {
+    const users: IUser[] = this.getUsers();
+    const updatedUsers: IUser[] = [...users, user];
+    this.setUsers(updatedUsers);
+  }
+
   loadUsers(): Observable<IUser[]> {
-    const users: IUser[] = this.localStorageService.getValue('users') as IUser[] || null;
+    const users: IUser[] | null = this.localStorageService.getValue<IUser[]>('users');
 
     if (users) {
       this.userSubject.next(users);
@@ -42,7 +54,6 @@ export class UserService {
       .pipe(
         catchError(() => {
           this.messageService.showError('Ошибка! пользователи но прогрузились');
-          this.setUsers([]);
           return of([]);
         }),
         finalize(() => this.loaderService.hideLoader()

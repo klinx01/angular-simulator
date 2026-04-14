@@ -1,18 +1,27 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-filter',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './users-filter.component.html',
   styleUrl: './users-filter.component.scss',
 })
-export class UsersFilterComponent {
+export class UsersFilterComponent implements OnInit {
 
-  @Output() OnSearch: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onFilter: EventEmitter<string> = new EventEmitter<string>();
 
-  OnInput(event: Event): void {
-    const inputValue: string = (event.target as HTMLInputElement).value;
-    this.OnSearch.emit(inputValue);
+   searchControl: FormControl<string | null> = new FormControl('');
+
+  ngOnInit(): void {
+    this.searchControl.valueChanges.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      tap((value: string | null) => this.onFilter.emit(value || '')),
+      takeUntilDestroyed()
+    ).subscribe();
   }
 
 }
