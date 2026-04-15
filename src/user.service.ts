@@ -44,8 +44,7 @@ export class UserService {
   loadUsers(): Observable<IUser[]> {
     const users: IUser[] | null = this.localStorageService.getValue<IUser[]>('users');
 
-    if (users) {
-      this.userSubject.next(users);
+    if (users && users.length > 0) {
       return of(users);
     }
 

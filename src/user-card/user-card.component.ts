@@ -11,10 +11,10 @@ import { required } from '@angular/forms/signals';
 export class UserCardComponent {
 
   @Input({ required: true }) user!: IUser;
-  @Output() onDeleteUser: EventEmitter<number> = new EventEmitter<number>();
+  @Output() DeleteUser: EventEmitter<number> = new EventEmitter<number>();
 
   onDelete(): void {
-    this.onDeleteUser.emit(this.user.id);
+    this.DeleteUser.emit(this.user.id);
   }
 
 }
