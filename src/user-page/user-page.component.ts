@@ -18,18 +18,20 @@ import { LocalStorageService } from '../local-storage.service';
 export class UserPageComponent implements OnInit {
   
   userService: UserService = inject(UserService);
-  userApiService: UserApiService = inject(UserApiService);
-  localStorageService: LocalStorageService = inject(LocalStorageService)
 
-  filter$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filterSubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   users$: Observable<IUser[]> = this.userService.users$;
 
-  filteredUsers$: Observable<IUser[]> = combineLatest([ this.users$, this.filter$ ])
+  filteredUsers$: Observable<IUser[]> = combineLatest([
+    this.users$,
+    this.filterSubject$
+  ])
   .pipe(
-    map(([users, filter]) => {
-      if (!filter) return users;
-      return users.filter((u: IUser) => u.name.toLowerCase().includes(filter.toLowerCase())
-      );
+    map(([users, filter]: [IUser[], string]) => {
+      if (!filter) { 
+        return users;
+      }
+      return users.filter((u: IUser) => u.name.toLowerCase().includes(filter.toLowerCase()));
     })
   );
 
@@ -41,7 +43,7 @@ export class UserPageComponent implements OnInit {
   }
 
    onFilter(value: string): void {
-    this.filter$.next(value);
+    this.filterSubject$.next(value);
   }
 
 }

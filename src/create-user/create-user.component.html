@@ -63,5 +63,10 @@
       </div>
     </div>
   </form>
-  <button type="submit" (click)="onSubmit()" [disabled]="userForm.invalid">Отправить</button>
+  <button
+    id="user-form-btn"
+    type="submit" (click)="onSubmit()"
+    [disabled]="userForm.invalid"
+  >
+  Отправить</button>
 </div>
