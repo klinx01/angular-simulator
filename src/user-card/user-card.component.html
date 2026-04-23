@@ -1,0 +1,120 @@
+<div class="card-container">
+  <div class="info-wrapper">
+    <div class="wrapper-name">
+      <div>
+        <h3 class="fs-26">{{ user.name }}</h3>
+        <span class="fw-700 fs-15px username">{{ user.username }}</span>
+      </div>
+      <div>
+        <button id="delete-user" (click)="onDelete()" class="delete-user-btn fw-700 fs-14">Удалить пользователя</button>
+      </div>
+    </div>
+    <div class="user-info">
+      <div class="contacts-wrapper">
+        <div class="contact-design">
+          <span class="fw-800 fs-12">Контакты</span>
+          <div class="contact-line"></div>
+        </div>
+        <div class="contacts-container">
+          <div class="contacts">
+            <div class="contact-template">
+              <span class="gray-color fw-400 fs-14">Эл. почта:</span>
+              <p class="fw-700 fs-14">{{ user.email }}</p>
+            </div>
+            <div class="contact-template">
+              <span class="gray-color fw-400 fs-14">Телефон:</span>
+              <span class="fw-700 fs-14">{{ user.phone }}</span>
+            </div>
+            <div class="contact-template">
+              <span class="gray-color fw-400 fs-14">Веб-сайт:</span>
+              <p class="fw-700 fs-14">{{ user.website || 'Неизвестно' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="res-address-wrapper">
+        <div class="address-design">
+          <span class="fw-800 fs-12">Адрес проживания</span>
+          <div class="address-line"></div>
+        </div>
+        <div class="address-container">
+          <div class="address">
+            <div>
+              <span class="gray-color fw-400 fs-14">Город:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.address.city }}</span>
+            </div>
+          </div>
+          <div class="address">
+            <div>
+              <span class="gray-color fw-400 fs-14">Улица:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.address.street }}</span>
+            </div>
+          </div>
+          <div class="address">
+            <div>
+              <span class="gray-color fw-400 fs-14">Офис:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.address.suite || 'Неизвестно' }}</span>
+            </div>
+          </div>
+          <div class="address">
+            <div>
+              <span class="gray-color fw-400 fs-14">Индекс:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.address.zipcode }}</span>
+            </div>
+          </div>
+          <div class="address">
+            <div>
+              <span class="gray-color fw-400 fs-14">Координаты:</span>
+            </div>
+              <div class="fw-700 fs-12">
+                <div class="geo">
+                  <span>{{ user.address.geo.lat }}</span>
+                  <span>{{ user.address.geo.lng }}</span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="work-place-wrapper">
+        <div class="work-place-title">
+          <span class="fw-800 fs-12">место работы</span>
+          <div class="work-line"></div>
+        </div>
+        <div class="work-container">
+          <div class="company-info">
+            <div>
+              <span class="gray-color fw-400 fs-14">Компания:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.company.name }}</span>
+            </div>
+          </div>
+          <div class="company-info">
+            <div>
+              <span class="gray-color fw-400 fs-14">Миссия:</span>
+            </div>
+            <div>
+              <p class="gray-color fw-700 fs-13">{{ user.company.catchPhrase || 'Неизвестно' }}</p>
+            </div>
+          </div>
+          <div class="company-info-bs">
+            <div>
+              <span class="gray-color fw-400 fs-14">Специализация:</span>
+            </div>
+            <div>
+              <span class="fw-700 fs-14">{{ user.company.bs || 'Неизвестно' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
