@@ -38,18 +38,10 @@
                 <a id="phone" class="fw-700 fs-14" href="tel:+71234567890">+7 (123) 456-78-90</a>
               </div>
               <nav class="socials">
-                <a id="telegram" href="#">
-                  <img src="/images/icons/tg-icon.svg" alt="Telegram">
-                </a>
-                <a id="vk" href="#">
-                  <img src="/images/icons/vk-icon.svg" alt="VK">
-                </a>
-                <a id="pinterest" href="#">
-                  <img src="/images/icons/pinterest-icon.svg" alt="Pinterest">
-                </a>
-                <a id="skype" href="#">
-                  <img src="/images/icons/skype-icon.svg" alt="Skype">
-                </a>
+                <fa-icon class="fs-30" [icon]="faTelegram"></fa-icon>
+                <fa-icon class="fs-30" [icon]="faVk"></fa-icon>
+                <fa-icon class="fs-30" [icon]="faPinterest"></fa-icon>
+                <fa-icon class="fs-30" [icon]="faSkype"></fa-icon>
               </nav>
             </div>
           </div>
@@ -59,7 +51,7 @@
           <div class="service-name-cointainer">
             @for (service of services; track $index) {
               <div class="service-name-wrapper">
-                <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
+                <fa-icon [icon]="faAngleRight"></fa-icon>
                 <a id="service-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                   <span class="fw-400 fs-14">{{ service }}</span>
                 </a>
@@ -69,11 +61,11 @@
         </div>
       </div>
       <div class="important-info">
-        <h3 class="fw-700 fs-20 footer-title">Важно для путешествий</h3>
+        <h3 class="fw-700 fs-26 footer-title">Важно для путешествий</h3>
         <div class="info-name-cointainer">
           @for (inf of info; track $index) {
             <div class="info-name-wrapper">
-              <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
+              <fa-icon class="icon-color" [icon]="faAngleRight"></fa-icon>
               <a id="info-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                 <span class="fw-400 fs-14">{{ inf }}</span>
               </a>

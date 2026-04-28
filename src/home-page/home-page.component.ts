@@ -10,10 +10,14 @@ import { INewsCard } from '../interfaces/INewsCard.js';
 import { Message } from '../enums/Message.js';
 import { MessageService } from '../message.service.js';
 import { RouterOutlet } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
+import { faHandHoldingDollar, faPlay, faShieldHalved, faUsers, faAngleRight, faAngleDown, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 
 @Component({
   selector: 'home-page',
-  imports: [FormsModule, RouterOutlet],
+  imports: [FormsModule, RouterOutlet, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -30,7 +34,15 @@ export class HomePageComponent {
   liveInput!: string;
   selectedCardId!: number;
   message: typeof Message = Message;
-
+  faUsers: IconDefinition = faUsers;
+  faShieldHalved: IconDefinition = faShieldHalved;
+  faHandHoldingDollar: IconDefinition = faHandHoldingDollar;
+  faPlay: IconDefinition = faPlay;
+  faAngleRight: IconDefinition = faAngleRight;
+  faAngleDown: IconDefinition = faAngleDown;
+  faCalendar: IconDefinition = faCalendar;
+  faStar: IconDefinition = faStar;
+  
   participants: IParticipant[] = [
     { id: 1, name: 'Сиега' },
     { id: 2, name: 'Вадик' },
@@ -54,19 +66,19 @@ export class HomePageComponent {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'program-icon-human'
+      img: this.faUsers
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'program-icon-shield'
+      img: this.faShieldHalved
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'program-icon-town'
+      img: this.faHandHoldingDollar
     }
   ];
 

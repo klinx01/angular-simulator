@@ -21,8 +21,20 @@ body:has(app-loader .background-loading) {
 }
 
 :root {
+  --primary-text-color: #FDFDFD;
   --primary-color: #FDFDFD;
   --secondary-color: #1A3E3E;
+  --background-primary-color: white;
+  --background-secondary-color: #1A3E3E;
+  --background-container-email-color: #FDFDFD
+}
+
+.my-app-dark {
+  --primary-color: black;
+  --secondary-color: #e9f1f1;
+  --background-white-color: #020c07ad;
+  --background-secondary-color: #06030366;
+  --background-container-email-color: #06030366
 }
 
 .gray-color {
@@ -81,6 +93,10 @@ body:has(app-loader .background-loading) {
 
 .fs-26 {
   font-size: 26px;
+}
+
+.fs-30 {
+  font-size: 30px;
 }
 
 .fw-400 {

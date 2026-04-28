@@ -8,13 +8,13 @@
 .primary-button {
   @include button();
 
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--background-secondary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .secondary-button {
   @include button();
 
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--primary-color) !important;
+  color: var(--secondary-color) !important;
 }
