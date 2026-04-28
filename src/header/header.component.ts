@@ -20,7 +20,7 @@ export class HeaderComponent {
   currentFunctionality: string = 'timer';
   counter: number = 0;
   currentDate!: string;
-  selectedTheme!: string
+  selectedTheme!: string;
   
   themeOptions = [
     { name: 'Lara', value: 'Lara' },
