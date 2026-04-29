@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { usePreset } from '@primeuix/themes';
+import { Theme } from './enums/Theme';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara'
 import Nora from '@primeuix/themes/nora'
@@ -26,21 +27,20 @@ export class ThemeService {
     this.applyTheme();
   }
 
-  selectTheme(theme: string): void {
+  selectTheme(theme: Theme): void {
     switch (theme) {
-      case 'Aura':
+      case Theme.AURA:
         usePreset(Aura);
-        this.localStorageService.setValue('themeStyle', theme);
         break;
-      case 'Lara':
+      case Theme.LARA:
         usePreset(Lara);
-        this.localStorageService.setValue('themeStyle', theme);
         break;
-      case 'Nora':
+      case Theme.NORA:
         usePreset(Nora);
-        this.localStorageService.setValue('themeStyle', theme);
         break;
     }
+
+    this.localStorageService.setValue('themeStyle', theme);
   }
 
   toggleDarkMode(): void {

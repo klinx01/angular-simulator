@@ -5,7 +5,10 @@ import { INavigation } from '../interfaces/INavigation';
 import { ToggleSwitchModule, ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../theme.service';
 import { AsyncPipe } from '@angular/common';
+import { Theme } from '../enums/Theme';
 import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
+import { IThemeOption } from '../interfaces/IThemeOption';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -15,17 +18,19 @@ import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
 })
 export class HeaderComponent {
 
-  themeService = inject(ThemeService)
+  themeService: ThemeService = inject(ThemeService);
+  localStorageService: LocalStorageService = inject(LocalStorageService);
+
   companyName: string = 'румтибет';
   currentFunctionality: string = 'timer';
   counter: number = 0;
   currentDate!: string;
-  selectedTheme!: string;
+  selectedTheme!: Theme;
   
-  themeOptions = [
-    { name: 'Lara', value: 'Lara' },
-    { name: 'Aura', value: 'Aura' },
-    { name: 'Nora', value: 'Nora' }
+  themeOptions: IThemeOption[] = [
+    { name: 'Lara', value: Theme.LARA },
+    { name: 'Aura', value: Theme.AURA },
+    { name: 'Nora', value: Theme.NORA }
   ];
 
   navigations: INavigation[] = [
@@ -34,6 +39,9 @@ export class HeaderComponent {
   ];
   
   constructor() {
+    const savedTheme: Theme | null = this.localStorageService.getValue<Theme>('themeStyle');
+    this.selectedTheme = savedTheme ?? Theme.AURA;
+
     setTimeout(() => {
       this.updateCurrentTime();
     }, 0);
@@ -41,9 +49,10 @@ export class HeaderComponent {
     setInterval(() => {
       this.updateCurrentTime();
     }, 1000);
+
   }
 
-  onThemeChange(theme: string): void {
+  onThemeChange(theme: Theme): void {
     this.themeService.selectTheme(theme);
   }
 

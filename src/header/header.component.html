@@ -25,7 +25,7 @@
             {{ nav.name }}
           </a>
         }
-        <p-toggle-switch (onChange)="this.themeService.toggleDarkMode()" [ngModel]="themeService.isDark$ | async"></p-toggle-switch>
+        <p-toggle-switch (onChange)="themeService.toggleDarkMode()" [ngModel]="themeService.isDark$ | async"></p-toggle-switch>
         <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
       </nav>
     </div>

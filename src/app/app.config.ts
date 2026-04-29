@@ -5,8 +5,11 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara'
 import Nora from '@primeuix/themes/nora'
 import { routes } from './app.routes';
+import { AuraBaseDesignTokens } from '@primeuix/themes/aura/base';
+import { LaraBaseDesignTokens } from '@primeuix/themes/lara/base';
+import { Preset } from '@primeuix/themes/types';
 
-function getSavedTheme() {
+function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
 
   if (!savedTheme) {
