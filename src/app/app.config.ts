@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { AuraBaseDesignTokens } from '@primeuix/themes/aura/base';
 import { LaraBaseDesignTokens } from '@primeuix/themes/lara/base';
 import { Preset } from '@primeuix/themes/types';
+import { Theme } from '../enums/Theme';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
@@ -16,11 +17,11 @@ function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTo
     return Aura;
   }
   
-  const theme: string = JSON.parse(savedTheme);
+  const theme: Theme = JSON.parse(savedTheme);
   switch (theme) {
-    case 'Lara':
+    case Theme.LARA:
       return Lara;
-    case 'Nora':
+    case Theme.NORA:
       return Nora;
     default:
       return Aura;

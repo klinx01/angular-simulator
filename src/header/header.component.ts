@@ -26,12 +26,6 @@ export class HeaderComponent {
   counter: number = 0;
   currentDate!: string;
   selectedTheme!: Theme;
-  
-  themeOptions: IThemeOption[] = [
-    { name: 'Lara', value: Theme.LARA },
-    { name: 'Aura', value: Theme.AURA },
-    { name: 'Nora', value: Theme.NORA }
-  ];
 
   navigations: INavigation[] = [
     { id: 'home-page', name: 'Главная', path: '/' },

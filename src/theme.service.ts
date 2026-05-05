@@ -6,6 +6,7 @@ import { Theme } from './enums/Theme';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara'
 import Nora from '@primeuix/themes/nora'
+import { IThemeOption } from './interfaces/IThemeOption';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,12 @@ export class ThemeService {
     this.isDarkSubject.next(savedTheme ?? false);
     this.applyTheme();
   }
+
+  themeOptions: IThemeOption[] = [
+      { name: 'Lara', value: Theme.LARA },
+      { name: 'Aura', value: Theme.AURA },
+      { name: 'Nora', value: Theme.NORA }
+    ];
 
   selectTheme(theme: Theme): void {
     switch (theme) {
