@@ -39,16 +39,16 @@
               </div>
               <nav class="socials">
                 <a id="telegram" href="#">
-                  <img src="/images/icons/tg-icon.svg" alt="Telegram">
+                  <fa-icon class="fs-30" [icon]="faTelegram"></fa-icon>
                 </a>
                 <a id="vk" href="#">
-                  <img src="/images/icons/vk-icon.svg" alt="VK">
+                  <fa-icon class="fs-30" [icon]="faVk"></fa-icon>
                 </a>
                 <a id="pinterest" href="#">
-                  <img src="/images/icons/pinterest-icon.svg" alt="Pinterest">
+                  <fa-icon class="fs-30" [icon]="faPinterest"></fa-icon>
                 </a>
                 <a id="skype" href="#">
-                  <img src="/images/icons/skype-icon.svg" alt="Skype">
+                  <fa-icon class="fs-30" [icon]="faSkype"></fa-icon>
                 </a>
               </nav>
             </div>
@@ -59,7 +59,7 @@
           <div class="service-name-cointainer">
             @for (service of services; track $index) {
               <div class="service-name-wrapper">
-                <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
+                <fa-icon [icon]="faAngleRight"></fa-icon>
                 <a id="service-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                   <span class="fw-400 fs-14">{{ service }}</span>
                 </a>
@@ -69,11 +69,11 @@
         </div>
       </div>
       <div class="important-info">
-        <h3 class="fw-700 fs-20 footer-title">Важно для путешествий</h3>
+        <h3 class="fw-700 fs-26 footer-title">Важно для путешествий</h3>
         <div class="info-name-cointainer">
           @for (inf of info; track $index) {
             <div class="info-name-wrapper">
-              <img src="/images/icons/small-right-arrow-icon.svg" alt="right-arrow">
+              <fa-icon class="icon-color" [icon]="faAngleRight"></fa-icon>
               <a id="info-name" href="https://www.youtube.com/shorts/r3tyhtXRtcM">
                 <span class="fw-400 fs-14">{{ inf }}</span>
               </a>

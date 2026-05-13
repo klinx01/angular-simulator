@@ -16,7 +16,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/icons/down-arrow-icon.svg">
+                <fa-icon [icon]="faAngleDown"></fa-icon>
               </div>
             </div>
               <span class="location-input-description fw-400 fs-14">выберите из списка</span>
@@ -24,7 +24,7 @@
           <div class="search-form-group">
             <div class="search-form">
               <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
-              <img src="/images/icons/calendar-icon.svg">
+              <fa-icon [icon]="faCalendar"></fa-icon>
             </div>
             <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
           </div>
@@ -37,7 +37,7 @@
                 }
               </select>
               <div class="down-arrow-icon">
-                <img src="/images/icons/down-arrow-icon.svg">
+                <fa-icon [icon]="faAngleDown"></fa-icon>
               </div>
             </div>
             <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
@@ -48,7 +48,7 @@
         <div class="live-input-wrapper">
           <div class="input-container">
             <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
-              <img src="/images/icons/right-arrow-icon.svg" alt="right-arrow">
+            <fa-icon [icon]="faAngleRight"></fa-icon>
           </div>
           <p>{{ liveInput }}</p>
         </div>
@@ -65,7 +65,7 @@
     <div class="video-play-icon">
       <a id="play-video-btn" href="#">
         <div class="video-play-bg"></div>
-        <img class="triangle-icon" src="/images/icons/video-play-icon.svg" alt="play-video">
+        <fa-icon class="triangle-icon fs-20" [icon]="faPlay"></fa-icon>
       </a>
     </div>
     <div class="about-hike">
@@ -82,7 +82,6 @@
     </div>
   </div>
 </section>
-
 <section class="best-program">
   <div class="best-program-info">
     <div class="program-info">
@@ -96,8 +95,8 @@
       @for (offer of offers; track offer.id) {
         <div class="animation">
           <div class="offer">
-            <div class="icon-program">
-              <img [src]="'/images/icons/' + offer.img + '.svg'" alt="tour-program-icon">
+            <div class="icon-program fs-30">
+              <fa-icon [icon]="offer.img"></fa-icon>
             </div>
             <div>
               <span class="fw-700 fs-18">{{ offer.title }}</span>
@@ -133,7 +132,7 @@
           <div class="direction-photo">
             <img [src]="'/images/nature-photos/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
             <div class="rating-wrapper">
-              <img src="/images/icons/star-icon.svg" alt="star">
+              <fa-icon class="star-icon" [icon]="faStar"></fa-icon>
               <span class="rating fw-700">{{ direction.rating }}</span>
             </div>
             <div class="wrapper-direction-info">

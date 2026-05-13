@@ -6,20 +6,29 @@
           <img src="/images/mountains-logo.png" alt="mountains">
           <span>{{ companyName }}</span>
         </div>
+        <p-selectButton 
+          [options]="themeService.themeOptions"
+          optionLabel="name"
+          [(ngModel)]="selectedTheme"
+          (onChange)="onThemeChange($event.value)"
+          optionValue="value"
+        >
+        </p-selectButton>
         <nav class="navigation fs-16 fw-600">
           @for (nav of navigations; track nav.name) {
             <a
-              [id]="nav.id"
-              [routerLink]="nav.path"
-              routerLinkActive="active-link"
-              [routerLinkActiveOptions]="{ exact: true }"
+            [id]="nav.id"
+            routerLinkActive="active-link"
+            [routerLink]="nav.path"
+            [routerLinkActiveOptions]="{ exact: true }"
             >
-              {{ nav.name }}
-            </a>
-          }
-          <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
-        </nav>
-      </div>
+            {{ nav.name }}
+          </a>
+        }
+        <p-toggle-switch (onChange)="themeService.toggleDarkMode()" [ngModel]="themeService.isDark$ | async"></p-toggle-switch>
+        <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
+      </nav>
+    </div>
       @if (currentFunctionality === 'clicker') {
         <div class="clicker-wrapper">
           <div class="clicker">
