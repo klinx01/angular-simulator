@@ -6,7 +6,7 @@ import { filter } from 'rxjs';
 })
 export class PhoneNumberPipe implements PipeTransform {
 
-  transform(phoneNumber: string, mode: 'compact' | 'international' | 'national' | 'masked' ): string {
+  transform(phoneNumber: string, phoneNumberStyle: 'compact' | 'international' | 'national' | 'masked' ): string {
     const filteredNumber: string =  phoneNumber.toString().replace(/\D/g, '');
     const countryCode: string = filteredNumber.slice(0, 2);
     const pOne: string = filteredNumber.slice(2, 5);
@@ -14,7 +14,7 @@ export class PhoneNumberPipe implements PipeTransform {
     const pThree: string = filteredNumber.slice(8, 10);
     const pFour: string = filteredNumber.slice(10, 12);
 
-     switch (mode) {
+     switch (phoneNumberStyle) {
       case 'compact':
         return `+${ filteredNumber }`;
       case 'international':
