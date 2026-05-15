@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IUser } from '../interfaces/IUser';
+import { HoverWeightDirective } from '../directive/hover-weight.directive';
+import { GradientBorderDirective } from '../directive/gradient-border.directive';
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, HoverWeightDirective, GradientBorderDirective],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.scss',
 })

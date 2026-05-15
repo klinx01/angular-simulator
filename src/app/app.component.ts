@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { MessageComponent } from '../message/message.component';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../services/local-storage.service';
 import { LoaderComponent } from "../loader/loader.component";
 
 @Component({
