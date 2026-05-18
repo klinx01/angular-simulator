@@ -1,52 +1,40 @@
-import { Directive, ElementRef, HostBinding, HostListener, inject, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 import { IGradientConfiguration } from '../interfaces/IGradientConfiguration';
 
 @Directive({
   selector: '[GradientConfiguration]',
 })
-export class GradientBorderDirective implements OnInit {
+export class GradientBorderDirective {
 
-  @Input() GradientConfiguration!: IGradientConfiguration;
+  @Input() gradientConfiguration: IGradientConfiguration = {}
 
-  private isActive: boolean = false;
   private timeoutId!: number;
 
-  private defaultValue: IGradientConfiguration = {
-    delay: 1000,
-    colors: ['red', 'yellow', 'blue'],
-    thickness: '2px',
-  };
-
-  ngOnInit(): void {
-    this.defaultValue = {
-      ...this.defaultValue, ...this.GradientConfiguration
-    }
-  }
-
   @HostListener('mouseenter')
-  onHover(): void {
-   this.timeoutId = setTimeout(() => {
-      this.isActive = true;
-    }, this.defaultValue.delay);
+    onHover(): void {
+      this.timeoutId = setTimeout(() => {
+         this.isActiveClass = true;
+     }, this.gradientConfiguration.delay ?? 1000 );
   }
 
   @HostListener('mouseleave')
-  onLeave(): void {
-    clearTimeout(this.timeoutId);
-    this.isActive = false;
-  }
-
-  @HostBinding('style.border')
-  get border(): string {
-    return `${this.defaultValue.thickness} solid transparent`;
-  }
-
-  @HostBinding('style.borderImage')
-  get borderImage(): string {
-    if (!this.isActive) { 
-      return 'none';
+    onLeave(): void {
+      clearTimeout(this.timeoutId);
+      this.isActiveClass = false;
     }
-    return `linear-gradient(45deg, ${this.defaultValue.colors}) 1`;
-  }
+
+  @HostBinding('class.animated-border')
+    isActiveClass = false;
+
+  @HostBinding('style.--gradient-colors')
+    get gradientColors(): string {
+      return this.gradientConfiguration.colors?.join() ?? 'red, blue, yellow';
+    }
+
+  @HostBinding('style.--gradient-thickness')
+    get gradientThickness(): string {
+      return this.gradientConfiguration.thickness ?? '2px';
+    }
+
 }
 

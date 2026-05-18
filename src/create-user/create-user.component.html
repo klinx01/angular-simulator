@@ -1,65 +1,93 @@
 <div class="form-container">
-  <form [formGroup]="userForm">
+  <form class="input-bg" [formGroup]="userForm">
     <div>
       <label>Name</label>
-      <input [GradientConfiguration]="{}" formControlName="name" id="name">
+      <div GradientConfiguration class="input-wrapper">
+        <input formControlName="name" id="name">
+      </div>
     </div>
     <div>
       <label>Username</label>
-      <input [GradientConfiguration]="{}" formControlName="username" id="username">
+      <div GradientConfiguration class="input-wrapper">
+        <input  formControlName="username" id="username">
+      </div>
     </div>
     <div>
       <label>Email</label>
-      <input [GradientConfiguration]="{}" formControlName="email" id="email">
+      <div GradientConfiguration class="input-wrapper">
+        <input formControlName="email" id="email">
+      </div>
     </div>
     <div>
       <label>Phone</label>
-      <input [GradientConfiguration]="{}" formControlName="phone" type="tel" id="phone">
+      <div GradientConfiguration class="input-wrapper">
+        <input formControlName="phone" type="tel" id="phone">
+      </div>
     </div>
     <div>
       <label>Website</label>
-      <input [GradientConfiguration]="{}" formControlName="website" id="website">
+      <div GradientConfiguration class="input-wrapper">
+        <input formControlName="website" id="website">
+      </div>
     </div>
     <div formGroupName="address">
       <div>
         <label>City</label>
-        <input [GradientConfiguration]="{}" formControlName="city" id="city">
+        <div GradientConfiguration class="input-wrapper">
+          <input formControlName="city" id="city">
+        </div>
       </div>
       <div>
         <label>Street</label>
-        <input [GradientConfiguration]="{}" formControlName="street" id="street">
+        <div GradientConfiguration class="input-wrapper">
+          <input formControlName="street" id="street">
+        </div>
       </div>
       <div>
         <label>Suite</label>
-        <input [GradientConfiguration]="{}" formControlName="suite" id="suite">
+        <div GradientConfiguration class="input-wrapper">
+          <input formControlName="suite" id="suite">
+        </div>
       </div>
       <div>
         <label>Zipcode</label>
-        <input [GradientConfiguration]="{}" formControlName="zipcode" id="zipcode">
+        <div GradientConfiguration class="input-wrapper">
+          <input formControlName="zipcode" id="zipcode">
+        </div>
       </div>
       <div formGroupName="geo">
         <div>
           <label>lat</label>
-          <input [GradientConfiguration]="{}" formControlName="lat" id="lat">
+          <div GradientConfiguration class="input-wrapper">
+            <input formControlName="lat" id="lat">
+          </div>
         </div>
         <div>
           <label>lng</label>
-          <input [GradientConfiguration]="{}" formControlName="lng" id="lng">
+          <div GradientConfiguration class="input-wrapper">
+            <input formControlName="lng" id="lng">
+          </div>
         </div>
       </div>
     </div>
     <div formGroupName="company">
       <div>
         <label>Company name</label>
-        <input [GradientConfiguration]="{}" formControlName="name" id="company-name">
+        <div GradientConfiguration class="input-wrapper">
+          <input formControlName="name" id="company-name">
+        </div>
       </div>
       <div>
         <label>Mission</label>
-        <input [GradientConfiguration]="{}" formControlName="catchPhrase" id="catchPhrase">
+        <div GradientConfiguration class="input-wrapper">
+          <input  formControlName="catchPhrase" id="catchPhrase">
+        </div>
       </div>
       <div>
         <label>Specialization</label>
-        <input [GradientConfiguration]="{}" formControlName="bs" id="bs">
+        <div GradientConfiguration class="input-wrapper">
+          <input  formControlName="bs" id="bs">
+        </div>
       </div>
     </div>
   </form>

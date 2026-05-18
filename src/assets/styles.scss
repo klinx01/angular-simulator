@@ -114,3 +114,44 @@ body:has(app-loader .background-loading) {
 .fw-800 {
   font-weight: 800;
 }
+
+
+.animated-border {
+  position: relative;
+  border-radius: 8px;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--gradient-thickness);
+
+  background: linear-gradient(270deg, var(--gradient-colors));
+  background-size: 600% 600%;
+
+  animation: gradientMove 4s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

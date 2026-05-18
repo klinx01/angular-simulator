@@ -7,7 +7,7 @@ export class HoverWeightDirective {
 
   constructor() { }
 
-  @HostBinding('style.fontWeight') fontWeight: string = 'normal'
+  @HostBinding('style.fontWeight') fontWeight: string = 'normal';
 
   @HostListener('mouseenter')
     onHover(): void {
@@ -18,4 +18,5 @@ export class HoverWeightDirective {
     onLeave(): void {
       this.fontWeight = 'normal';
     }
+
 }
