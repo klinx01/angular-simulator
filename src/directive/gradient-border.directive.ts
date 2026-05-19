@@ -2,7 +2,7 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 import { IGradientConfiguration } from '../interfaces/IGradientConfiguration';
 
 @Directive({
-  selector: '[GradientConfiguration]',
+  selector: '[gradientBorderDirective]',
 })
 export class GradientBorderDirective {
 
