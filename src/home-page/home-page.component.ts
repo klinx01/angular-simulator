@@ -8,7 +8,7 @@ import { IParticipant } from '../interfaces/IParticipant';
 import { IDirection } from '../interfaces/IDirection.js';
 import { INewsCard } from '../interfaces/INewsCard.js';
 import { Message } from '../enums/Message.js';
-import { MessageService } from '../message.service.js';
+import { MessageService } from '../services/message.service.js';
 import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons'

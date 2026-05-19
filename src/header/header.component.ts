@@ -3,12 +3,12 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { ToggleSwitchModule, ToggleSwitch } from 'primeng/toggleswitch';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../services/theme.service';
 import { AsyncPipe } from '@angular/common';
 import { Theme } from '../enums/Theme';
 import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
 import { IThemeOption } from '../interfaces/IThemeOption';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-header',

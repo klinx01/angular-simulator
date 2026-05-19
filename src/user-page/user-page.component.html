@@ -3,6 +3,9 @@
   <app-create-user (createUser)="this.userService.addUser($event)"></app-create-user>
   <app-users-filter (filter)="onFilter($event)"></app-users-filter>
 </div>
+<span class="count-user">
+  {{ (users$ | async)?.length }}
+  {{ (users$ | async)?.length | plural: 'пользователь':'пользователя':'пользователей' }}</span>
 <div class="super-card-container">
   <div class="card-container">
     <div class="card-super-wrapper">

@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, of, finalize } from 'rxjs';
-import { IUser } from './interfaces/IUser';
+import { IUser } from '../interfaces/IUser';
 import { UserApiService } from './user-api.service';
-import { LoaderService } from './loader.service';
+import { LoaderService } from '../services/loader.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from './message.service';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',

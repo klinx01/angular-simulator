@@ -2,11 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { usePreset } from '@primeuix/themes';
-import { Theme } from './enums/Theme';
+import { Theme } from '../enums/Theme';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara'
 import Nora from '@primeuix/themes/nora'
-import { IThemeOption } from './interfaces/IThemeOption';
+import { IThemeOption } from '../interfaces/IThemeOption';
 
 @Injectable({
   providedIn: 'root',
