@@ -1,12 +1,12 @@
-<div class="card-container">
+<div gradientBorderDirective [gradientConfiguration]="{ thickness: '5px', delay: 000, colors: ['red']}" class="card-container">
   <div class="info-wrapper">
     <div class="wrapper-name">
       <div>
         <h3 class="fs-26">{{ user.name }}</h3>
-        <span class="fw-700 fs-15px username">{{ user.username }}</span>
+        <span class="fw-700 fs-15px username">{{ user.username | uppercase }}</span>
       </div>
       <div>
-        <button id="delete-user" (click)="onDelete()" class="primary-button delete-user-btn fw-700 fs-14">Удалить пользователя</button>
+        <button appHoverWeight id="delete-user" (click)="onDelete()" class="primary-button delete-user-btn fw-700 fs-14">Удалить пользователя</button>
       </div>
     </div>
     <div class="user-info">
@@ -23,7 +23,9 @@
             </div>
             <div class="contact-template">
               <span class="gray-color fw-400 fs-14">Телефон:</span>
-              <span class="fw-700 fs-14">{{ user.phone }}</span>
+              <span class="fw-700 fs-14">
+                {{ user.phone | phoneNumber:"international" }}
+              </span>
             </div>
             <div class="contact-template">
               <span class="gray-color fw-400 fs-14">Веб-сайт:</span>

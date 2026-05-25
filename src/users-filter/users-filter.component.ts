@@ -2,10 +2,11 @@ import { Component, DestroyRef, EventEmitter, OnInit, Output, inject } from '@an
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { GradientBorderDirective } from '../directive/gradient-border.directive';
 
 @Component({
   selector: 'app-users-filter',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, GradientBorderDirective],
   templateUrl: './users-filter.component.html',
   styleUrl: './users-filter.component.scss',
 })
