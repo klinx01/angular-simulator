@@ -6,7 +6,7 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
 
 @Component({
   selector: 'app-users-filter',
-  imports: [ReactiveFormsModule, GradientBorderDirective],
+  imports: [ReactiveFormsModule],
   templateUrl: './users-filter.component.html',
   styleUrl: './users-filter.component.scss',
 })
