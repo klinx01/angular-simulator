@@ -9,7 +9,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-          if (error.status === 500 || error.status === 502 || error.status === 504 || error.status === 503) {
+          if (error.status >= 500 && error.status <= 599) {
             messageService.showError(`Ошибка! ${ error.status }`);
           }
           return throwError(() => error);
