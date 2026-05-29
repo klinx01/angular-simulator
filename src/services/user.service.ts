@@ -50,14 +50,7 @@ export class UserService {
 
     this.loaderService.showLoader();
     return this.userApiService.getUsers()
-      .pipe(
-        catchError(() => {
-          this.messageService.showError('Ошибка! пользователи но прогрузились');
-          return of([]);
-        }),
-        finalize(() => this.loaderService.hideLoader()
-        )
-      );
+      .pipe(finalize(() => this.loaderService.hideLoader()));
   }
 
 }
