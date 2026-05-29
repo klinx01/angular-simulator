@@ -9,6 +9,9 @@ import { AuraBaseDesignTokens } from '@primeuix/themes/aura/base';
 import { LaraBaseDesignTokens } from '@primeuix/themes/lara/base';
 import { Preset } from '@primeuix/themes/types';
 import { Theme } from '../enums/Theme';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { loggingInterceptor } from '../interceptors/logging.interceptor';
+import { errorInterceptor } from '../interceptors/error.interceptor';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
@@ -30,6 +33,7 @@ function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTo
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withInterceptors([errorInterceptor, loggingInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
