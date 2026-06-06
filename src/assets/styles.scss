@@ -26,15 +26,21 @@ body:has(app-loader .background-loading) {
   --secondary-color: #1A3E3E;
   --background-primary-color: white;
   --background-secondary-color: #1A3E3E;
-  --background-container-email-color: #FDFDFD
+  --background-third-color: #1A3E3E;
+  --background-four-color: #c7c7d02b;
+  --background-container-email-color: #FDFDFD;
 }
 
 .my-app-dark {
+  --primary-text-color: #FDFDFD;
   --primary-color: black;
   --secondary-color: #e9f1f1;
+  --background-primary-color: #06030366;
   --background-white-color: #020c07ad;
   --background-secondary-color: #06030366;
-  --background-container-email-color: #06030366
+  --background-third-color: #322f2f66;
+  --background-four-color: #322f2f66;
+  --background-container-email-color: #06030366;
 }
 
 .gray-color {

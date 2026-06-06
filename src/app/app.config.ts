@@ -30,7 +30,6 @@ function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTo
       return Aura;
   }
 }
-import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [

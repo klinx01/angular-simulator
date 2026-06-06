@@ -1,0 +1,39 @@
+.p-table {
+  display: flex;
+  margin: 30px 0px 30px 0px;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.post-info {
+  cursor: pointer;
+}
+
+.p-table-bg {
+  background-color: var(--background-third-color);
+}
+
+.create-post-btn {
+  border: none;
+  background-color: #1A3E3E;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+}

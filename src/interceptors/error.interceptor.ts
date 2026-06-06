@@ -9,11 +9,23 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-          if (error.status >= 500 && error.status <= 599) {
-            messageService.showError(`Ошибка! ${ error.status }`);
-          }
-          return throwError(() => error);
-        })
+      if (error.status >= 500 && error.status <= 599) {
+        messageService.showError(`Ошибка! ${ error.status }`);
+      }
+      
+      switch (error.status) {
+        case 400:
+          messageService.showError('Ошибка: Неверно заполнены поля формы');
+          break;
+        case 404:
+          messageService.showError('Ошибка: Данные не найдены');
+          break;
+        default:
+          messageService.showError('Произошла непредвиденная ошибка');
+          break;
+      }
+      return throwError(() => error);
+    })
   );
 };
 
