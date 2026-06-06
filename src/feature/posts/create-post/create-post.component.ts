@@ -16,7 +16,6 @@ export class CreatePostComponent {
   private fb: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
   private postApiService: PostApiService = inject(PostApiService);
-  private messageService: MessageService = inject(MessageService)
 
   postForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
