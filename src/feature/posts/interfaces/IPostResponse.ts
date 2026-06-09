@@ -1,11 +1,11 @@
-export interface IPostData {
+export interface IPostResponse {
   posts: IPost[];
   total: number;
   skip: number;
   limit: number;
 }
 
-export interface IPost {
+interface IPost {
   id: number;
   title: string;
   body: string;

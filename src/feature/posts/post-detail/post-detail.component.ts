@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPost } from '../IPost';
+import { IPost } from '../interfaces/IPost';
 
 
 @Component({

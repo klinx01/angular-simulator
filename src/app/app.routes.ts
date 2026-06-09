@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'posts',
-    loadComponent: () => import('../feature/posts/posts-list/posts-list.component').then(m => m.PostsListComponent),
+    loadComponent: () => import('../feature/posts/post-list/post-list.component').then(m => m.PostsListComponent),
   },
   {
     path: 'posts/create',
