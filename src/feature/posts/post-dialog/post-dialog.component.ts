@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPost } from '../interfaces/IPost';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IPostDynamicDialog } from '../interfaces/IPostDynamicDialog';
+import { IPostDialog } from '../interfaces/IPostDynamicDialog';
 
 @Component({
   selector: 'app-post-dialog',
@@ -13,10 +13,10 @@ import { IPostDynamicDialog } from '../interfaces/IPostDynamicDialog';
 export class PostDialogComponent implements OnInit {
 
   private ref: DynamicDialogRef = inject(DynamicDialogRef);
-  private dynamicDialogConfig: DynamicDialogConfig<IPostDynamicDialog, IPostDynamicDialog> = inject(DynamicDialogConfig<IPostDynamicDialog, IPostDynamicDialog>);
+  private dynamicDialogConfig: DynamicDialogConfig<IPostDialog, IPostDialog> = inject(DynamicDialogConfig<IPostDialog, IPostDialog>);
   private fb: FormBuilder = inject(FormBuilder);
 
-  postDialogForm = this.fb.group({
+  postDialogForm = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     views: [0, [Validators.required]],
     tags: [[''], [Validators.minLength(2)]]

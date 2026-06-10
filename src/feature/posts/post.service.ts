@@ -10,7 +10,6 @@ import { IPostResponse } from './interfaces/IPostResponse';
 })
 export class PostService {
 
-  private router: Router = inject(Router);
   private postApiService: PostApiService = inject(PostApiService);
 
   private postsSubject: BehaviorSubject<IPost[] | null> = new BehaviorSubject<IPost[] | null>(null);
@@ -40,25 +39,33 @@ export class PostService {
     ).subscribe()
   }
 
+  private replaceUpdatedPost(currentPosts: IPost[], updatePost: IPost): IPost[] {
+    return currentPosts.map((post: IPost) => {
+      if (post.id === updatePost.id) {
+        return {
+          ...post, ...updatePost
+        } 
+      } else {
+          return post;
+        }
+    })
+  }
+
   updatePost(postId: number, formEditedData: IPost): void {
-    this.postApiService.updatePost(postId.toString(), {...formEditedData, id: postId}).pipe(
-          tap((updatePost: IPost) => {
-            const currentPosts: IPost[] | null = this.getPosts();
-            if (!currentPosts) {
-              return
-            }
-            const savedPost: IPost[] = currentPosts.map((post: IPost) => {
-              if (post.id === updatePost.id) {
-                return {
-                  ...post, ...formEditedData
-                }
-              } else {
-                return post
-              }
-            })
-            this.postsSubject.next(savedPost)
-          })
-      ).subscribe()
+  const updatedPostData: IPost = { ...formEditedData, id: postId };
+  this.postApiService.updatePost(postId.toString(), updatedPostData).pipe(
+    tap((updatedPost: IPost) => {
+      const currentPosts: IPost[] | null = this.getPosts();
+
+      if (!currentPosts) {
+        return;
+      }
+
+      const savedPosts: IPost[] = this.replaceUpdatedPost(currentPosts, updatedPost);
+      this.postsSubject.next(savedPosts);
+    })
+  ).subscribe();
+
   }
 
 }

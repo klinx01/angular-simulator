@@ -78,7 +78,7 @@ export class PostsListComponent {
     )).subscribe();
   }
 
-  onNextPage(event: TableLazyLoadEvent) {
+  onNextPage(event: TableLazyLoadEvent): void {
     this.postService.skip = event.first ?? 0;
     this.postService.limit = event.rows ?? 10;
     this.postService.loadPosts();
