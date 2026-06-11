@@ -1,8 +1,8 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPost } from '../interfaces/IPost';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IPostDialog } from '../interfaces/IPostDynamicDialog';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IEditPost } from '../interfaces/IEditPost';
 
 @Component({
   selector: 'app-post-dialog',
@@ -13,21 +13,19 @@ import { IPostDialog } from '../interfaces/IPostDynamicDialog';
 export class PostDialogComponent implements OnInit {
 
   private ref: DynamicDialogRef = inject(DynamicDialogRef);
-  private dynamicDialogConfig: DynamicDialogConfig<IPostDialog, IPostDialog> = inject(DynamicDialogConfig<IPostDialog, IPostDialog>);
+  private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(DynamicDialogConfig<IEditPost, IEditPost>);
   private fb: FormBuilder = inject(FormBuilder);
 
-  postDialogForm = this.fb.nonNullable.group({
+  postDialogForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     views: [0, [Validators.required]],
     tags: [[''], [Validators.minLength(2)]]
   });
 
   ngOnInit(): void {
-    this.postDialogForm.patchValue({
-      title: this.dynamicDialogConfig.inputValues?.title,
-      views: this.dynamicDialogConfig.inputValues?.views,
-      tags: this.dynamicDialogConfig.inputValues?.tags
-    })
+    if (this.dynamicDialogConfig.data) {
+      this.postDialogForm.patchValue(this.dynamicDialogConfig.data)
+    }
   }
 
   onSubmit(): void {

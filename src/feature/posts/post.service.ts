@@ -12,7 +12,7 @@ export class PostService {
 
   private postApiService: PostApiService = inject(PostApiService);
 
-  private postsSubject: BehaviorSubject<IPost[] | null> = new BehaviorSubject<IPost[] | null>(null);
+  private postsSubject: BehaviorSubject<IPost[] | null> = new BehaviorSubject<IPost[] | null>([]);
   posts$: Observable<IPost[] | null> = this.postsSubject.asObservable();
   skip: number = 0;
   limit: number = 10;
@@ -29,7 +29,7 @@ export class PostService {
   }
 
   loadPosts(): void {
-    this.postsSubject.next(null);
+    this.postsSubject.next(null)
     this.postApiService.getPosts(this.limit, this.skip).pipe(
       tap((res: IPostResponse) => {
           this.postsSubject.next(res.posts),
@@ -39,29 +39,24 @@ export class PostService {
     ).subscribe()
   }
 
-  private replaceUpdatedPost(currentPosts: IPost[], updatePost: IPost): IPost[] {
-    return currentPosts.map((post: IPost) => {
-      if (post.id === updatePost.id) {
-        return {
-          ...post, ...updatePost
-        } 
-      } else {
-          return post;
-        }
-    })
+  private UpdatedPostInList(updatePost: IPost): IPost[] {
+    const currentPosts: IPost[] = this.postsSubject.getValue()!;
+     return currentPosts.map((post: IPost) =>
+      post.id === updatePost.id ? { ...post, ...updatePost } : post
+    )
   }
 
   updatePost(postId: number, formEditedData: IPost): void {
   const updatedPostData: IPost = { ...formEditedData, id: postId };
-  this.postApiService.updatePost(postId.toString(), updatedPostData).pipe(
+  this.postApiService.updatePost(postId, updatedPostData).pipe(
     tap((updatedPost: IPost) => {
-      const currentPosts: IPost[] | null = this.getPosts();
+      const currentPosts: IPost[] = this.getPosts()!;
 
       if (!currentPosts) {
         return;
       }
 
-      const savedPosts: IPost[] = this.replaceUpdatedPost(currentPosts, updatedPost);
+      const savedPosts: IPost[] = this.UpdatedPostInList(updatedPost);
       this.postsSubject.next(savedPosts);
     })
   ).subscribe();

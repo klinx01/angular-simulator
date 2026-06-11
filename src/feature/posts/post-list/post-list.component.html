@@ -1,5 +1,5 @@
 <div class="button-container">
-  <button class="create-post-btn" (click)="onCreatePost()">Создать пост</button>
+  <button class="create-post-btn" (click)="redirectCreatePost()">Создать пост</button>
 </div>
 
 <div class="p-table">
@@ -29,15 +29,21 @@
       <ng-template #body let-post>
         @if ((posts$ | async) === null) {
           <tr>
-          <td><p-skeleton></p-skeleton></td>
-          <td><p-skeleton></p-skeleton></td>
-          <td><p-skeleton></p-skeleton></td>
-        </tr>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+          </tr>
         } @else {
           <tr [pContextMenuRow]="post">
-            <td class="post-info" (dblclick)="onDetailPostInfo(post.id)">{{ post.title }}</td>
-            <td class="post-info" (dblclick)="onDetailPostInfo(post.id)">{{ post.tags }}</td>
-            <td class="post-info" (dblclick)="onDetailPostInfo(post.id)">{{ post.views }}</td>
+            <td class="post-info" (dblclick)="redirectDetailPostInfo(post.id)">{{ post.title }}</td>
+            <td class="post-info" (dblclick)="redirectDetailPostInfo(post.id)">{{ post.tags }}</td>
+            <td class="post-info" (dblclick)="redirectDetailPostInfo(post.id)">{{ post.views }}</td>
           </tr>
         }
       </ng-template>

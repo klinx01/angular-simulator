@@ -15,7 +15,7 @@ export class PostApiService {
     return this.http.get<IPost>(`https://dummyjson.com/posts/${ postId }`);
   }
 
-  updatePost(postId: string | null, updatePost: IPost): Observable<IPost> {
+  updatePost(postId: number | null, updatePost: IPost): Observable<IPost> {
     return this.http.put<IPost>(`https://dummyjson.com/posts/${ postId }`, updatePost);
   }
 
