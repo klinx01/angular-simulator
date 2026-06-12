@@ -24,7 +24,7 @@ export class PostDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.dynamicDialogConfig.data) {
-      this.postDialogForm.patchValue(this.dynamicDialogConfig.data)
+      this.postDialogForm.patchValue(this.dynamicDialogConfig.data);
     }
   }
 

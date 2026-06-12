@@ -32,10 +32,10 @@ export class PostsListComponent {
   mockData: IPost[] = Array(10).fill(1);
   selectedPost!: IPost;
 
-  readonly menuItem: MenuItem[] = [
+  readonly menuItems: MenuItem[] = [
       { 
         label: 'Просмотреть', 
-        command: () => this.redirectDetailPostInfo(this.selectedPost.id)
+        command: () => this.redirectToDetailPostInfo(this.selectedPost.id)
       },
       { 
         label: 'Удалить',  
@@ -47,11 +47,11 @@ export class PostsListComponent {
       }
     ];
 
-  redirectDetailPostInfo(id: number): void {
+  redirectToDetailPostInfo(id: number): void {
     this.router.navigate(['posts/', id]);
   }
 
-  redirectCreatePost(): void {
+  redirectToCreatePost(): void {
     this.router.navigate(['posts/create']);
   }
 
