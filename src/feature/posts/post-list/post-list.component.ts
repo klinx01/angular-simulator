@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
 import { IPost } from '../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
 import { PostApiService } from '../post-api.service';
@@ -31,11 +31,12 @@ export class PostsListComponent {
   posts$: Observable<IPost[] | null> = this.postService.posts$;
   mockData: IPost[] = Array(10).fill(1);
   selectedPost!: IPost;
+  isLoading: boolean = true;
 
   readonly menuItems: MenuItem[] = [
       { 
         label: 'Просмотреть', 
-        command: () => this.redirectToDetailPostInfo(this.selectedPost.id)
+        command: () => this.redirectToDetailPost(this.selectedPost.id)
       },
       { 
         label: 'Удалить',  
@@ -47,7 +48,7 @@ export class PostsListComponent {
       }
     ];
 
-  redirectToDetailPostInfo(id: number): void {
+  redirectToDetailPost(id: number): void {
     this.router.navigate(['posts/', id]);
   }
 
@@ -81,7 +82,10 @@ export class PostsListComponent {
   onNextPage(event: TableLazyLoadEvent): void {
     this.postService.skip = event.first ?? 0;
     this.postService.limit = event.rows ?? 10;
-    this.postService.loadPosts();
+    this.isLoading = true;
+    this.postService.loadPosts().pipe(
+      finalize(() => this.isLoading = false)
+    ).subscribe();
   }
 
 }

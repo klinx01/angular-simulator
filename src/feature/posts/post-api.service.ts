@@ -11,12 +11,12 @@ export class PostApiService {
 
   private http = inject(HttpClient);
 
-  getPostsById(postId: string): Observable<IPost> {
+  getPostById(postId: string): Observable<IPost> {
     return this.http.get<IPost>(`https://dummyjson.com/posts/${ postId }`);
   }
 
-  updatePost(updatePost: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`https://dummyjson.com/posts/${ updatePost.id }`, updatePost);
+  updatePost(updatedPost: IPost): Observable<IPost> {
+    return this.http.put<IPost>(`https://dummyjson.com/posts/${ updatedPost.id }`, updatedPost);
   }
 
   getPosts(limit: number, skip: number): Observable<IPostResponse> {

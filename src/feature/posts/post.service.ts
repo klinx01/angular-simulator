@@ -29,15 +29,14 @@ export class PostService {
      this.postsSubject.next(updatedPosts);
   }
 
-  loadPosts(): void {
-    this.isLoading = true;
-    this.postApiService.getPosts(this.limit, this.skip).pipe(
+  loadPosts(): Observable<IPostResponse> {
+    return this.postApiService.getPosts(this.limit, this.skip).pipe(
       tap((res: IPostResponse) => {
         this.postsSubject.next(res.posts),
         this.totalRecords = res.total;
         this.isLoading = false;
       })
-    ).subscribe()
+    )
   }
 
   private updatedPostInList(updatePost: IPost): IPost[] {

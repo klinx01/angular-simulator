@@ -27,7 +27,7 @@
         </tr>
       </ng-template>
       <ng-template #body let-post>
-        @if (postService.isLoading) {
+        @if (isLoading) {
           <tr>
             <td>
               <p-skeleton></p-skeleton>
@@ -40,7 +40,7 @@
             </td>
           </tr>
         } @else {
-          <tr [pContextMenuRow]="post" (dblclick)="redirectToDetailPostInfo(post.id)">
+          <tr [pContextMenuRow]="post" (dblclick)="redirectToDetailPost(post.id)">
             <td class="post-info" >{{ post.title }}</td>
             <td class="post-info">{{ post.tags }}</td>
             <td class="post-info">{{ post.views }}</td>
