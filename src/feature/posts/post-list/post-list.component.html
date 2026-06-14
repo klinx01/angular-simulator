@@ -1,0 +1,51 @@
+<div class="button-container">
+  <button class="create-post-btn" (click)="redirectToCreatePost()">Создать пост</button>
+</div>
+
+<div class="p-table">
+  <p-contextMenu #cm [model]="menuItems" appendTo="body"></p-contextMenu>
+  <p-table
+    class="container"
+    [value]="(posts$ | async) ?? mockData"
+    [contextMenu]="cm"
+    [(contextMenuSelection)]="selectedPost"
+    [paginator]="true"
+    [lazy]="true"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    [rows]="postService.limit"
+    [first]="postService.skip"
+    [totalRecords]="postService.totalRecords"
+    (onLazyLoad)="onNextPage($event)"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Элементы {first}—{last}. Всего в базе: {totalRecords}"
+    [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Title</th>
+          <th>Tags</th>
+          <th>Views</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-post>
+        @if (isLoading) {
+          <tr>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+            <td>
+              <p-skeleton></p-skeleton>
+            </td>
+          </tr>
+        } @else {
+          <tr [pContextMenuRow]="post" (dblclick)="redirectToDetailPost(post.id)">
+            <td class="post-info" >{{ post.title }}</td>
+            <td class="post-info">{{ post.tags }}</td>
+            <td class="post-info">{{ post.views }}</td>
+          </tr>
+        }
+      </ng-template>
+  </p-table>
+</div>

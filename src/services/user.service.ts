@@ -3,8 +3,6 @@ import { BehaviorSubject, catchError, Observable, tap, of, finalize } from 'rxjs
 import { IUser } from '../interfaces/IUser';
 import { UserApiService } from './user-api.service';
 import { LoaderService } from '../services/loader.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from './message.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable({
@@ -12,7 +10,6 @@ import { LocalStorageService } from '../services/local-storage.service';
 })
 export class UserService {
 
-  messageService: MessageService = inject(MessageService)
   loaderService: LoaderService = inject(LoaderService);
   userApiService: UserApiService = inject(UserApiService);
   localStorageService: LocalStorageService = inject(LocalStorageService);

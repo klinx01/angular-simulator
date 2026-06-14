@@ -7,7 +7,6 @@ import { ThemeService } from '../services/theme.service';
 import { AsyncPipe } from '@angular/common';
 import { Theme } from '../enums/Theme';
 import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
-import { IThemeOption } from '../interfaces/IThemeOption';
 import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
@@ -29,7 +28,8 @@ export class HeaderComponent {
 
   navigations: INavigation[] = [
     { id: 'home-page', name: 'Главная', path: '/' },
-    { id: 'users', name: 'Пользователи', path: '/users' }
+    { id: 'users', name: 'Пользователи', path: '/users' },
+    { id: 'posts', name: 'Список постов', path: '/posts' }
   ];
   
   constructor() {
