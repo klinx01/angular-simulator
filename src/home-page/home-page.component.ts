@@ -14,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
 import { faHandHoldingDollar, faPlay, faShieldHalved, faUsers, faAngleRight, faAngleDown, faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { AuthService } from '../feature/auth/services/auth.service';
 
 @Component({
   selector: 'home-page',

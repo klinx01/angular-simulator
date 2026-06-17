@@ -25,6 +25,7 @@
             {{ nav.name }}
           </a>
         }
+        <button class="primary-button" (click)="authService.logout()">Logout</button>
         <p-toggle-switch (onChange)="themeService.toggleDarkMode()" [ngModel]="themeService.isDark$ | async"></p-toggle-switch>
         <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
       </nav>

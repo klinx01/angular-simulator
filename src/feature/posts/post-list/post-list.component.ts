@@ -3,7 +3,7 @@ import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
 import { IPost } from '../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
-import { PostApiService } from '../post-api.service';
+import { PostApiService } from '../services/post-api.service';
 import { SkeletonModule } from 'primeng/skeleton'
 import { Router } from '@angular/router';
 import { ContextMenu } from 'primeng/contextmenu';
@@ -11,7 +11,7 @@ import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 import { IPostResponse } from '../interfaces/IPostResponse';
-import { PostService } from '../post.service';
+import { PostService } from '../services/post.service';
 
 
 @Component({
@@ -28,10 +28,9 @@ export class PostsListComponent {
   private dialogService: DialogService = inject(DialogService);
   private ref: DynamicDialogRef<PostDialogComponent> | null = null;
 
-  posts$: Observable<IPost[] | null> = this.postService.posts$;
+  posts$: Observable<IPost[]> = this.postService.posts$;
   mockData: IPost[] = Array(10).fill(1);
   selectedPost!: IPost;
-  isLoading: boolean = true;
 
   readonly menuItems: MenuItem[] = [
       { 
@@ -49,11 +48,11 @@ export class PostsListComponent {
     ];
 
   redirectToDetailPost(id: number): void {
-    this.router.navigate(['posts/', id]);
+    this.router.navigate(['/posts/', id]);
   }
 
   redirectToCreatePost(): void {
-    this.router.navigate(['posts/create']);
+    this.router.navigate(['/posts/create']);
   }
 
   openModal(): void {
@@ -82,10 +81,7 @@ export class PostsListComponent {
   onNextPage(event: TableLazyLoadEvent): void {
     this.postService.skip = event.first ?? 0;
     this.postService.limit = event.rows ?? 10;
-    this.isLoading = true;
-    this.postService.loadPosts().pipe(
-      finalize(() => this.isLoading = false)
-    ).subscribe();
+    this.postService.loadPosts()
   }
 
 }
