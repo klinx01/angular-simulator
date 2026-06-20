@@ -15,7 +15,8 @@ export class AuthLoginComponent {
 
   authForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
+    id: [Date.now()]
   })
 
   onSubmit(): void {

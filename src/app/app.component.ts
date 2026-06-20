@@ -9,7 +9,7 @@ import { MainLayoutComponent } from "./main-layout/main-layout.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MainLayoutComponent],
+  imports: [RouterOutlet, ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

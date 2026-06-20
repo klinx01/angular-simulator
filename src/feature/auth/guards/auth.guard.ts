@@ -1,22 +1,18 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { map, Observable } from 'rxjs';
+import { map, switchMap, of, catchError } from 'rxjs';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const router: Router = inject(Router);
-  const authService: AuthService = inject(AuthService);
-  const token$: Observable<boolean> = authService.tokens$;
+export const authGuard: CanActivateFn = () => {
+  const router = inject(Router);
+  const localStorageService = inject(LocalStorageService);
 
-  return authService.tokens$.pipe(
-    map((isLogged: boolean) => {
-      if (isLogged === true) {
-        return true
-      } else {
-        return router.parseUrl('/login');
-        
-      }
-    })
-  )
+  if (localStorageService.getValue('authTokens')) {
+    return true;
+  } else {
+    return router.parseUrl('/login');
+  }
+
   
 };

@@ -4,30 +4,33 @@ import { catchError, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthService } from '../services/auth.service';
+import { IAuthResponse } from '../interfaces/IAuthResponse';
 
-export const tokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const localStorageService: LocalStorageService = inject(LocalStorageService);
-  const authApiService: AuthApiService = inject(AuthApiService);
   const authService: AuthService = inject(AuthService);
 
-  const accesToken: string | null = localStorageService.getValue<string>('accessToken');
-  if (!accesToken) {
+  const authTokens: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');
+  if (!authTokens?.accessToken) {
     return next(req);
   } else {
     const cloneReq: HttpRequest<unknown> = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${accesToken}`
+        Authorization: `Bearer ${ authTokens.accessToken }`
       }
     })
     return next(cloneReq).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
-          return authApiService.refreshToken().pipe(
+          return authService.refreshToken().pipe(
             switchMap(() => {
-              const newToken: string | null = localStorageService.getValue<string>('accessToken');
+              const newToken: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');
+              if (!newToken) {
+                return throwError((err: HttpErrorResponse) => err);
+              }
               const newReq: HttpRequest<unknown> = req.clone({
                 setHeaders: {
-                  Authorization: `Bearer ${newToken}`
+                  Authorization: `Bearer ${ newToken.accessToken }`
                 }
               })
               return next(newReq);

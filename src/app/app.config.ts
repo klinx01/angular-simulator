@@ -12,7 +12,7 @@ import { Theme } from '../enums/Theme';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggingInterceptor } from '../interceptors/logging.interceptor';
 import { errorInterceptor } from '../interceptors/error.interceptor';
-import { tokenInterceptor } from '../feature/auth/interceptors/token.interceptor';
+import { authInterceptor } from '../feature/auth/interceptors/auth.interceptor';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
@@ -34,7 +34,7 @@ function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTo
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([tokenInterceptor, loggingInterceptor, errorInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
