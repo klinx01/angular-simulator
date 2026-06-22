@@ -6,7 +6,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { ILogin } from '../interfaces/ILoginAuth';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IAuthState } from '../interfaces/IAuthState';
+import { IAuthUser } from '../interfaces/IAuthUser';
 
 @Injectable({
   providedIn: 'root',
@@ -14,18 +14,18 @@ import { IAuthState } from '../interfaces/IAuthState';
 export class AuthService {
   
   private authApiService: AuthApiService = inject(AuthApiService);
+  private http: HttpClient = inject(HttpClient);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
-  private authSubject: BehaviorSubject<IAuthState | null> = new BehaviorSubject<IAuthState | null>(null);
-  auth$: Observable<IAuthState | null> = this.authSubject.asObservable();
-  private http: HttpClient = inject(HttpClient);
+  private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
 
   constructor() {
     this.checkAuthStatus().subscribe()
   }
-  
-  authLogin(formValue: ILogin): void {
-    this.authApiService.authPost(formValue).pipe(
+
+  processLogin(userData: ILogin): void {
+    this.authApiService.addUser(userData).pipe(
       tap((res: IAuthResponse) => { 
         const authTokens: IAuthResponse = { accessToken: res.accessToken, refreshToken: res.refreshToken}
         this.localStorageService.setValue<IAuthResponse>('authTokens', authTokens);
@@ -37,17 +37,17 @@ export class AuthService {
     ).subscribe();
   }
 
-  checkAuthStatus(): Observable<IAuthState | null> {
+  checkAuthStatus(): Observable<IAuthUser | null> {
     const authTokens: IAuthResponse | null = this.localStorageService.getValue<IAuthResponse>('authTokens');
     
     if (authTokens) {
       return this.authApiService.getCurrentUser().pipe(
-        tap((res: IAuthState) => {
-          this.authSubject.next(res);
+        tap((res: IAuthUser) => {
+          this.authUserSubject.next(res);
         })
       )
     } else {
-        this.authSubject.next(null);
+        this.authUserSubject.next(null);
         return of(null); 
       }
   }
@@ -61,7 +61,7 @@ export class AuthService {
 
   logout(): void {
     this.localStorageService.removeValue('authTokens');
-    this.authSubject.next(null);
+    this.authUserSubject.next(null);
     this.router.navigate(['/login']);
   }
 

@@ -5,7 +5,7 @@ import { map, switchMap, of, catchError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 
 export const authGuard: CanActivateFn = () => {
-  const router = inject(Router);
+  const router: Router = inject(Router);
   const localStorageService = inject(LocalStorageService);
 
   if (localStorageService.getValue('authTokens')) {

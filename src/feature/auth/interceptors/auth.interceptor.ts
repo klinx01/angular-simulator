@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, Injector } from '@angular/core';
 import { catchError, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { AuthApiService } from '../services/auth-api.service';
@@ -8,7 +8,7 @@ import { IAuthResponse } from '../interfaces/IAuthResponse';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const localStorageService: LocalStorageService = inject(LocalStorageService);
-  const authService: AuthService = inject(AuthService);
+  const injector: Injector = inject(Injector);
 
   const authTokens: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');
   if (!authTokens?.accessToken) {
@@ -22,6 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
     return next(cloneReq).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
+          const authService = injector.get(AuthService);
           return authService.refreshToken().pipe(
             switchMap(() => {
               const newToken: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');

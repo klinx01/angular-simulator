@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { postDetailResolver } from '../feature/posts/post-detail.resolver';
 import { authGuard } from '../feature/auth/guards/auth.guard';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
