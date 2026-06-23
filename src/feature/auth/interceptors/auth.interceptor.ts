@@ -5,35 +5,36 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthService } from '../services/auth.service';
 import { IAuthResponse } from '../interfaces/IAuthResponse';
+import { IToken } from '../interfaces/IToken';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const localStorageService: LocalStorageService = inject(LocalStorageService);
   const injector: Injector = inject(Injector);
 
-  const authTokens: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');
+  function addHttpHeader(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
+    return req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${ token }`
+      }
+    })
+  }
+
+  const authTokens: IToken | null = localStorageService.getValue<IToken>('authTokens');
   if (!authTokens?.accessToken) {
     return next(req);
   } else {
-    const cloneReq: HttpRequest<unknown> = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${ authTokens.accessToken }`
-      }
-    })
+    const cloneReq: HttpRequest<unknown> = addHttpHeader(req, authTokens.accessToken);
     return next(cloneReq).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
           const authService = injector.get(AuthService);
           return authService.refreshToken().pipe(
             switchMap(() => {
-              const newToken: IAuthResponse | null = localStorageService.getValue<IAuthResponse>('authTokens');
+              const newToken: IToken | null = localStorageService.getValue<IToken>('authTokens');
               if (!newToken) {
                 return throwError((err: HttpErrorResponse) => err);
               }
-              const newReq: HttpRequest<unknown> = req.clone({
-                setHeaders: {
-                  Authorization: `Bearer ${ newToken.accessToken }`
-                }
-              })
+              const newReq: HttpRequest<unknown> = addHttpHeader(req, authTokens.accessToken);
               return next(newReq);
             }),
             catchError((refErr: HttpErrorResponse) => {

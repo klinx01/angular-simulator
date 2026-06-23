@@ -23,7 +23,7 @@ export class AuthLoginComponent {
       return;
     }
 
-    this.authService.processLogin(this.authForm.value);
+    this.authService.signIn(this.authForm.value);
   }
 
 }

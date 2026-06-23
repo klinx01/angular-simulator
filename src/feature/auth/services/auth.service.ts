@@ -4,7 +4,7 @@ import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError
 import { IAuthResponse } from '../interfaces/IAuthResponse';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
-import { ILogin } from '../interfaces/ILoginAuth';
+import { IToken } from '../interfaces/IToken';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IAuthUser } from '../interfaces/IAuthUser';
 
@@ -20,25 +20,21 @@ export class AuthService {
   private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
   authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
 
-  constructor() {
-    this.checkAuthStatus().subscribe()
-  }
-
-  processLogin(userData: ILogin): void {
-    this.authApiService.addUser(userData).pipe(
-      tap((res: IAuthResponse) => { 
-        const authTokens: IAuthResponse = { accessToken: res.accessToken, refreshToken: res.refreshToken}
-        this.localStorageService.setValue<IAuthResponse>('authTokens', authTokens);
+  signIn(userData: IAuthUser): void {
+    this.authApiService.signIn(userData).pipe(
+      tap((res: IToken) => { 
+        const authTokens: IToken = { accessToken: res.accessToken, refreshToken: res.refreshToken}
+        this.localStorageService.setValue<IToken>('authTokens', authTokens);
       }),
       switchMap(() => {
-        this.router.navigate([''])
         return this.checkAuthStatus();
       }),
+      tap(() => this.router.navigate(['']))
     ).subscribe();
   }
 
   checkAuthStatus(): Observable<IAuthUser | null> {
-    const authTokens: IAuthResponse | null = this.localStorageService.getValue<IAuthResponse>('authTokens');
+    const authTokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
     
     if (authTokens) {
       return this.authApiService.getCurrentUser().pipe(
@@ -52,10 +48,10 @@ export class AuthService {
       }
   }
 
-  refreshToken(): Observable<IAuthResponse> {
-    const tokens: IAuthResponse | null = this.localStorageService.getValue<IAuthResponse>('authTokens');
-    return this.http.post<IAuthResponse>('https://dummyjson.com/auth/refresh', { refreshToken: tokens?.refreshToken }).pipe(
-      tap((res: IAuthResponse) => this.localStorageService.setValue<IAuthResponse>('authTokens', res))
+  refreshToken(): Observable<IToken> {
+    const tokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
+    return this.http.post<IToken>('https://dummyjson.com/auth/refresh', { refreshToken: tokens?.refreshToken }).pipe(
+      tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res))
     );
   }
 
