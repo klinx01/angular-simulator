@@ -13,14 +13,14 @@ import { IAuthUser } from '../interfaces/IAuthUser';
 export class AuthApiService {
   
   private http: HttpClient = inject(HttpClient);
-  private readonly url = 'https://dummyjson.com/auth'
+  private readonly url: string = 'https://dummyjson.com/auth'
 
   signIn(auth: IAuthUser): Observable<IToken> {
-    return this.http.post<IToken>(`${this.url}/login`, auth);
+    return this.http.post<IToken>(`${ this.url }/login`, auth);
   }
   
   getCurrentUser(): Observable<IAuthUser> {
-    return this.http.get<IAuthUser>(`${this.url}/me`);
+    return this.http.get<IAuthUser>(`${ this.url }/me`);
   }
 
 }

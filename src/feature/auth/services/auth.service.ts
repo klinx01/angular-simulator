@@ -19,11 +19,15 @@ export class AuthService {
   private router: Router = inject(Router);
   private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
   authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
+  private url: string = 'https://dummyjson.com/auth';
 
   signIn(userData: IAuthUser): void {
     this.authApiService.signIn(userData).pipe(
       tap((res: IToken) => { 
-        const authTokens: IToken = { accessToken: res.accessToken, refreshToken: res.refreshToken}
+        const authTokens: IToken = {
+          accessToken: res.accessToken,
+          refreshToken: res.refreshToken
+        }
         this.localStorageService.setValue<IToken>('authTokens', authTokens);
       }),
       switchMap(() => {
@@ -50,7 +54,7 @@ export class AuthService {
 
   refreshToken(): Observable<IToken> {
     const tokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
-    return this.http.post<IToken>('https://dummyjson.com/auth/refresh', { refreshToken: tokens?.refreshToken }).pipe(
+    return this.http.post<IToken>(`${ this.url }/refresh`, { refreshToken: tokens?.refreshToken }).pipe(
       tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res))
     );
   }
