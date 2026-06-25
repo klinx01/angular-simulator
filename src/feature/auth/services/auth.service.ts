@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { IToken } from '../interfaces/IToken';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IAuthUser } from '../interfaces/IAuthUser';
+import { ILogin } from '../interfaces/ILogin';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +20,8 @@ export class AuthService {
   private router: Router = inject(Router);
   private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
   authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
-  private url: string = 'https://dummyjson.com/auth';
 
-  signIn(userData: IAuthUser): void {
+  signIn(userData: ILogin): void {
     this.authApiService.signIn(userData).pipe(
       tap((res: IToken) => { 
         const authTokens: IToken = {
@@ -54,7 +54,10 @@ export class AuthService {
 
   refreshToken(): Observable<IToken> {
     const tokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
-    return this.http.post<IToken>(`${ this.url }/refresh`, { refreshToken: tokens?.refreshToken }).pipe(
+    if (!tokens) {
+      return throwError((err: HttpErrorResponse) => err);
+    }
+    return this.authApiService.refreshToken(tokens).pipe(
       tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res))
     );
   }

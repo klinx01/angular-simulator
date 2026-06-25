@@ -6,6 +6,7 @@ import { IPostResponse } from '../../posts/interfaces/IPostResponse';
 import { IAuthResponse } from '../interfaces/IAuthResponse';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { IAuthUser } from '../interfaces/IAuthUser';
+import { ILogin } from '../interfaces/ILogin';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +14,19 @@ import { IAuthUser } from '../interfaces/IAuthUser';
 export class AuthApiService {
   
   private http: HttpClient = inject(HttpClient);
-  private readonly url: string = 'https://dummyjson.com/auth'
+  private readonly authUrl: string = 'https://dummyjson.com/auth'
+  localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  signIn(auth: IAuthUser): Observable<IToken> {
-    return this.http.post<IToken>(`${ this.url }/login`, auth);
+  signIn(auth: ILogin): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.authUrl }/login`, auth);
   }
   
   getCurrentUser(): Observable<IAuthUser> {
-    return this.http.get<IAuthUser>(`${ this.url }/me`);
+    return this.http.get<IAuthUser>(`${ this.authUrl }/me`);
+  }
+
+  refreshToken(tokens: IToken): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.authUrl }/refresh`, { refreshToken: tokens?.refreshToken })
   }
 
 }
