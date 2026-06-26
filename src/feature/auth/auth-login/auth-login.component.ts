@@ -22,6 +22,7 @@ export class AuthLoginComponent {
     if (this.authForm.invalid) {
       return;
     }
+    console.log(this.authForm.value)
 
     this.authService.signIn(this.authForm.value);
   }
