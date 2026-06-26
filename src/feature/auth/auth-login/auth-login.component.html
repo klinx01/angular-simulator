@@ -1,0 +1,19 @@
+<div class="auth-page">
+  <form class="auth-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <h2>Вход</h2>
+
+    <div class="auth-field" >
+      <label for="username">Имя пользователя</label>
+      <input type="text" id="auth-username" formControlName="username" placeholder="Введите имя">
+    </div>
+
+    <div class="auth-field">
+      <label for="password">Пароль</label>
+      <input type="password" id="auth-password" formControlName="password" placeholder="••••••••">
+    </div>
+
+    <div class="auth-actions">
+      <button type="submit" [disabled]="authForm.invalid" class="auth-btn-submit">Войти</button>
+    </div>
+  </form>
+</div>

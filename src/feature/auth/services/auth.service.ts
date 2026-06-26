@@ -1,0 +1,71 @@
+import { inject, Injectable, OnInit } from '@angular/core';
+import { AuthApiService } from './auth-api.service';
+import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { IAuthResponse } from '../interfaces/IAuthResponse';
+import { LocalStorageService } from '../../../services/local-storage.service';
+import { Router } from '@angular/router';
+import { IToken } from '../interfaces/IToken';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { IAuthUser } from '../interfaces/IAuthUser';
+import { ILogin } from '../interfaces/ILogin';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  
+  private authApiService: AuthApiService = inject(AuthApiService);
+  private http: HttpClient = inject(HttpClient);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private router: Router = inject(Router);
+  private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
+
+  signIn(userData: ILogin): void {
+    this.authApiService.signIn(userData).pipe(
+      tap((res: IToken) => { 
+        const authTokens: IToken = {
+          accessToken: res.accessToken,
+          refreshToken: res.refreshToken
+        }
+        this.localStorageService.setValue<IToken>('authTokens', authTokens);
+      }),
+      switchMap(() => {
+        return this.checkAuthStatus();
+      }),
+      tap(() => this.router.navigate(['']))
+    ).subscribe();
+  }
+
+  checkAuthStatus(): Observable<IAuthUser | null> {
+    const authTokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
+    
+    if (authTokens) {
+      return this.authApiService.getCurrentUser().pipe(
+        tap((res: IAuthUser) => {
+          this.authUserSubject.next(res);
+        })
+      )
+    } else {
+        this.authUserSubject.next(null);
+        return of(null); 
+      }
+  }
+
+  refreshToken(): Observable<IToken> {
+    const tokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
+    if (!tokens) {
+      return throwError((err: HttpErrorResponse) => err);
+    }
+    return this.authApiService.refreshToken(tokens).pipe(
+      tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res))
+    );
+  }
+
+  logout(): void {
+    this.localStorageService.removeValue('authTokens');
+    this.authUserSubject.next(null);
+    this.router.navigate(['/login']);
+  }
+
+}

@@ -1,0 +1,99 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  color: var(--primary-text-color);
+
+  .auth-form {
+    background-color: var(--background-secondary-color);
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 650px;
+
+    h2 {
+      margin: 0 0 30px 0;
+      font-size: 28px;
+      font-weight: 800;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 12px;
+    }
+
+    .auth-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      label {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input,
+      textarea {
+        padding: 12px 16px;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.2s ease;
+
+        &::placeholder {
+          color: #667C7C;
+          opacity: 0.5;
+        }
+      }
+
+      textarea {
+        resize: none;
+        font-family: inherit;
+      }
+    }
+
+    .auth-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+      margin-top: 32px;
+
+      button {
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .auth-btn-cancel {
+        background: var(--primary-text-color);
+        color: #06030366;
+        border: 1.5px solid #667C7C;
+      }
+
+      .auth-btn-submit {
+        background: var(--primary-text-color);
+        color: #06030366;
+        transition: transform 0.1s ease, background-color 0.2s ease;
+
+        &:active {
+          transform: translateY(2px);
+          filter: brightness(0.9); 
+        }
+
+        &:disabled {
+          background-color: #d1d5db;
+          color: #06030366;;
+          cursor: not-allowed;
+          transform: none; 
+        }
+      }
+    }
+  }
+}

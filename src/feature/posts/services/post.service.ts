@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { IPost } from './interfaces/IPost';
+import { IPost } from '../interfaces/IPost';
 import { PostApiService } from './post-api.service';
-import { IPostResponse } from './interfaces/IPostResponse';
+import { IPostResponse } from '../interfaces/IPostResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +29,13 @@ export class PostService {
      this.postsSubject.next(updatedPosts);
   }
 
-  loadPosts(): Observable<IPostResponse> {
-    return this.postApiService.getPosts(this.limit, this.skip).pipe(
+  loadPosts(): void {
+    this.postApiService.getPosts(this.limit, this.skip).pipe(
       tap((res: IPostResponse) => {
         this.postsSubject.next(res.posts),
         this.totalRecords = res.total;
-        this.isLoading = false;
       })
-    )
+    ).subscribe()
   }
 
   private updatedPostInList(updatePost: IPost): IPost[] {

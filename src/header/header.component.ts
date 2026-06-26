@@ -8,6 +8,7 @@ import { AsyncPipe } from '@angular/common';
 import { Theme } from '../enums/Theme';
 import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
 import { LocalStorageService } from '../services/local-storage.service';
+import { AuthService } from '../feature/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
+  authService: AuthService = inject(AuthService);
 
   companyName: string = 'румтибет';
   currentFunctionality: string = 'timer';
@@ -29,7 +31,7 @@ export class HeaderComponent {
   navigations: INavigation[] = [
     { id: 'home-page', name: 'Главная', path: '/' },
     { id: 'users', name: 'Пользователи', path: '/users' },
-    { id: 'posts', name: 'Список постов', path: '/posts' }
+    { id: 'posts', name: 'Список постов', path: '/posts' },
   ];
   
   constructor() {

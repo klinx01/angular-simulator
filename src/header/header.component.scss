@@ -26,6 +26,10 @@
       color: var(--primary-text-color);
       text-decoration: none;
       padding: 0 24px;
+
+      button {
+        margin: 0 10px;
+      }
     }
 
     .active-link {
