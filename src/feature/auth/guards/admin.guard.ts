@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { Role } from '../../../enums/Role';
 
 export const adminGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const authService = inject(AuthService)
+  const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
   
     return authService.authUser$.pipe(
@@ -16,11 +16,7 @@ export const adminGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: 
            return router.parseUrl('/login');
         }
 
-        if (user.role === Role.ADMIN) {
-          return true;
-        } else {
-          return router.parseUrl('');
-        }
+        return user.role === Role.ADMIN ? true : router.parseUrl('');
       })
     )
 };

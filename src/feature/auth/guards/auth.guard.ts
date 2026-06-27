@@ -7,7 +7,7 @@ import { AuthApiService } from '../services/auth-api.service';
 import { IAuthUser } from '../interfaces/IAuthUser';
 
 export const authGuard: CanActivateFn = () => {
-  const authService = inject(AuthService)
+  const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
   return authService.authUser$.pipe(
