@@ -15,7 +15,6 @@ import { ILogin } from '../interfaces/ILogin';
 export class AuthService {
   
   private authApiService: AuthApiService = inject(AuthApiService);
-  private http: HttpClient = inject(HttpClient);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
   private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);

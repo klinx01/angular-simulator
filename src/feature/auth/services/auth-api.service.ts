@@ -15,7 +15,6 @@ export class AuthApiService {
   
   private http: HttpClient = inject(HttpClient);
   private readonly authUrl: string = 'https://dummyjson.com/auth'
-  localStorageService: LocalStorageService = inject(LocalStorageService);
 
   signIn(auth: ILogin): Observable<IToken> {
     return this.http.post<IToken>(`${ this.authUrl }/login`, auth);
