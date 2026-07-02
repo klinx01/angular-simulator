@@ -1,7 +1,6 @@
 import { inject, Injectable, OnInit } from '@angular/core';
 import { AuthApiService } from './auth-api.service';
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { IAuthResponse } from '../interfaces/IAuthResponse';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { IToken } from '../interfaces/IToken';
@@ -43,6 +42,10 @@ export class AuthService {
       return this.authApiService.getCurrentUser().pipe(
         tap((res: IAuthUser) => {
           this.authUserSubject.next(res);
+        }),
+        catchError(() => {
+          this.authUserSubject.next(null);
+          return of(null)
         })
       )
     } else {

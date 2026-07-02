@@ -2,9 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { IToken } from '../interfaces/IToken';
-import { IPostResponse } from '../../posts/interfaces/IPostResponse';
-import { IAuthResponse } from '../interfaces/IAuthResponse';
-import { LocalStorageService } from '../../../services/local-storage.service';
+
 import { IAuthUser } from '../interfaces/IAuthUser';
 import { ILogin } from '../interfaces/ILogin';
 

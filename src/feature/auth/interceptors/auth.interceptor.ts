@@ -4,7 +4,6 @@ import { catchError, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthService } from '../services/auth.service';
-import { IAuthResponse } from '../interfaces/IAuthResponse';
 import { IToken } from '../interfaces/IToken';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
