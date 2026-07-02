@@ -2,9 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { IToken } from '../interfaces/IToken';
-import { IPostResponse } from '../../posts/interfaces/IPostResponse';
-import { IAuthResponse } from '../interfaces/IAuthResponse';
-import { LocalStorageService } from '../../../services/local-storage.service';
+
 import { IAuthUser } from '../interfaces/IAuthUser';
 import { ILogin } from '../interfaces/ILogin';
 
@@ -15,7 +13,6 @@ export class AuthApiService {
   
   private http: HttpClient = inject(HttpClient);
   private readonly authUrl: string = 'https://dummyjson.com/auth'
-  localStorageService: LocalStorageService = inject(LocalStorageService);
 
   signIn(auth: ILogin): Observable<IToken> {
     return this.http.post<IToken>(`${ this.authUrl }/login`, auth);

@@ -14,7 +14,6 @@ import { loggingInterceptor } from '../interceptors/logging.interceptor';
 import { errorInterceptor } from '../interceptors/error.interceptor';
 import { authInterceptor } from '../feature/auth/interceptors/auth.interceptor';
 import { Observable, tap, of } from 'rxjs';
-import { IAuthResponse } from '../feature/auth/interfaces/IAuthResponse';
 import { AuthService } from '../feature/auth/services/auth.service';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
