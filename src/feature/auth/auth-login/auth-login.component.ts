@@ -9,14 +9,13 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './auth-login.component.scss',
 })
 export class AuthLoginComponent {
-
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
 
   authForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
-  })
+  });
 
   onSubmit(): void {
     if (this.authForm.invalid) {
@@ -25,5 +24,4 @@ export class AuthLoginComponent {
 
     this.authService.signIn(this.authForm.value);
   }
-
 }

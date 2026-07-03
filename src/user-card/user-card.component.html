@@ -1,4 +1,8 @@
-<div gradientBorderDirective [gradientConfiguration]="{ thickness: '5px', delay: 000, colors: ['yellow, blue']}" class="card-container">
+<div
+  gradientBorderDirective
+  [gradientConfiguration]="{ thickness: '5px', delay: 000, colors: ['yellow, blue'] }"
+  class="card-container"
+>
   <div class="info-wrapper">
     <div class="wrapper-name">
       <div>
@@ -6,7 +10,14 @@
         <span class="fw-700 fs-15px username">{{ user.username | uppercase }}</span>
       </div>
       <div>
-        <button appHoverWeight id="delete-user" (click)="onDelete()" class="primary-button delete-user-btn fw-700 fs-14">Удалить пользователя</button>
+        <button
+          appHoverWeight
+          id="delete-user"
+          (click)="onDelete()"
+          class="primary-button delete-user-btn fw-700 fs-14"
+        >
+          Удалить пользователя
+        </button>
       </div>
     </div>
     <div class="user-info">
@@ -24,7 +35,7 @@
             <div class="contact-template">
               <span class="gray-color fw-400 fs-14">Телефон:</span>
               <span class="fw-700 fs-14">
-                {{ user.phone | phoneNumber:"international" }}
+                {{ user.phone | phoneNumber: 'international' }}
               </span>
             </div>
             <div class="contact-template">
@@ -76,11 +87,11 @@
             <div>
               <span class="gray-color fw-400 fs-14">Координаты:</span>
             </div>
-              <div class="fw-700 fs-12">
-                <div class="geo">
-                  <span>{{ user.address.geo.lat }}</span>
-                  <span>{{ user.address.geo.lng }}</span>
-                </div>
+            <div class="fw-700 fs-12">
+              <div class="geo">
+                <span>{{ user.address.geo.lat }}</span>
+                <span>{{ user.address.geo.lng }}</span>
+              </div>
             </div>
           </div>
         </div>

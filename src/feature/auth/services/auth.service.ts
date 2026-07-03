@@ -12,32 +12,36 @@ import { ILogin } from '../interfaces/ILogin';
   providedIn: 'root',
 })
 export class AuthService {
-  
   private authApiService: AuthApiService = inject(AuthApiService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
-  private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  private authUserSubject: BehaviorSubject<IAuthUser | null> =
+    new BehaviorSubject<IAuthUser | null>(null);
+
   authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
 
   signIn(userData: ILogin): void {
-    this.authApiService.signIn(userData).pipe(
-      tap((res: IToken) => { 
-        const authTokens: IToken = {
-          accessToken: res.accessToken,
-          refreshToken: res.refreshToken
-        }
-        this.localStorageService.setValue<IToken>('authTokens', authTokens);
-      }),
-      switchMap(() => {
-        return this.checkAuthStatus();
-      }),
-      tap(() => this.router.navigate(['']))
-    ).subscribe();
+    this.authApiService
+      .signIn(userData)
+      .pipe(
+        tap((res: IToken) => {
+          const authTokens: IToken = {
+            accessToken: res.accessToken,
+            refreshToken: res.refreshToken,
+          };
+          this.localStorageService.setValue<IToken>('authTokens', authTokens);
+        }),
+        switchMap(() => {
+          return this.checkAuthStatus();
+        }),
+        tap(() => this.router.navigate([''])),
+      )
+      .subscribe();
   }
 
   checkAuthStatus(): Observable<IAuthUser | null> {
     const authTokens: IToken | null = this.localStorageService.getValue<IToken>('authTokens');
-    
+
     if (authTokens) {
       return this.authApiService.getCurrentUser().pipe(
         tap((res: IAuthUser) => {
@@ -45,13 +49,13 @@ export class AuthService {
         }),
         catchError(() => {
           this.authUserSubject.next(null);
-          return of(null)
-        })
-      )
+          return of(null);
+        }),
+      );
     } else {
-        this.authUserSubject.next(null);
-        return of(null); 
-      }
+      this.authUserSubject.next(null);
+      return of(null);
+    }
   }
 
   refreshToken(): Observable<IToken> {
@@ -59,9 +63,9 @@ export class AuthService {
     if (!tokens) {
       return throwError((err: HttpErrorResponse) => err);
     }
-    return this.authApiService.refreshToken(tokens).pipe(
-      tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res))
-    );
+    return this.authApiService
+      .refreshToken(tokens)
+      .pipe(tap((res: IToken) => this.localStorageService.setValue<IToken>('authTokens', res)));
   }
 
   logout(): void {
@@ -69,5 +73,4 @@ export class AuthService {
     this.authUserSubject.next(null);
     this.router.navigate(['/login']);
   }
-
 }

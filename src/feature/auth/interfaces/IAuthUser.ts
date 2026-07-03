@@ -1,7 +1,7 @@
-import { Role } from "../../../enums/Role";
+import { Role } from '../../../enums/Role';
 
 export interface IAuthUser {
-  id: number
+  id: number;
   username: string;
   email: string;
   firstName: string;

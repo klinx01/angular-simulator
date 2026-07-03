@@ -5,7 +5,8 @@
 </div>
 <span class="count-user">
   {{ (users$ | async)?.length }}
-  {{ (users$ | async)?.length | plural: 'пользователь':'пользователя':'пользователей' }}</span>
+  {{ (users$ | async)?.length | plural: 'пользователь' : 'пользователя' : 'пользователей' }}</span
+>
 <div class="super-card-container">
   <div class="card-container">
     <div class="card-super-wrapper">
@@ -16,7 +17,7 @@
           <div class="error-card">
             <span class="fw-800 fs-26">Нет пользователей для отображения</span>
           </div>
-          }
+        }
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@
 
 .create-post-btn {
   border: none;
-  background-color: #1A3E3E;
+  background-color: #1a3e3e;
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 6px;
@@ -29,11 +29,11 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-    &:hover {
-      transform: translateY(-1px);
-    }
+  &:hover {
+    transform: translateY(-1px);
+  }
 
-    &:active {
-      transform: translateY(0);
-    }
+  &:active {
+    transform: translateY(0);
+  }
 }

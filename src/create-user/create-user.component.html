@@ -3,69 +3,69 @@
     <div>
       <label>Name</label>
       <div gradientBorderDirective class="input-wrapper">
-        <input formControlName="name" id="name">
+        <input formControlName="name" id="name" />
       </div>
     </div>
     <div>
       <label>Username</label>
       <div gradientBorderDirective class="input-wrapper">
-        <input  formControlName="username" id="username">
+        <input formControlName="username" id="username" />
       </div>
     </div>
     <div>
       <label>Email</label>
       <div gradientBorderDirective class="input-wrapper">
-        <input formControlName="email" id="email">
+        <input formControlName="email" id="email" />
       </div>
     </div>
     <div>
       <label>Phone</label>
       <div gradientBorderDirective class="input-wrapper">
-        <input formControlName="phone" type="tel" id="phone">
+        <input formControlName="phone" type="tel" id="phone" />
       </div>
     </div>
     <div>
       <label>Website</label>
       <div gradientBorderDirective class="input-wrapper">
-        <input formControlName="website" id="website">
+        <input formControlName="website" id="website" />
       </div>
     </div>
     <div formGroupName="address">
       <div>
         <label>City</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input formControlName="city" id="city">
+          <input formControlName="city" id="city" />
         </div>
       </div>
       <div>
         <label>Street</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input formControlName="street" id="street">
+          <input formControlName="street" id="street" />
         </div>
       </div>
       <div>
         <label>Suite</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input formControlName="suite" id="suite">
+          <input formControlName="suite" id="suite" />
         </div>
       </div>
       <div>
         <label>Zipcode</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input formControlName="zipcode" id="zipcode">
+          <input formControlName="zipcode" id="zipcode" />
         </div>
       </div>
       <div formGroupName="geo">
         <div>
           <label>lat</label>
           <div gradientBorderDirective class="input-wrapper">
-            <input formControlName="lat" id="lat">
+            <input formControlName="lat" id="lat" />
           </div>
         </div>
         <div>
           <label>lng</label>
           <div GradientConfiguration class="input-wrapper">
-            <input formControlName="lng" id="lng">
+            <input formControlName="lng" id="lng" />
           </div>
         </div>
       </div>
@@ -74,28 +74,30 @@
       <div>
         <label>Company name</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input formControlName="name" id="company-name">
+          <input formControlName="name" id="company-name" />
         </div>
       </div>
       <div>
         <label>Mission</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input  formControlName="catchPhrase" id="catchPhrase">
+          <input formControlName="catchPhrase" id="catchPhrase" />
         </div>
       </div>
       <div>
         <label>Specialization</label>
         <div gradientBorderDirective class="input-wrapper">
-          <input  formControlName="bs" id="bs">
+          <input formControlName="bs" id="bs" />
         </div>
       </div>
     </div>
   </form>
   <button
     id="user-form-btn"
-    type="submit" (click)="onSubmit()"
+    type="submit"
+    (click)="onSubmit()"
     [disabled]="userForm.invalid"
     appHoverWeight
   >
-  Отправить</button>
+    Отправить
+  </button>
 </div>

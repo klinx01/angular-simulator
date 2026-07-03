@@ -4,33 +4,38 @@
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="field">
         <label for="title">Заголовок</label>
-        <input id="title" formControlName="title" placeholder="Введите заголовок...">
+        <input id="title" formControlName="title" placeholder="Введите заголовок..." />
       </div>
       <div class="field">
         <label for="tags">Теги (через запятую)</label>
-        <input id="tags" formControlName="tags" placeholder="frontend, angular, scss">
+        <input id="tags" formControlName="tags" placeholder="frontend, angular, scss" />
       </div>
       <div class="form-grid">
         <div class="field">
           <label for="likes">Лайки</label>
-          <input id="likes" type="number" formControlName="likes" placeholder="0">
+          <input id="likes" type="number" formControlName="likes" placeholder="0" />
         </div>
         <div class="field">
           <label for="dislikes">Дизлайки</label>
-          <input id="dislikes" type="number" formControlName="dislikes" placeholder="0">
+          <input id="dislikes" type="number" formControlName="dislikes" placeholder="0" />
         </div>
         <div class="field">
           <label for="views">Просмотры</label>
-          <input id="views" type="number" formControlName="views" placeholder="0">
+          <input id="views" type="number" formControlName="views" placeholder="0" />
         </div>
         <div class="field">
           <label for="userId">ID Пользователя</label>
-          <input id="userId" type="number" formControlName="userId" placeholder="ID автора">
+          <input id="userId" type="number" formControlName="userId" placeholder="ID автора" />
         </div>
       </div>
       <div class="field">
         <label for="body">Текст поста</label>
-        <textarea id="body" formControlName="body" rows="6" placeholder="Текст вашего поста..."></textarea>
+        <textarea
+          id="body"
+          formControlName="body"
+          rows="6"
+          placeholder="Текст вашего поста..."
+        ></textarea>
       </div>
       <div class="actions">
         <button type="button" (click)="onBack()" class="btn-cancel">Отмена</button>

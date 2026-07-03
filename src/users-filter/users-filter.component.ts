@@ -11,19 +11,19 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
   styleUrl: './users-filter.component.scss',
 })
 export class UsersFilterComponent implements OnInit {
-
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
-   filterControl: FormControl<string | null> = new FormControl('');
-   private destroyRef: DestroyRef = inject(DestroyRef);
+  filterControl = new FormControl<string | null>('');
+  private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.filterControl.valueChanges.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      tap((value: string | null) => this.filter.emit(value || '')),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
+    this.filterControl.valueChanges
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap((value: string | null) => this.filter.emit(value || '')),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
-
 }

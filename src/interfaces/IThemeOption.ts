@@ -1,4 +1,4 @@
-import { Theme } from "../enums/Theme";
+import { Theme } from '../enums/Theme';
 
 export interface IThemeOption {
   name: string;

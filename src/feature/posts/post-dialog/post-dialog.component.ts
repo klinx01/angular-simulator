@@ -11,15 +11,17 @@ import { IEditPost } from '../interfaces/IEditPost';
   styleUrl: './post-dialog.component.scss',
 })
 export class PostDialogComponent implements OnInit {
-
   private ref: DynamicDialogRef = inject(DynamicDialogRef);
-  private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(DynamicDialogConfig<IEditPost, IEditPost>);
+  private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(
+    DynamicDialogConfig<IEditPost, IEditPost>,
+  );
+
   private fb: FormBuilder = inject(FormBuilder);
 
   postDialogForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     views: [0, [Validators.required]],
-    tags: [[''], [Validators.minLength(2)]]
+    tags: [[''], [Validators.minLength(2)]],
   });
 
   ngOnInit(): void {
@@ -35,5 +37,4 @@ export class PostDialogComponent implements OnInit {
   onClose(): void {
     this.ref.close();
   }
-
 }

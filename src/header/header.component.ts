@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { ToggleSwitchModule, ToggleSwitch } from 'primeng/toggleswitch';
@@ -17,14 +17,13 @@ import { AuthService } from '../feature/auth/services/auth.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   authService: AuthService = inject(AuthService);
 
-  companyName: string = 'румтибет';
-  currentFunctionality: string = 'timer';
-  counter: number = 0;
+  companyName = 'румтибет';
+  currentFunctionality = 'timer';
+  counter = 0;
   currentDate!: string;
   selectedTheme!: Theme;
 
@@ -33,7 +32,7 @@ export class HeaderComponent {
     { id: 'users', name: 'Пользователи', path: '/users' },
     { id: 'posts', name: 'Список постов', path: '/posts' },
   ];
-  
+
   constructor() {
     const savedTheme: Theme | null = this.localStorageService.getValue<Theme>('themeStyle');
     this.selectedTheme = savedTheme ?? Theme.AURA;
@@ -41,11 +40,10 @@ export class HeaderComponent {
     setTimeout(() => {
       this.updateCurrentTime();
     }, 0);
-    
+
     setInterval(() => {
       this.updateCurrentTime();
     }, 1000);
-
   }
 
   onThemeChange(theme: Theme): void {
@@ -71,5 +69,4 @@ export class HeaderComponent {
   showDate(): void {
     this.currentFunctionality = 'timer';
   }
-
 }

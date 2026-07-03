@@ -158,7 +158,7 @@
   @mixin desc-item-search-program {
     color: var(--primary-text-color);
     flex-direction: column;
-    margin-left: 6px
+    margin-left: 6px;
   }
 
   .location-input-description {
@@ -223,7 +223,7 @@
     .video-play-bg {
       width: 50px;
       height: 50px;
-      background-color: #FDFDFD99;
+      background-color: #fdfdfd99;
       border-radius: 100px;
     }
 
@@ -300,7 +300,7 @@
     .program-description {
       display: flex;
       margin-top: 4px;
-      gap: 40px
+      gap: 40px;
     }
   }
 
@@ -308,7 +308,6 @@
     display: flex;
     align-items: center;
     margin-right: 16px;
-
   }
 
   .program-price {
@@ -321,7 +320,7 @@
   }
 
   .animation:hover {
-    transform: scale(1.1)
+    transform: scale(1.1);
   }
 }
 
@@ -385,7 +384,7 @@
       position: absolute;
 
       .star-icon {
-        color: #F2BE22
+        color: #f2be22;
       }
     }
 
@@ -461,7 +460,7 @@
       justify-content: space-around;
       width: 580px;
       height: 312px;
-      box-shadow: 0px 0px 15px 0px #18121E1F;
+      box-shadow: 0px 0px 15px 0px #18121e1f;
       gap: 24px;
       border-radius: 10px;
 
@@ -499,7 +498,7 @@
       }
 
       .card-date {
-        color: #F2BE22;
+        color: #f2be22;
       }
     }
   }
@@ -519,8 +518,8 @@
   gap: 20px;
 
   grid-template-areas:
-    "ballons ballons seeker-table dubai-hotel dubai-hotel"
-    "beach mesa mesa photographer-table photographer-table";
+    'ballons ballons seeker-table dubai-hotel dubai-hotel'
+    'beach mesa mesa photographer-table photographer-table';
 
   .ballons {
     grid-area: ballons;

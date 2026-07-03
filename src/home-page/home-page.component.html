@@ -3,7 +3,10 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="title-wrapper fw-400">
-        <h1 class="motivational-title fw-400">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+        <h1 class="motivational-title fw-400">
+          Насладись прогулкой в горах <br />
+          с командой единомышленников
+        </h1>
       </div>
       <div class="background-search-program container">
         <div class="search-form-wrapper fw-700 fs-16">
@@ -19,11 +22,16 @@
                 <fa-icon [icon]="faAngleDown"></fa-icon>
               </div>
             </div>
-              <span class="location-input-description fw-400 fs-14">выберите из списка</span>
+            <span class="location-input-description fw-400 fs-14">выберите из списка</span>
           </div>
           <div class="search-form-group">
             <div class="search-form">
-              <input id="hike-date" class="date-hike" [(ngModel)]="dateHike" placeholder="Дата похода">
+              <input
+                id="hike-date"
+                class="date-hike"
+                [(ngModel)]="dateHike"
+                placeholder="Дата похода"
+              />
               <fa-icon [icon]="faCalendar"></fa-icon>
             </div>
             <span class="calendar-input-description fw-400 fs-14">укажите диапазон</span>
@@ -43,15 +51,26 @@
             <span class="participants-input-description fw-400 fs-14">выберите из списка</span>
           </div>
         </div>
-        <button id="find-program-btn" class="find-program-btn secondary-button fw-700 fs-16" [disabled]="!isFormValid()">Найти программу</button>
+        <button
+          id="find-program-btn"
+          class="find-program-btn secondary-button fw-700 fs-16"
+          [disabled]="!isFormValid()"
+        >
+          Найти программу
+        </button>
       </div>
-        <div class="live-input-wrapper">
-          <div class="input-container">
-            <input id="live-input" class="live-input fs-16 fw-700" [(ngModel)]="liveInput" placeholder="Живой инпут">
-            <fa-icon [icon]="faAngleRight"></fa-icon>
-          </div>
-          <p>{{ liveInput }}</p>
+      <div class="live-input-wrapper">
+        <div class="input-container">
+          <input
+            id="live-input"
+            class="live-input fs-16 fw-700"
+            [(ngModel)]="liveInput"
+            placeholder="Живой инпут"
+          />
+          <fa-icon [icon]="faAngleRight"></fa-icon>
         </div>
+        <p>{{ liveInput }}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -59,9 +78,9 @@
 <router-outlet></router-outlet>
 
 <section class="hike-wrapper">
-  <div class="mountains-wrapper container" >
-    <img class="mountains-img-1" src="/images/nature-photos/mountain-photo-1.png" alt="mountain">
-    <img class="mountains-img-2" src="/images/nature-photos/mountain-photo-2.png" alt="mountain">
+  <div class="mountains-wrapper container">
+    <img class="mountains-img-1" src="/images/nature-photos/mountain-photo-1.png" alt="mountain" />
+    <img class="mountains-img-2" src="/images/nature-photos/mountain-photo-2.png" alt="mountain" />
     <div class="video-play-icon">
       <a id="play-video-btn" href="#">
         <div class="video-play-bg"></div>
@@ -70,13 +89,18 @@
     </div>
     <div class="about-hike">
       <span class="section-super-title">о нашем походе</span>
-      <h2 class="sub-title section-title ">Исследуйте все горные массивы мира вместе с нами</h2>
-      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <h2 class="sub-title section-title">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="section-description">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+        поисками в классической латинской литературе.
+      </p>
       <button
         id="warn-type-btn"
         class="tour-program-btn primary-button"
         (click)="messageService.showWarn('Предупреждение')"
-        >
+      >
         Программа тура
       </button>
     </div>
@@ -89,7 +113,10 @@
         <span class="section-super-title">наше предложение</span>
         <h2 class="section-title">Лучшие программы для тебя</h2>
       </div>
-      <p class="section-description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+      <p class="section-description">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+      </p>
     </div>
     <div class="program-wrapper">
       @for (offer of offers; track offer.id) {
@@ -110,15 +137,15 @@
       id="info-type-btn"
       class="program-price primary-button"
       (click)="messageService.showInfo('Владислав лакер')"
-      >
+    >
       Стоимость программ
     </button>
   </div>
   <div class="wrapper-img-tour">
-    <img src="/images/nature-photos/tour-photo-1.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photos/tour-photo-2.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photos/tour-photo-3.png" alt="tour-photo" width="250" height="250">
-    <img src="/images/nature-photos/tour-photo-4.png" alt="tour-photo" width="250" height="250">
+    <img src="/images/nature-photos/tour-photo-1.png" alt="tour-photo" width="250" height="250" />
+    <img src="/images/nature-photos/tour-photo-2.png" alt="tour-photo" width="250" height="250" />
+    <img src="/images/nature-photos/tour-photo-3.png" alt="tour-photo" width="250" height="250" />
+    <img src="/images/nature-photos/tour-photo-4.png" alt="tour-photo" width="250" height="250" />
   </div>
 </section>
 
@@ -130,7 +157,12 @@
       @for (direction of directions; track direction.id) {
         <div>
           <div class="direction-photo">
-            <img [src]="'/images/nature-photos/' + direction.img + '.png'" [alt]="direction.img" width="380px" height="500px">
+            <img
+              [src]="'/images/nature-photos/' + direction.img + '.png'"
+              [alt]="direction.img"
+              width="380px"
+              height="500px"
+            />
             <div class="rating-wrapper">
               <fa-icon class="star-icon" [icon]="faStar"></fa-icon>
               <span class="rating fw-700">{{ direction.rating }}</span>
@@ -147,11 +179,11 @@
         </div>
       }
     </div>
-    <button 
+    <button
       id="success-type-btn"
       class="direction-rating-btn primary-button fw-600"
       (click)="messageService.showSuccess('я принимаю тебя')"
-      >
+    >
       Рейтинг направлений
     </button>
   </div>
@@ -167,7 +199,12 @@
       @for (newsCard of newsCards; track newsCard.id) {
         <div class="news-card">
           <div class="card-photo-wrapper">
-            <img [src]="'/images/nature-photos/' + newsCard.img + '.png'" [alt]="newsCard.img" width="230px" height="280px">
+            <img
+              [src]="'/images/nature-photos/' + newsCard.img + '.png'"
+              [alt]="newsCard.img"
+              width="230px"
+              height="280px"
+            />
           </div>
           <div class="card-info">
             <h2 class="fw-700 fs-24 card-title">{{ newsCard.title }}</h2>
@@ -185,8 +222,8 @@
         id="error-type-btn"
         class="others-material primary-button"
         (click)="messageService.showError('Ошибка!')"
-        >
-         Другие материалы
+      >
+        Другие материалы
       </button>
     </div>
   </div>
@@ -198,12 +235,16 @@
     <h2 class="section-title">Делимся впечатлениями</h2>
   </div>
   <div class="container gallery">
-    <img class="ballons" src="/images/nature-photos/ballons.png" alt="ballons">
-    <img class="seeker-table" src="/images/nature-photos/seeker-table.png" alt="seeker-table">
-    <img class="dubai-hotel" src="/images/nature-photos/dubai-hotel.png" alt="dubai-hotel">
-    <img class="beach" src="/images/nature-photos/beach.png" alt="beach">
-    <img class="mesa" src="/images/nature-photos/mesa.png" alt="mesa">
-    <img class="photographer-table" src="/images/nature-photos/photographer-table.png" alt="photographer-table">
+    <img class="ballons" src="/images/nature-photos/ballons.png" alt="ballons" />
+    <img class="seeker-table" src="/images/nature-photos/seeker-table.png" alt="seeker-table" />
+    <img class="dubai-hotel" src="/images/nature-photos/dubai-hotel.png" alt="dubai-hotel" />
+    <img class="beach" src="/images/nature-photos/beach.png" alt="beach" />
+    <img class="mesa" src="/images/nature-photos/mesa.png" alt="mesa" />
+    <img
+      class="photographer-table"
+      src="/images/nature-photos/photographer-table.png"
+      alt="photographer-table"
+    />
   </div>
   <div class="pinterest-btn-wrapper">
     <button id="pinterest-btn" class="primary-button pinterest-btn">Наш pinterest</button>

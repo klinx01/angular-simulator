@@ -1,4 +1,9 @@
-import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject, Injector } from '@angular/core';
 import { catchError, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
@@ -6,16 +11,19 @@ import { AuthApiService } from '../services/auth-api.service';
 import { AuthService } from '../services/auth.service';
 import { IToken } from '../interfaces/IToken';
 
-export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const authInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const localStorageService: LocalStorageService = inject(LocalStorageService);
   const injector: Injector = inject(Injector);
 
   function addHttpHeader(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
     return req.clone({
       setHeaders: {
-        Authorization: `Bearer ${ token }`
-      }
-    })
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   const authTokens: IToken | null = localStorageService.getValue<IToken>('authTokens');
@@ -37,14 +45,13 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
               return next(newReq);
             }),
             catchError((refErr: HttpErrorResponse) => {
-              authService.logout()
+              authService.logout();
               return throwError(() => refErr);
-            })
-          )
+            }),
+          );
         }
         return throwError((err: HttpErrorResponse) => err);
-      })
+      }),
     );
   }
-
 };
