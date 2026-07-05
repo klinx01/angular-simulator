@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IPost } from '../interfaces/IPost';
 import { PostApiService } from './post-api.service';
@@ -9,6 +8,7 @@ import { IPostResponse } from '../interfaces/IPostResponse';
   providedIn: 'root',
 })
 export class PostService {
+
   private postApiService: PostApiService = inject(PostApiService);
 
   private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
@@ -33,7 +33,8 @@ export class PostService {
       .getPosts(this.limit, this.skip)
       .pipe(
         tap((res: IPostResponse) => {
-          (this.postsSubject.next(res.posts), (this.totalRecords = res.total));
+          this.postsSubject.next(res.posts);
+          this.totalRecords = res.total;
         }),
       )
       .subscribe();
@@ -64,4 +65,5 @@ export class PostService {
       )
       .subscribe();
   }
+
 }

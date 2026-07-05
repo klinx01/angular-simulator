@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './auth-login.component.scss',
 })
 export class AuthLoginComponent {
+
   fb: FormBuilder = inject(FormBuilder);
   authService: AuthService = inject(AuthService);
 
@@ -24,4 +25,5 @@ export class AuthLoginComponent {
 
     this.authService.signIn(this.authForm.value);
   }
+
 }

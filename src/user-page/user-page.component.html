@@ -1,7 +1,7 @@
 <h1 class="main-title">Список Пользователей</h1>
 <div class="form-wrapper">
-  <app-create-user (createUser)="this.userService.addUser($event)"></app-create-user>
-  <app-users-filter (filter)="onFilter($event)"></app-users-filter>
+  <app-create-user (createUser)="this.userService.addUser($event)" />
+  <app-users-filter (filter)="onFilter($event)" />
 </div>
 <span class="count-user">
   {{ (users$ | async)?.length }}

@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { filter } from 'rxjs';
 
 @Pipe({
   name: 'phoneNumber',
 })
 export class PhoneNumberPipe implements PipeTransform {
+
   transform(
     phoneNumber: string,
     phoneNumberStyle: 'compact' | 'international' | 'national' | 'masked',
@@ -18,13 +18,14 @@ export class PhoneNumberPipe implements PipeTransform {
 
     switch (phoneNumberStyle) {
       case 'compact':
-        return `+${filteredNumber}`;
+        return `+${ filteredNumber }`;
       case 'international':
-        return `+${countryCode} ${pOne} ${pTwo} ${pThree} ${pFour}`;
+        return `+${ countryCode } ${ pOne } ${ pTwo } ${ pThree } ${ pFour }`;
       case 'national':
-        return `${pOne} ${pTwo} ${pThree} ${pFour}`;
+        return `${ pOne } ${ pTwo } ${ pThree } ${ pFour }`;
       case 'masked':
-        return `+${countryCode} ${pOne} *** ** ${pFour}`;
+        return `+${ countryCode } ${ pOne } *** ** ${ pFour }`;
     }
   }
+
 }

@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
-import { ToggleSwitchModule, ToggleSwitch } from 'primeng/toggleswitch';
+import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../services/theme.service';
 import { AsyncPipe } from '@angular/common';
 import { Theme } from '../enums/Theme';
-import { SelectButtonModule, SelectButton } from 'primeng/selectbutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { LocalStorageService } from '../services/local-storage.service';
 import { AuthService } from '../feature/auth/services/auth.service';
 
@@ -17,6 +17,7 @@ import { AuthService } from '../feature/auth/services/auth.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   authService: AuthService = inject(AuthService);
@@ -69,4 +70,5 @@ export class HeaderComponent {
   showDate(): void {
     this.currentFunctionality = 'timer';
   }
+
 }

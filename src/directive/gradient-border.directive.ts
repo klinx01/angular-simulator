@@ -2,9 +2,10 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 import { IGradientConfiguration } from '../interfaces/IGradientConfiguration';
 
 @Directive({
-  selector: '[gradientBorderDirective]',
+  selector: '[appGradientBorderDirective]',
 })
 export class GradientBorderDirective {
+
   @Input() gradientConfiguration: IGradientConfiguration = {};
 
   private timeoutId!: number;
@@ -34,4 +35,5 @@ export class GradientBorderDirective {
   get gradientThickness(): string {
     return this.gradientConfiguration.thickness ?? '2px';
   }
+
 }

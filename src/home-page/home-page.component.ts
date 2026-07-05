@@ -22,15 +22,15 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { AuthService } from '../feature/auth/services/auth.service';
 
 @Component({
-  selector: 'home-page',
+  selector: 'app-home-page',
   imports: [FormsModule, RouterOutlet, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+
   messageService: MessageService = inject(MessageService);
 
   numbers = new Collection<number>([1, 2, 3, 4]);
@@ -165,4 +165,5 @@ export class HomePageComponent {
   private isPrimaryColor(color: Color): boolean {
     return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
   }
+
 }

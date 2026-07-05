@@ -12,8 +12,7 @@
           [(ngModel)]="selectedTheme"
           (onChange)="onThemeChange($event.value)"
           optionValue="value"
-        >
-        </p-selectButton>
+        />
         <nav class="navigation fs-16 fw-600">
           @for (nav of navigations; track nav.name) {
             <a
@@ -29,7 +28,7 @@
           <p-toggle-switch
             (onChange)="themeService.toggleDarkMode()"
             [ngModel]="themeService.isDark$ | async"
-          ></p-toggle-switch>
+          />
           <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">
             Консультация
           </button>

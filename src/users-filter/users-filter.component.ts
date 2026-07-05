@@ -2,7 +2,6 @@ import { Component, DestroyRef, EventEmitter, OnInit, Output, inject } from '@an
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { GradientBorderDirective } from '../directive/gradient-border.directive';
 
 @Component({
   selector: 'app-users-filter',
@@ -11,6 +10,7 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
   styleUrl: './users-filter.component.scss',
 })
 export class UsersFilterComponent implements OnInit {
+
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   filterControl = new FormControl<string | null>('');
@@ -26,4 +26,5 @@ export class UsersFilterComponent implements OnInit {
       )
       .subscribe();
   }
+
 }

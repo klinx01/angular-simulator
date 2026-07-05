@@ -1,10 +1,10 @@
-import { inject, Injectable, OnInit } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AuthApiService } from './auth-api.service';
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { IToken } from '../interfaces/IToken';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { IAuthUser } from '../interfaces/IAuthUser';
 import { ILogin } from '../interfaces/ILogin';
 
@@ -12,6 +12,7 @@ import { ILogin } from '../interfaces/ILogin';
   providedIn: 'root',
 })
 export class AuthService {
+
   private authApiService: AuthApiService = inject(AuthApiService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
@@ -73,4 +74,5 @@ export class AuthService {
     this.authUserSubject.next(null);
     this.router.navigate(['/login']);
   }
+
 }

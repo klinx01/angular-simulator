@@ -1,16 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
-import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IPost } from '../interfaces/IPost';
 import { AsyncPipe } from '@angular/common';
-import { PostApiService } from '../services/post-api.service';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
 import { ContextMenu } from 'primeng/contextmenu';
 import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
-import { IPostResponse } from '../interfaces/IPostResponse';
 import { PostService } from '../services/post.service';
 
 @Component({
@@ -21,6 +19,7 @@ import { PostService } from '../services/post.service';
   styleUrl: './post-list.component.scss',
 })
 export class PostsListComponent {
+
   postService: PostService = inject(PostService);
   private router: Router = inject(Router);
   private dialogService: DialogService = inject(DialogService);
@@ -83,4 +82,5 @@ export class PostsListComponent {
     this.postService.limit = event.rows ?? 10;
     this.postService.loadPosts();
   }
+
 }

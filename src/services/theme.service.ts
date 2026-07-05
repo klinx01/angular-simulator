@@ -12,6 +12,7 @@ import { IThemeOption } from '../interfaces/IThemeOption';
   providedIn: 'root',
 })
 export class ThemeService {
+
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -62,4 +63,5 @@ export class ThemeService {
       document.documentElement.classList.remove('my-app-dark');
     }
   }
+
 }

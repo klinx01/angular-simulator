@@ -3,7 +3,7 @@
 </div>
 
 <div class="p-table">
-  <p-contextMenu #cm [model]="menuItems" appendTo="body"></p-contextMenu>
+  <p-contextMenu #cm [model]="menuItems" appendTo="body" />
   <p-table
     class="container"
     [value]="(posts$ | async) ?? mockData"
@@ -31,13 +31,13 @@
       @if ((posts$ | async)?.length === 0) {
         <tr>
           <td>
-            <p-skeleton></p-skeleton>
+            <p-skeleton />
           </td>
           <td>
-            <p-skeleton></p-skeleton>
+            <p-skeleton />
           </td>
           <td>
-            <p-skeleton></p-skeleton>
+            <p-skeleton />
           </td>
         </tr>
       } @else {

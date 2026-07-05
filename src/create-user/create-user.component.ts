@@ -1,11 +1,5 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
 import { HoverWeightDirective } from '../directive/hover-weight.directive';
 import { GradientBorderDirective } from '../directive/gradient-border.directive';
@@ -17,6 +11,7 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
   styleUrl: './create-user.component.scss',
 })
 export class CreateUserComponent {
+
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
   private fb: FormBuilder = inject(FormBuilder);
 
@@ -51,4 +46,5 @@ export class CreateUserComponent {
     const user: IUser = { ...this.userForm.getRawValue(), id: Date.now() };
     this.createUser.emit(user);
   }
+
 }

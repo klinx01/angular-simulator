@@ -5,9 +5,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { inject, Injector } from '@angular/core';
-import { catchError, switchMap, tap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { AuthApiService } from '../services/auth-api.service';
 import { AuthService } from '../services/auth.service';
 import { IToken } from '../interfaces/IToken';
 
@@ -21,7 +20,7 @@ export const authInterceptor: HttpInterceptorFn = (
   function addHttpHeader(req: HttpRequest<unknown>, token: string): HttpRequest<unknown> {
     return req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${ token }`,
       },
     });
   }

@@ -4,7 +4,6 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
   selector: '[appHoverWeight]',
 })
 export class HoverWeightDirective {
-  constructor() {}
 
   @HostBinding('style.fontWeight') fontWeight = 'normal';
 
@@ -17,4 +16,5 @@ export class HoverWeightDirective {
   onLeave(): void {
     this.fontWeight = 'normal';
   }
+
 }

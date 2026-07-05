@@ -5,7 +5,6 @@ import { map, Observable, tap, combineLatest, BehaviorSubject } from 'rxjs';
 import { IUser } from '../interfaces/IUser';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { CreateUserComponent } from '../create-user/create-user.component';
-import { UserApiService } from '../services/user-api.service';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { LocalStorageService } from '../services/local-storage.service';
 import { PluralPipe } from '../pipe/plural.pipe';
@@ -17,6 +16,7 @@ import { PluralPipe } from '../pipe/plural.pipe';
   styleUrl: './user-page.component.scss',
 })
 export class UserPageComponent implements OnInit {
+
   userService: UserService = inject(UserService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
@@ -42,4 +42,5 @@ export class UserPageComponent implements OnInit {
   onFilter(value: string): void {
     this.filterSubject$.next(value);
   }
+
 }
