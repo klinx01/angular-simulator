@@ -1,17 +1,21 @@
 <div class="message-wrapper">
   @for (message of messageService.message$ | async; track $index) {
-    <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }"></ng-container>
+    <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }" />
   }
 </div>
 
-<ng-template #msg let-message="message" >
+<ng-template #msg let-message="message">
   <div class="status-msg">
-    <button id="close-msg-btn" class="close-icon-msg" (click)="messageService.closeMessage(message)">
-      <img src="/images/icons/close-icon.svg" alt="close-btn">
+    <button
+      id="close-msg-btn"
+      class="close-icon-msg"
+      (click)="messageService.closeMessage(message)"
+    >
+      <img src="/images/icons/close-icon.svg" alt="close-btn" />
     </button>
     <div class="msg-wrapper">
       <div class="msg-icon">
-        <img src="/images/icons/message-icon.svg" alt="message-icon">
+        <img src="/images/icons/message-icon.svg" alt="message-icon" />
       </div>
       <div class="msg-info">
         <span class="fw-700 fs-16">{{ message.type }}</span>

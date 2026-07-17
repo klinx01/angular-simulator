@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, tap, of, finalize } from 'rxjs';
+import { BehaviorSubject, Observable, of, finalize } from 'rxjs';
 import { IUser } from '../interfaces/IUser';
 import { UserApiService } from './user-api.service';
 import { LoaderService } from '../services/loader.service';
@@ -46,8 +46,7 @@ export class UserService {
     }
 
     this.loaderService.showLoader();
-    return this.userApiService.getUsers()
-      .pipe(finalize(() => this.loaderService.hideLoader()));
+    return this.userApiService.getUsers().pipe(finalize(() => this.loaderService.hideLoader()));
   }
 
 }

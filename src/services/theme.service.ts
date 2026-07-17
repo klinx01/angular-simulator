@@ -4,15 +4,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { usePreset } from '@primeuix/themes';
 import { Theme } from '../enums/Theme';
 import Aura from '@primeuix/themes/aura';
-import Lara from '@primeuix/themes/lara'
-import Nora from '@primeuix/themes/nora'
+import Lara from '@primeuix/themes/lara';
+import Nora from '@primeuix/themes/nora';
 import { IThemeOption } from '../interfaces/IThemeOption';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  
+
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -29,10 +29,10 @@ export class ThemeService {
   }
 
   themeOptions: IThemeOption[] = [
-      { name: 'Lara', value: Theme.LARA },
-      { name: 'Aura', value: Theme.AURA },
-      { name: 'Nora', value: Theme.NORA }
-    ];
+    { name: 'Lara', value: Theme.LARA },
+    { name: 'Aura', value: Theme.AURA },
+    { name: 'Nora', value: Theme.NORA },
+  ];
 
   selectTheme(theme: Theme): void {
     switch (theme) {

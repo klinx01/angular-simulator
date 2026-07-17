@@ -44,7 +44,7 @@
         transition: border-color 0.2s ease;
 
         &::placeholder {
-          color: #667C7C;
+          color: #667c7c;
           opacity: 0.5;
         }
       }
@@ -74,24 +74,26 @@
       .auth-btn-cancel {
         background: var(--primary-text-color);
         color: #06030366;
-        border: 1.5px solid #667C7C;
+        border: 1.5px solid #667c7c;
       }
 
       .auth-btn-submit {
         background: var(--primary-text-color);
         color: #06030366;
-        transition: transform 0.1s ease, background-color 0.2s ease;
+        transition:
+          transform 0.1s ease,
+          background-color 0.2s ease;
 
         &:active {
           transform: translateY(2px);
-          filter: brightness(0.9); 
+          filter: brightness(0.9);
         }
 
         &:disabled {
           background-color: #d1d5db;
-          color: #06030366;;
+          color: #06030366;
           cursor: not-allowed;
-          transform: none; 
+          transform: none;
         }
       }
     }

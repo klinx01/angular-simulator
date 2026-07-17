@@ -7,7 +7,7 @@ import { IUser } from '../interfaces/IUser';
   providedIn: 'root',
 })
 export class UserApiService {
-  
+
   private http: HttpClient = inject(HttpClient);
 
   getUsers(): Observable<IUser[]> {

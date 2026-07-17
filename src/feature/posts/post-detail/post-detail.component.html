@@ -1,16 +1,16 @@
 <div class="post-wrapper container">
   <div class="post-card">
     <h2 class="post-title fw-800">{{ post.title }}</h2>
-      <p class="post-body fs-16 fw-400">{{ post.body }}</p>
-      <div class="post-meta">
-        <div class="tags-list">
-          @for (tag of post.tags; track tag) {
-            <span class="tag-item fs-13 fw-600">#{{ tag }}</span>
-          }
-        </div>
-        <span class="views-count fs-14 gray-color">
-          <i class="pi pi-eye"></i> {{ post.views }} views
-        </span>
+    <p class="post-body fs-16 fw-400">{{ post.body }}</p>
+    <div class="post-meta">
+      <div class="tags-list">
+        @for (tag of post.tags; track tag) {
+          <span class="tag-item fs-13 fw-600">#{{ tag }}</span>
+        }
       </div>
+      <span class="views-count fs-14 gray-color">
+        <i class="pi pi-eye"></i> {{ post.views }} views
+      </span>
     </div>
+  </div>
 </div>

@@ -3,41 +3,58 @@
     <div class="header-wrapper">
       <div class="header-container">
         <div class="company-name">
-          <img src="/images/mountains-logo.png" alt="mountains">
+          <img src="/images/mountains-logo.png" alt="mountains" />
           <span>{{ companyName }}</span>
         </div>
-        <p-selectButton 
+        <p-selectButton
           [options]="themeService.themeOptions"
           optionLabel="name"
           [(ngModel)]="selectedTheme"
           (onChange)="onThemeChange($event.value)"
           optionValue="value"
-        >
-        </p-selectButton>
+        />
         <nav class="navigation fs-16 fw-600">
           @for (nav of navigations; track nav.name) {
             <a
-            [id]="nav.id"
-            routerLinkActive="active-link"
-            [routerLink]="nav.path"
-            [routerLinkActiveOptions]="{ exact: true }"
+              [id]="nav.id"
+              routerLinkActive="active-link"
+              [routerLink]="nav.path"
+              [routerLinkActiveOptions]="{ exact: true }"
             >
-            {{ nav.name }}
-          </a>
-        }
-        <button class="primary-button" (click)="authService.logout()">Logout</button>
-        <p-toggle-switch (onChange)="themeService.toggleDarkMode()" [ngModel]="themeService.isDark$ | async"></p-toggle-switch>
-        <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">Консультация</button>
-      </nav>
-    </div>
+              {{ nav.name }}
+            </a>
+          }
+          <button class="primary-button" (click)="authService.logout()">Logout</button>
+          <p-toggle-switch
+            (onChange)="themeService.toggleDarkMode()"
+            [ngModel]="themeService.isDark$ | async"
+          />
+          <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">
+            Консультация
+          </button>
+        </nav>
+      </div>
       @if (currentFunctionality === 'clicker') {
         <div class="clicker-wrapper">
           <div class="clicker">
             <button id="counter-plus" class="click-plus" (click)="increaseCounter()">+</button>
             <span>{{ counter }}</span>
-            <button id="counter-minus" class="click-minus" [disabled]="counter === 0" (click)="decreaseCounter()">-</button>
+            <button
+              id="counter-minus"
+              class="click-minus"
+              [disabled]="counter === 0"
+              (click)="decreaseCounter()"
+            >
+              -
+            </button>
           </div>
-          <button id="show-date-btn" class="primary-button show-data-btn fs-16 fw-600" (click)="showDate()">Показать дату</button>
+          <button
+            id="show-date-btn"
+            class="primary-button show-data-btn fs-16 fw-600"
+            (click)="showDate()"
+          >
+            Показать дату
+          </button>
         </div>
       } @else if (currentFunctionality === 'timer') {
         <div class="timer-wrapper">
@@ -45,13 +62,16 @@
             <p>{{ currentDate }}</p>
           </div>
           <div>
-            <button id="show-clicker-btn" class="primary-button show-clicker-btn fs-16 fw-600" (click)="showClicker()">Показать кликер</button>
+            <button
+              id="show-clicker-btn"
+              class="primary-button show-clicker-btn fs-16 fw-600"
+              (click)="showClicker()"
+            >
+              Показать кликер
+            </button>
           </div>
         </div>
       }
     </div>
   </header>
 </div>
-
-
-

@@ -50,7 +50,7 @@
         transition: border-color 0.2s ease;
 
         &::placeholder {
-          color: #667C7C;
+          color: #667c7c;
           opacity: 0.5;
         }
       }
@@ -79,7 +79,7 @@
 
       .btn-cancel {
         background: transparent;
-        border: 1.5px solid #667C7C;
+        border: 1.5px solid #667c7c;
 
         &:hover {
           background: rgba(102, 124, 124, 0.05);
@@ -87,7 +87,7 @@
       }
 
       .btn-submit {
-        background: #1A3E3E;
+        background: #1a3e3e;
         color: #ffffff;
 
         &:disabled {

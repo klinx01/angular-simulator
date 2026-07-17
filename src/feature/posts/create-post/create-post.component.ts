@@ -9,7 +9,7 @@ import { tap } from 'rxjs';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './create-post.component.html',
-  styleUrl: './create-post.component.scss'
+  styleUrl: './create-post.component.scss',
 })
 export class CreatePostComponent {
 
@@ -17,24 +17,25 @@ export class CreatePostComponent {
   private router: Router = inject(Router);
   private postApiService: PostApiService = inject(PostApiService);
 
-   postForm: FormGroup = this.fb.group({
+  postForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
     body: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
     tags: [[], [Validators.minLength(2), Validators.maxLength(100)]],
     likes: ['', [Validators.required, Validators.maxLength(8)]],
     dislikes: ['', [Validators.required, Validators.maxLength(8)]],
     views: ['', [Validators.required, Validators.maxLength(9)]],
-    userId: ['', [Validators.required, Validators.max(99)]]
-  })
+    userId: ['', [Validators.required, Validators.max(99)]],
+  });
 
   onSubmit(): void {
     if (this.postForm.invalid) {
-      return
+      return;
     }
 
-    this.postApiService.addPost(this.postForm.value).pipe(
-      tap(() => this.router.navigate(['/posts']))
-    ).subscribe();
+    this.postApiService
+      .addPost(this.postForm.value)
+      .pipe(tap(() => this.router.navigate(['/posts'])))
+      .subscribe();
   }
 
   onBack(): void {

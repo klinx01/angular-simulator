@@ -1,6 +1,5 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IPost } from '../interfaces/IPost';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IEditPost } from '../interfaces/IEditPost';
 
@@ -13,13 +12,16 @@ import { IEditPost } from '../interfaces/IEditPost';
 export class PostDialogComponent implements OnInit {
 
   private ref: DynamicDialogRef = inject(DynamicDialogRef);
-  private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(DynamicDialogConfig<IEditPost, IEditPost>);
+  private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(
+    DynamicDialogConfig<IEditPost, IEditPost>,
+  );
+
   private fb: FormBuilder = inject(FormBuilder);
 
   postDialogForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
     views: [0, [Validators.required]],
-    tags: [[''], [Validators.minLength(2)]]
+    tags: [[''], [Validators.minLength(2)]],
   });
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 export interface IGradientConfiguration {
   delay?: number;
   colors?: string[];
-  thickness?: string
+  thickness?: string;
 }

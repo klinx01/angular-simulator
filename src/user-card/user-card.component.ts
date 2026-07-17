@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
-import { required } from '@angular/forms/signals';
 import { UpperCasePipe } from '@angular/common';
 import { PhoneNumberPipe } from '../pipe/phone-number.pipe';
 import { HoverWeightDirective } from '../directive/hover-weight.directive';
@@ -13,7 +12,7 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
-
+  
   @Input({ required: true }) user!: IUser;
   @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>();
 

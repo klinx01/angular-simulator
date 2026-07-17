@@ -11,7 +11,7 @@
 }
 
 .card-container {
-  max-width: 1460px; 
+  max-width: 1460px;
   display: flex;
   justify-content: center;
 }
@@ -46,14 +46,13 @@
   width: 606px;
   border-radius: 20px;
   height: 90px;
-  background-color: #B15757;
+  background-color: #b15757;
   margin: 20px 20px;
 
   span {
     color: var(--primary-text-color);
   }
 }
-
 
 .count-user {
   display: flex;

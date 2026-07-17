@@ -2,10 +2,10 @@
   display: flex;
   width: 440px;
   height: 630px;
-  border-top: 4px solid #D4A373;
+  border-top: 4px solid #d4a373;
   overflow: hidden;
   border-radius: 4px;
-  box-shadow: 0px 10px 30px 0px #0000000F;
+  box-shadow: 0px 10px 30px 0px #0000000f;
   background-color: var(--p-content-background);
 
   .info-wrapper {
@@ -22,7 +22,7 @@
       justify-content: space-between;
 
       span {
-        color: #D4A373;
+        color: #d4a373;
       }
     }
 
@@ -49,7 +49,7 @@
         }
 
         .contact-line {
-          border: 1px solid #E2E8F0;
+          border: 1px solid #e2e8f0;
           width: 288px;
         }
 
@@ -63,7 +63,7 @@
             gap: 10px;
 
             p {
-              color: #D4A373;
+              color: #d4a373;
             }
 
             .contact-template {
@@ -86,7 +86,7 @@
   align-items: center;
 
   .address-line {
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     width: 211px;
   }
 
@@ -94,11 +94,11 @@
     display: flex;
     gap: 4px;
     color: black;
-    
+
     span {
-      background-color: #F4F7F5;
+      background-color: #f4f7f5;
       border-radius: 4px;
-      border: 1px solid #E2E8F0;
+      border: 1px solid #e2e8f0;
       padding: 1px 6px 1px 6px;
     }
   }
@@ -140,7 +140,7 @@
     align-items: center;
 
     .work-line {
-      border: 1px solid #E2E8F0;
+      border: 1px solid #e2e8f0;
       width: 255px;
     }
   }
@@ -173,7 +173,7 @@
   width: 606px;
   border-radius: 20px;
   height: 90px;
-  background-color: #B15757;
+  background-color: #b15757;
   margin: 20px 20px;
 
   span {
