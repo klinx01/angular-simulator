@@ -6,13 +6,15 @@
           <img src="/images/mountains-logo.png" alt="mountains" />
           <span>{{ companyName }}</span>
         </div>
-        <p-selectButton
-          [options]="themeService.themeOptions"
-          optionLabel="name"
-          [(ngModel)]="selectedTheme"
-          (onChange)="onThemeChange($event.value)"
-          optionValue="value"
-        />
+        @if (appConfig.enableTheming) {
+          <p-selectButton
+            [options]="themeService.themeOptions"
+            optionLabel="name"
+            [(ngModel)]="selectedTheme"
+            (onChange)="onThemeChange($event.value)"
+            optionValue="value"
+          />
+        }
         <nav class="navigation fs-16 fw-600">
           @for (nav of navigations; track nav.name) {
             <a
@@ -25,10 +27,12 @@
             </a>
           }
           <button class="primary-button" (click)="authService.logout()">Logout</button>
-          <p-toggle-switch
-            (onChange)="themeService.toggleDarkMode()"
-            [ngModel]="themeService.isDark$ | async"
-          />
+          @if (appConfig.enableTheming) {
+            <p-toggle-switch
+              (onChange)="themeService.toggleDarkMode()"
+              [ngModel]="themeService.isDark$ | async"
+            />
+          }
           <button id="consultation-btn" class="consultation-btn primary-button fs-16 fw-600">
             Консультация
           </button>
@@ -59,7 +63,7 @@
       } @else if (currentFunctionality === 'timer') {
         <div class="timer-wrapper">
           <div class="timer fw-600 fs-16">
-            <p>{{ currentDate }}</p>
+            <p>{{ currentDate | date }}</p>
           </div>
           <div>
             <button
@@ -73,5 +77,6 @@
         </div>
       }
     </div>
+    <span>{{ lastVisit | date }}</span>
   </header>
 </div>

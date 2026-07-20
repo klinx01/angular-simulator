@@ -19,6 +19,9 @@ import { loggingInterceptor } from '../interceptors/logging.interceptor';
 import { errorInterceptor } from '../interceptors/error.interceptor';
 import { authInterceptor } from '../feature/auth/interceptors/auth.interceptor';
 import { AuthService } from '../feature/auth/services/auth.service';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { APP_CONFIG } from './tokens/app-config.token';
+
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
@@ -49,6 +52,22 @@ export const appConfig: ApplicationConfig = {
       useFactory: initAuth,
       deps: [AuthService],
       multi: true,
+    },
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: {
+        dateFormat: 'dd.MM.yyyy HH:mm'
+      }
+    },
+    {
+      provide: APP_CONFIG,
+      useValue: {
+        companyName: 'румтибет',
+        enableLogs: true,
+        enableNotifications: true,
+        enableTheming: true,
+        sessionTimeout: 15
+      }
     },
     provideHttpClient(withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
     provideBrowserGlobalErrorListeners(),
