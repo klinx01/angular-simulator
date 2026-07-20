@@ -7,6 +7,8 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { IThemeOption } from '../interfaces/IThemeOption';
+import { APP_CONFIG } from '../app/tokens/app-config.token';
+import { IAppConfig } from '../interfaces/IAppConfig';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ import { IThemeOption } from '../interfaces/IThemeOption';
 export class ThemeService {
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-
+  private appConfig: IAppConfig = inject(APP_CONFIG);
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable();
 
@@ -23,10 +25,17 @@ export class ThemeService {
   }
 
   private initTheme(): void {
-    const savedTheme: boolean | null = this.localStorageService.getValue<boolean>('theme');
-    this.isDarkSubject.next(savedTheme ?? false);
+    if (!this.appConfig.enableTheming) {
+      this.isDarkSubject.next(false);
+      usePreset(Aura); 
+    } else {
+        const savedTheme: boolean | null = this.localStorageService.getValue<boolean>('theme');
+        const savedStyle: Theme | null = this.localStorageService.getValue<Theme>('themeStyle');
+        this.isDarkSubject.next(savedTheme ?? false);
+        this.selectTheme(savedStyle ?? Theme.AURA);
+      }
     this.applyTheme();
-  }
+ }
 
   themeOptions: IThemeOption[] = [
     { name: 'Lara', value: Theme.LARA },
