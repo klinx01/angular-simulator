@@ -1,8 +1,10 @@
-<div class="message-wrapper">
-  @for (message of messageService.message$ | async; track $index) {
-    <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }" />
-  }
-</div>
+@if (appConfig.enableNotifications) {
+  <div class="message-wrapper">
+    @for (message of messageService.message$ | async; track $index) {
+      <ng-container [ngTemplateOutlet]="msg" [ngTemplateOutletContext]="{ message: message }" />
+    }
+  </div>
+}
 
 <ng-template #msg let-message="message">
   <div class="status-msg">

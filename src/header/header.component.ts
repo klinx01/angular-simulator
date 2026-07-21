@@ -4,15 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ThemeService } from '../services/theme.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Theme } from '../enums/Theme';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LocalStorageService } from '../services/local-storage.service';
 import { AuthService } from '../feature/auth/services/auth.service';
-
+import { APP_CONFIG } from '../app/tokens/app-config.token';
+import { IAppConfig } from '../interfaces/IAppConfig';
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, RouterLink, RouterLinkActive, ToggleSwitch, AsyncPipe, SelectButtonModule],
+  imports: [FormsModule, RouterLink, RouterLinkActive, ToggleSwitch, AsyncPipe, SelectButtonModule, DatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -21,12 +22,14 @@ export class HeaderComponent {
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   authService: AuthService = inject(AuthService);
+  appConfig: IAppConfig = inject(APP_CONFIG);
 
-  companyName = 'румтибет';
+  companyName = this.appConfig.companyName;
   currentFunctionality = 'timer';
   counter = 0;
   currentDate!: string;
   selectedTheme!: Theme;
+  lastVisit: string | null = this.localStorageService.getValue('last-visit');
 
   navigations: INavigation[] = [
     { id: 'home-page', name: 'Главная', path: '/' },
@@ -64,7 +67,7 @@ export class HeaderComponent {
   }
 
   private updateCurrentTime(): void {
-    this.currentDate = new Date().toLocaleString();
+    this.currentDate = new Date().toISOString();
   }
 
   showDate(): void {

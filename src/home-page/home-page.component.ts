@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Color } from '../enums/Color';
-import { Collection } from '../app/collection.js';
+import { Collection } from '../app/Collection';
 import { IOffer } from '../interfaces/IOffer.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from '../interfaces/ILocation.js';
