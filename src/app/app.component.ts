@@ -9,7 +9,6 @@ import { LocalStorageService } from '../services/local-storage.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   constructor() {
@@ -27,5 +26,4 @@ export class AppComponent {
     const currentVisit: number = visit ? Number(visit) : 0;
     this.localStorageService.setValue('visits', currentVisit + 1);
   }
-
 }

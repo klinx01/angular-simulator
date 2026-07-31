@@ -43,9 +43,9 @@ module.exports = defineConfig([
       ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       '@stylistic/padded-blocks': ['error', { classes: 'always' }],
-      '@stylistic/quotes': ['warn', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
+      '@stylistic/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
       '@stylistic/object-curly-spacing': ['warn', 'always'],
-      "template-curly-spacing": ["warn", "always"],
+      'template-curly-spacing': ['warn', 'always'],
       '@stylistic/semi': ['warn', 'always'],
       '@stylistic/lines-between-class-members': [
         'error',

@@ -11,7 +11,6 @@ import {} from '@fortawesome/free-regular-svg-icons';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-
   services: string[] = [
     'Прогулки в горы летом',
     'Зимние походы в горы',
@@ -33,5 +32,4 @@ export class FooterComponent {
   faVk: IconDefinition = faVk;
   faTelegram: IconDefinition = faTelegram;
   faAngleRight: IconDefinition = faAngleRight;
-
 }

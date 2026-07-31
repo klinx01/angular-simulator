@@ -9,7 +9,6 @@ import { LocalStorageService } from '../services/local-storage.service';
   providedIn: 'root',
 })
 export class UserService {
-
   loaderService: LoaderService = inject(LoaderService);
   userApiService: UserApiService = inject(UserApiService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -48,5 +47,4 @@ export class UserService {
     this.loaderService.showLoader();
     return this.userApiService.getUsers().pipe(finalize(() => this.loaderService.hideLoader()));
   }
-
 }
