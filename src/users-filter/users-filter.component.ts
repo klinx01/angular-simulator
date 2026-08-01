@@ -10,6 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './users-filter.component.scss',
 })
 export class UsersFilterComponent implements OnInit {
+
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   filterControl = new FormControl<string | null>('');
@@ -25,4 +26,5 @@ export class UsersFilterComponent implements OnInit {
       )
       .subscribe();
   }
+
 }

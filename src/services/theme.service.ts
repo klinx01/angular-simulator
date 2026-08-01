@@ -14,6 +14,7 @@ import { IAppConfig } from '../interfaces/IAppConfig';
   providedIn: 'root',
 })
 export class ThemeService {
+
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private appConfig: IAppConfig = inject(APP_CONFIG);
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -71,4 +72,5 @@ export class ThemeService {
       document.documentElement.classList.remove('my-app-dark');
     }
   }
+
 }

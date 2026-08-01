@@ -10,24 +10,26 @@ import { ILogin } from '../interfaces/ILogin';
   providedIn: 'root',
 })
 export class AuthApiService {
+
   private http: HttpClient = inject(HttpClient);
   private readonly authUrl: string = 'https://dummyjson.com/auth';
 
   signIn(auth: ILogin, sessionTimeout: number): Observable<IToken> {
-    return this.http.post<IToken>(`${this.authUrl}/login`, {
+    return this.http.post<IToken>(`${ this.authUrl }/login`, {
       ...auth,
       sessionTimeout,
     });
   }
 
   getCurrentUser(): Observable<IAuthUser> {
-    return this.http.get<IAuthUser>(`${this.authUrl}/me`);
+    return this.http.get<IAuthUser>(`${ this.authUrl }/me`);
   }
 
   refreshToken(tokens: IToken, sessionTimeout: number): Observable<IToken> {
-    return this.http.post<IToken>(`${this.authUrl}/refresh`, {
+    return this.http.post<IToken>(`${ this.authUrl }/refresh`, {
       refreshToken: tokens?.refreshToken,
       sessionTimeout,
     });
   }
+
 }

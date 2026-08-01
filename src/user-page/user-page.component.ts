@@ -16,6 +16,7 @@ import { PluralPipe } from '../pipe/plural.pipe';
   styleUrl: './user-page.component.scss',
 })
 export class UserPageComponent implements OnInit {
+
   userService: UserService = inject(UserService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
@@ -41,4 +42,5 @@ export class UserPageComponent implements OnInit {
   onFilter(value: string): void {
     this.filterSubject$.next(value);
   }
+
 }

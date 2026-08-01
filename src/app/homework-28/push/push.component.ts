@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  DoCheck,
   inject,
 } from '@angular/core';
 import { tap } from 'rxjs';
@@ -16,6 +15,7 @@ import { tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PushComponent {
+
   http: HttpClient = inject(HttpClient);
   counter = 0;
   cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -63,6 +63,7 @@ export class PushComponent {
     this.counter++;
     this.cdr.reattach();
   }
+
 }
 
 /* MarkForCheck

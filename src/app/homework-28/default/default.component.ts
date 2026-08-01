@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, DoCheck, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 
 @Component({
@@ -9,6 +9,7 @@ import { tap } from 'rxjs';
   styleUrl: './default.component.scss',
 })
 export class DefaultComponent {
+
   http: HttpClient = inject(HttpClient);
   counter = 0;
 
@@ -70,4 +71,5 @@ export class DefaultComponent {
   // 2. 1 и до бесконечности
   // 3. нет
   // 4. 1 раз срабаывает при клике и потом каждый раз когда происходит setInterval
+
 }

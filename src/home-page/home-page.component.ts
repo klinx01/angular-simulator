@@ -30,6 +30,7 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+
   messageService: MessageService = inject(MessageService);
 
   numbers = new Collection<number>([1, 2, 3, 4]);
@@ -164,4 +165,5 @@ export class HomePageComponent {
   private isPrimaryColor(color: Color): boolean {
     return [Color.RED, Color.GREEN, Color.BLUE].includes(color);
   }
+
 }

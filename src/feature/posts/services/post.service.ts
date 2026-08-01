@@ -8,6 +8,7 @@ import { IPostResponse } from '../interfaces/IPostResponse';
   providedIn: 'root',
 })
 export class PostService {
+
   private postApiService: PostApiService = inject(PostApiService);
 
   private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
@@ -64,4 +65,5 @@ export class PostService {
       )
       .subscribe();
   }
+
 }

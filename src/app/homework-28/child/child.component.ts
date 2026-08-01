@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IUserCD } from '../IUserCD';
 
 @Component({
   selector: 'app-child',
@@ -8,5 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildComponent {
-  @Input({ required: true }) user!: { name: string; age: number };
+
+  @Input({ required: true }) user!: IUserCD;
+
 }
