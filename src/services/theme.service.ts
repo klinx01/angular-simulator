@@ -27,15 +27,15 @@ export class ThemeService {
   private initTheme(): void {
     if (!this.appConfig.enableTheming) {
       this.isDarkSubject.next(false);
-      usePreset(Aura); 
+      usePreset(Aura);
     } else {
-        const savedTheme: boolean | null = this.localStorageService.getValue<boolean>('theme');
-        const savedStyle: Theme | null = this.localStorageService.getValue<Theme>('themeStyle');
-        this.isDarkSubject.next(savedTheme ?? false);
-        this.selectTheme(savedStyle ?? Theme.AURA);
-      }
+      const savedTheme: boolean | null = this.localStorageService.getValue<boolean>('theme');
+      const savedStyle: Theme | null = this.localStorageService.getValue<Theme>('themeStyle');
+      this.isDarkSubject.next(savedTheme ?? false);
+      this.selectTheme(savedStyle ?? Theme.AURA);
+    }
     this.applyTheme();
- }
+  }
 
   themeOptions: IThemeOption[] = [
     { name: 'Lara', value: Theme.LARA },

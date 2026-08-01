@@ -18,12 +18,15 @@ export class AuthService {
   private authApiService: AuthApiService = inject(AuthApiService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
-  private authUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  private authUserSubject: BehaviorSubject<IAuthUser | null> =
+    new BehaviorSubject<IAuthUser | null>(null);
+
   authUser$: Observable<IAuthUser | null> = this.authUserSubject.asObservable();
   private appConfig: IAppConfig = inject(APP_CONFIG);
 
   signIn(userData: ILogin): void {
-    this.authApiService.signIn(userData, this.appConfig.sessionTimeout)
+    this.authApiService
+      .signIn(userData, this.appConfig.sessionTimeout)
       .pipe(
         tap((res: IToken) => {
           const authTokens: IToken = {

@@ -10,9 +10,12 @@ import { catchError, finalize, tap, throwError } from 'rxjs';
 import { APP_CONFIG } from '../app/tokens/app-config.token';
 import { inject } from '@angular/core';
 
-export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn ) => {
+export const loggingInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const start: number = performance.now();
-  const appConfig = inject(APP_CONFIG)
+  const appConfig = inject(APP_CONFIG);
   if (appConfig.enableLogs) {
     return next(req).pipe(
       tap((event: HttpEvent<unknown>) => {
@@ -31,6 +34,6 @@ export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
       }),
     );
   } else {
-    return next(req)
+    return next(req);
   }
 };

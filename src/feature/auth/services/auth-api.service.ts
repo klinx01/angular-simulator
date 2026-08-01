@@ -16,7 +16,9 @@ export class AuthApiService {
 
   signIn(auth: ILogin, sessionTimeout: number): Observable<IToken> {
     return this.http.post<IToken>(`${ this.authUrl }/login`, {
-      ...auth, sessionTimeout });
+      ...auth,
+      sessionTimeout,
+    });
   }
 
   getCurrentUser(): Observable<IAuthUser> {
@@ -25,7 +27,8 @@ export class AuthApiService {
 
   refreshToken(tokens: IToken, sessionTimeout: number): Observable<IToken> {
     return this.http.post<IToken>(`${ this.authUrl }/refresh`, {
-      refreshToken: tokens?.refreshToken, sessionTimeout
+      refreshToken: tokens?.refreshToken,
+      sessionTimeout,
     });
   }
 

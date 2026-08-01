@@ -22,7 +22,6 @@ import { AuthService } from '../feature/auth/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { APP_CONFIG } from './tokens/app-config.token';
 
-
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
 
@@ -56,8 +55,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: DATE_PIPE_DEFAULT_OPTIONS,
       useValue: {
-        dateFormat: 'dd.MM.yyyy HH:mm'
-      }
+        dateFormat: 'dd.MM.yyyy HH:mm',
+      },
     },
     {
       provide: APP_CONFIG,
@@ -66,8 +65,8 @@ export const appConfig: ApplicationConfig = {
         enableLogs: true,
         enableNotifications: true,
         enableTheming: true,
-        sessionTimeout: 15
-      }
+        sessionTimeout: 15,
+      },
     },
     provideHttpClient(withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
     provideBrowserGlobalErrorListeners(),

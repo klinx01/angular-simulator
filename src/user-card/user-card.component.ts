@@ -12,7 +12,7 @@ import { GradientBorderDirective } from '../directive/gradient-border.directive'
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
-  
+
   @Input({ required: true }) user!: IUser;
   @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>();
 

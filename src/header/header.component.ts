@@ -13,7 +13,15 @@ import { APP_CONFIG } from '../app/tokens/app-config.token';
 import { IAppConfig } from '../interfaces/IAppConfig';
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, RouterLink, RouterLinkActive, ToggleSwitch, AsyncPipe, SelectButtonModule, DatePipe],
+  imports: [
+    FormsModule,
+    RouterLink,
+    RouterLinkActive,
+    ToggleSwitch,
+    AsyncPipe,
+    SelectButtonModule,
+    DatePipe,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
