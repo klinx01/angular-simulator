@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, finalize } from 'rxjs';
 import { IUser } from '../interfaces/IUser';
 import { UserApiService } from './user-api.service';
-import { LoaderService } from '../services/loader.service';
-import { LocalStorageService } from '../services/local-storage.service';
+import { LoaderService } from '../../../core/services/loader.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,10 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 
 @Component({

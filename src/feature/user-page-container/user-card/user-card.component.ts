@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { UpperCasePipe } from '@angular/common';
-import { PhoneNumberPipe } from '../pipe/phone-number.pipe';
-import { HoverWeightDirective } from '../directive/hover-weight.directive';
-import { GradientBorderDirective } from '../directive/gradient-border.directive';
+import { PhoneNumberPipe } from '../../../core/pipe/phone-number.pipe';
+import { HoverWeightDirective } from '../../../core/directive/hover-weight.directive';
+import { GradientBorderDirective } from '../../../core/directive/gradient-border.directive';
 
 @Component({
   selector: 'app-user-card',

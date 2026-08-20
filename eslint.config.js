@@ -9,7 +9,7 @@ const unusedImports = require('eslint-plugin-unused-imports');
 
 module.exports = defineConfig([
   {
-    ignores: ['src/interceptors/logging.interceptor.ts'],
+    ignores: ['src\core\interceptors\logging.interceptor'],
   },
   {
     files: ['**/*.ts'],

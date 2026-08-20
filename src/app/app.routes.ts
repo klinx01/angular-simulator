@@ -13,12 +13,14 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('../home-page/home-page.component').then((m) => m.HomePageComponent),
+          import('../feature/home-page/home-page.component').then((m) => m.HomePageComponent),
       },
       {
         path: 'users',
         loadComponent: () =>
-          import('../user-page/user-page.component').then((m) => m.UserPageComponent),
+          import('../feature/user-page-container/user-page/user-page.component').then(
+            (m) => m.UserPageComponent,
+          ),
         canActivate: [adminGuard],
       },
       {

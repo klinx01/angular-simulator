@@ -13,14 +13,14 @@ import { routes } from './app.routes';
 import { AuraBaseDesignTokens } from '@primeuix/themes/aura/base';
 import { LaraBaseDesignTokens } from '@primeuix/themes/lara/base';
 import { Preset } from '@primeuix/themes/types';
-import { Theme } from '../enums/Theme';
+import { Theme } from '../core/enums/Theme';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { loggingInterceptor } from '../interceptors/logging.interceptor';
-import { errorInterceptor } from '../interceptors/error.interceptor';
+import { loggingInterceptor } from '../core/interceptors/logging.interceptor';
+import { errorInterceptor } from '../core/interceptors/error.interceptor';
 import { authInterceptor } from '../feature/auth/interceptors/auth.interceptor';
 import { AuthService } from '../feature/auth/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
-import { APP_CONFIG } from './tokens/app-config.token';
+import { APP_CONFIG } from '../core/tokens/app-config.token';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
