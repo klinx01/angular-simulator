@@ -1,6 +1,6 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { LocalStorageService } from '../services/local-storage.service';
-import { IUser } from '../../feature/user-page-container/interfaces/IUser';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { IUser } from '../../../feature/user-page-container/interfaces/IUser';
 
 @Pipe({
   name: 'plural',

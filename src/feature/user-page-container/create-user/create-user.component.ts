@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
-import { HoverWeightDirective } from '../../../core/directive/hover-weight.directive';
-import { GradientBorderDirective } from '../../../core/directive/gradient-border.directive';
+import { HoverWeightDirective } from '../../../shared/directive/hover-weight.directive';
+import { GradientBorderDirective } from '../../../shared/directive/gradient-border.directive';
 
 @Component({
   selector: 'app-create-user',

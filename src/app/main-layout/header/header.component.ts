@@ -3,14 +3,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from './interfaces/INavigation';
 import { ToggleSwitch } from 'primeng/toggleswitch';
-import { ThemeService } from '../../core/services/theme.service';
+import { ThemeService } from '../../../core/services/theme.service';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Theme } from '../../core/enums/Theme';
+import { Theme } from '../../../core/enums/Theme';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { LocalStorageService } from '../../core/services/local-storage.service';
-import { AuthService } from '../../feature/auth/services/auth.service';
-import { APP_CONFIG } from '../../core/tokens/app-config.token';
-import { IAppConfig } from '../../core/interfaces/IAppConfig';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { AuthService } from '../../../feature/auth/services/auth.service';
+import { APP_CONFIG } from '../../../core/tokens/app-config.token';
+import { IAppConfig } from '../../../core/interfaces/IAppConfig';
 @Component({
   selector: 'app-header',
   imports: [
