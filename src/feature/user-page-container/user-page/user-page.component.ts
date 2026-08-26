@@ -7,7 +7,7 @@ import { UserCardComponent } from '../user-card/user-card.component';
 import { CreateUserComponent } from '../create-user/create-user.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
-import { PluralPipe } from '../../../shared/directive/pipe/plural.pipe';
+import { PluralPipe } from '../../../shared/pipe/plural.pipe';
 
 @Component({
   selector: 'app-user-page',

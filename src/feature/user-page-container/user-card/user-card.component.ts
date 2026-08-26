@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { UpperCasePipe } from '@angular/common';
-import { PhoneNumberPipe } from '../../../shared/directive/pipe/phone-number.pipe';
+import { PhoneNumberPipe } from '../../../shared/pipe/phone-number.pipe';
 import { HoverWeightDirective } from '../../../shared/directive/hover-weight.directive';
 import { GradientBorderDirective } from '../../../shared/directive/gradient-border.directive';
 
