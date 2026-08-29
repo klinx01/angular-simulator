@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { INavigation } from '../interfaces/INavigation';
+import { INavigation } from './interfaces/INavigation';
 import { ToggleSwitch } from 'primeng/toggleswitch';
-import { ThemeService } from '../services/theme.service';
+import { ThemeService } from '../../../core/services/theme.service';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Theme } from '../enums/Theme';
+import { Theme } from '../../../core/enums/Theme';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { LocalStorageService } from '../services/local-storage.service';
-import { AuthService } from '../feature/auth/services/auth.service';
-import { APP_CONFIG } from '../app/tokens/app-config.token';
-import { IAppConfig } from '../interfaces/IAppConfig';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { AuthService } from '../../../feature/auth/services/auth.service';
+import { APP_CONFIG } from '../../../core/tokens/app-config.token';
+import { IAppConfig } from '../../../core/interfaces/IAppConfig';
 @Component({
   selector: 'app-header',
   imports: [

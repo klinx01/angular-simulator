@@ -7,7 +7,7 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { IThemeOption } from '../interfaces/IThemeOption';
-import { APP_CONFIG } from '../app/tokens/app-config.token';
+import { APP_CONFIG } from '../tokens/app-config.token';
 import { IAppConfig } from '../interfaces/IAppConfig';
 
 @Injectable({

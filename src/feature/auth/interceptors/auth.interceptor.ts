@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { inject, Injector } from '@angular/core';
 import { catchError, switchMap, throwError } from 'rxjs';
-import { LocalStorageService } from '../../../services/local-storage.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { AuthService } from '../services/auth.service';
 import { IToken } from '../interfaces/IToken';
 

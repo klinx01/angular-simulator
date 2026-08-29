@@ -7,7 +7,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { catchError, finalize, tap, throwError } from 'rxjs';
-import { APP_CONFIG } from '../app/tokens/app-config.token';
+import { APP_CONFIG } from '../tokens/app-config.token';
 import { inject } from '@angular/core';
 
 export const loggingInterceptor: HttpInterceptorFn = (
