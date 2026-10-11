@@ -4,7 +4,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft, faCartShopping, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faCartShopping,
+  faCircleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { RatingModule } from 'primeng/rating';

@@ -87,15 +87,14 @@ export class ProductService {
   ): Observable<IProductResponse> {
     this.isLoading.set(true);
 
-    return this.getProducts(search, category, skip, limit, sortField, sortOrder)
-      .pipe(
-        catchError(() => {
-          this.products.set([]);
-          this.totalRecords.set(0);
-          return EMPTY;
-        }),
-        finalize(() => this.isLoading.set(false)),
-      );
+    return this.getProducts(search, category, skip, limit, sortField, sortOrder).pipe(
+      catchError(() => {
+        this.products.set([]);
+        this.totalRecords.set(0);
+        return EMPTY;
+      }),
+      finalize(() => this.isLoading.set(false)),
+    );
   }
 
   private getProducts(
@@ -116,9 +115,21 @@ export class ProductService {
             ),
           );
       case search.length > 0:
-        return this.productApiService.getProductsBySearch(search, limit, skip, sortField, sortOrder);
+        return this.productApiService.getProductsBySearch(
+          search,
+          limit,
+          skip,
+          sortField,
+          sortOrder,
+        );
       case category !== null:
-        return this.productApiService.getProductsByCategory(category, limit, skip, sortField, sortOrder);
+        return this.productApiService.getProductsByCategory(
+          category,
+          limit,
+          skip,
+          sortField,
+          sortOrder,
+        );
       default:
         return this.productApiService.getProducts(limit, skip, sortField, sortOrder);
     }

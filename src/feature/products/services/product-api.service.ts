@@ -21,10 +21,9 @@ export class ProductApiService {
     sortField: ProductSortField,
     sortOrder: SortOrder,
   ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(
-      this.productsUrl,
-      { params: { limit, skip, sortBy: sortField, order: sortOrder } },
-    );
+    return this.http.get<IProductResponse>(this.productsUrl, {
+      params: { limit, skip, sortBy: sortField, order: sortOrder },
+    });
   }
 
   getProductsBySearch(
@@ -34,10 +33,9 @@ export class ProductApiService {
     sortField: ProductSortField,
     sortOrder: SortOrder,
   ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(
-      `${ this.productsUrl }/search`,
-      { params: { q: search, limit, skip, sortBy: sortField, order: sortOrder } },
-    );
+    return this.http.get<IProductResponse>(`${ this.productsUrl }/search`, {
+      params: { q: search, limit, skip, sortBy: sortField, order: sortOrder },
+    });
   }
 
   getAllProductsBySearch(
@@ -45,10 +43,9 @@ export class ProductApiService {
     sortField: ProductSortField,
     sortOrder: SortOrder,
   ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(
-      `${ this.productsUrl }/search`,
-      { params: { q: search, limit: 0, sortBy: sortField, order: sortOrder } },
-    );
+    return this.http.get<IProductResponse>(`${ this.productsUrl }/search`, {
+      params: { q: search, limit: 0, sortBy: sortField, order: sortOrder },
+    });
   }
 
   getProductsByCategory(
@@ -58,10 +55,9 @@ export class ProductApiService {
     sortField: ProductSortField,
     sortOrder: SortOrder,
   ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(
-      `${ this.productsUrl }/category/${ category }`,
-      { params: { limit, skip, sortBy: sortField, order: sortOrder } },
-    );
+    return this.http.get<IProductResponse>(`${ this.productsUrl }/category/${ category }`, {
+      params: { limit, skip, sortBy: sortField, order: sortOrder },
+    });
   }
 
   getProductById(productId: number): Observable<IProduct> {

@@ -91,9 +91,10 @@ export class CartService {
 
     const cartId: number | null = this.cartId();
     const products: ICartProduct[] = this.getCartProducts();
-    const request$: Observable<ICart> = cartId === null
-      ? this.cartApiService.addCart(products)
-      : this.cartApiService.updateCart(cartId, products);
+    const request$: Observable<ICart> =
+      cartId === null
+        ? this.cartApiService.addCart(products)
+        : this.cartApiService.updateCart(cartId, products);
 
     this.isLoading.set(true);
     this.message.set('');
