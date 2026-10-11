@@ -1,0 +1,102 @@
+<main class="detail-page">
+  <button type="button" class="back-link" (click)="redirectToCatalog()">
+    <fa-icon [icon]="faArrowLeft" />
+    Вернуться в каталог
+  </button>
+
+  <p-button [label]="'Корзина (' + cartService.itemsCount() + ')'" (onClick)="redirectToCart()" />
+  @if (product(); as product) {
+    <section class="detail-card">
+      <div class="detail-image">
+        <p-galleria
+          class="product-gallery"
+          [value]="product.images"
+          [numVisible]="3"
+          [circular]="true"
+          [showItemNavigators]="true"
+          [showThumbnails]="true"
+        >
+          <ng-template #item let-image>
+            <img class="product-image" [src]="image" [alt]="product.title" />
+          </ng-template>
+          <ng-template #thumbnail let-image>
+            <img class="product-thumbnail" [src]="image" [alt]="product.title" />
+          </ng-template>
+        </p-galleria>
+      </div>
+
+      <div class="detail-content">
+        <span class="detail-category">{{ product.category }}</span>
+        <h1>{{ product.title }}</h1>
+
+        <div class="detail-meta">
+          <div class="detail-rating" [attr.aria-label]="'Рейтинг ' + product.rating">
+            <p-rating [ngModel]="product.rating" [readonly]="true" />
+            <strong>{{ product.rating }}</strong>
+          </div>
+          <p-tag
+            [value]="getStockLabel(product.stock)"
+            [severity]="getStockSeverity(product.stock)"
+          />
+        </div>
+
+        <p class="detail-description">{{ product.description }}</p>
+        <strong class="detail-price">
+          {{ product.price | currency: 'USD' : 'symbol' : '1.0-2' : 'en-US' }}
+        </strong>
+        <div class="product-properties">
+          <p>Бренд: {{ product.brand || 'Не указан' }}</p>
+          <p>Скидка: {{ product.discountPercentage }}%</p>
+          <p>Артикул: {{ product.sku }}</p>
+          <p>Вес: {{ product.weight }}</p>
+          <p>
+            Размеры: {{ product.dimensions.width }} × {{ product.dimensions.height }} ×
+            {{ product.dimensions.depth }}
+          </p>
+          <p>Гарантия: {{ product.warrantyInformation }}</p>
+          <p>Доставка: {{ product.shippingInformation }}</p>
+          <p>Возврат: {{ product.returnPolicy }}</p>
+          <p>Минимальный заказ поставщика: {{ product.minimumOrderQuantity }}</p>
+          <p>Статус: {{ product.availabilityStatus }}</p>
+          <p>Теги: {{ product.tags.join(', ') }}</p>
+        </div>
+        <p-button
+          label="Добавить в корзину"
+          [disabled]="product.stock === 0 || cartService.isLoading()"
+          (onClick)="cartService.addProduct(product)"
+        >
+          <ng-template #icon><fa-icon [icon]="faCartShopping" /></ng-template>
+        </p-button>
+      </div>
+    </section>
+    <section class="product-reviews">
+      <h2>Отзывы</h2>
+      <div class="review-list">
+        @for (review of product.reviews; track $index) {
+          <article class="review-card">
+            <div class="review-header">
+              <strong>{{ review.reviewerName }}</strong>
+              <div class="review-rating">
+                <p-rating [ngModel]="review.rating" [readonly]="true" />
+                <strong>{{ review.rating }}/5</strong>
+              </div>
+            </div>
+            <p>{{ review.comment }}</p>
+            <time [attr.datetime]="review.date">{{ review.date | date: 'dd.MM.yyyy' }}</time>
+          </article>
+        } @empty {
+          <p>Отзывов пока нет</p>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="detail-state" role="alert">
+      <fa-icon [icon]="faCircleExclamation" />
+      <h1>Не удалось загрузить товар</h1>
+      <p>Проверьте подключение и адрес товара.</p>
+      <p-button label="В каталог" (onClick)="redirectToCatalog()">
+        <ng-template #icon><fa-icon [icon]="faArrowLeft" /></ng-template>
+      </p-button>
+    </section>
+  }
+</main>
