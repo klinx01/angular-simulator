@@ -1,0 +1,140 @@
+<h1 class="main-title">Список продуктов</h1>
+<div class="container">
+  <p-button [label]="'Корзина (' + cartService.itemsCount() + ')'" (onClick)="redirectToCart()" />
+</div>
+
+<div class="product-filters container">
+  <label for="product-search">Поиск</label>
+  <input id="product-search" pInputText type="search" [formControl]="searchControl" />
+
+  <label for="product-category">Категория</label>
+  <p-select
+    inputId="product-category"
+    [options]="productService.categories()"
+    optionLabel="name"
+    optionValue="slug"
+    placeholder="Все категории"
+    [showClear]="true"
+    [ngModel]="productService.selectedCategory()"
+    (ngModelChange)="productService.setCategory($event)"
+  />
+
+  <label for="sort-field">Сортировка</label>
+  <p-select
+    inputId="sort-field"
+    [options]="sortFields"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="productService.sortField()"
+    (ngModelChange)="onSortFieldChange($event)"
+  />
+
+  <p-select
+    [options]="sortOrders"
+    ariaLabel="Направление сортировки"
+    optionLabel="label"
+    optionValue="value"
+    [ngModel]="productService.sortOrder()"
+    (ngModelChange)="onSortOrderChange($event)"
+  />
+</div>
+
+<div class="p-table">
+  <p-table
+    class="container"
+    [value]="
+      productService.isLoading() && !productService.products().length
+        ? mockData
+        : productService.products()
+    "
+    [paginator]="true"
+    [lazy]="true"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    [rows]="productService.limit()"
+    [first]="productService.skip()"
+    [totalRecords]="productService.totalRecords()"
+    (onLazyLoad)="onNextPage($event)"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Элементы {first} — {last}. Всего в базе: {totalRecords}"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Изображение</th>
+        <th>Название</th>
+        <th>Категория</th>
+        <th>Описание</th>
+        <th>Цена</th>
+        <th>Рейтинг</th>
+        <th>Остаток</th>
+        <th>Корзина</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-product>
+      <tr
+        [class.loading-row]="productService.isLoading()"
+        (dblclick)="redirectToDetailProduct(product.id)"
+      >
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton height="64px" width="64px" /></span>
+          }
+          <img [src]="product.thumbnail" [alt]="product.title" width="64" height="64" />
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton /></span>
+          }
+          <span class="product-info">{{ product.title }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton /></span>
+          }
+          <span>{{ product.category }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton height="4rem" /></span>
+          }
+          <span>{{ product.description }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton /></span>
+          }
+          <span>{{ product.price | currency: 'USD' }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton /></span>
+          }
+          <span>{{ product.rating }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton /></span>
+          }
+          <span>{{ product.stock }}</span>
+        </td>
+        <td>
+          @if (productService.isLoading()) {
+            <span class="product-skeleton"><p-skeleton height="2.5rem" /></span>
+          }
+          <p-button
+            label="Добавить"
+            [disabled]="product.stock === 0 || cartService.isLoading()"
+            (onClick)="cartService.addProduct(product)"
+          >
+            <ng-template #icon><fa-icon [icon]="faCartShopping" /></ng-template>
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="8">Товары не найдены.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
