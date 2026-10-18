@@ -3,9 +3,6 @@
   <div class="cart-actions">
     <p-button label="В каталог" (onClick)="redirectToCatalog()" />
   </div>
-  @if (cartService.message()) {
-    <p role="status">{{ cartService.message() }}</p>
-  }
   <p-table
     [value]="cartService.isLoading() ? mockData : cartService.items()"
     [tableStyle]="{ 'min-width': '50rem' }"
@@ -67,7 +64,7 @@
   <div class="cart-summary">
     <p>Количество товаров: {{ cartService.itemsCount() }}</p>
     <p>Стоимость: {{ cartService.subtotal() | currency: 'USD' }}</p>
-    <p>Налог ({{ taxRate | percent }}): {{ cartService.tax() | currency: 'USD' }}</p>
+    <p>Налог ({{ cartService.taxRate | percent }}): {{ cartService.tax() | currency: 'USD' }}</p>
     <strong>Итого: {{ cartService.total() | currency: 'USD' }}</strong>
   </div>
   <div class="cart-actions">

@@ -1,156 +1,119 @@
-import { DestroyRef, inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { catchError, combineLatest, EMPTY, finalize, map, Observable, switchMap, tap } from 'rxjs';
-import { IProduct } from '../interfaces/IProduct';
-import { IProductCategory } from '../interfaces/IProductCategory';
-import { IProductResponse } from '../interfaces/IProductResponse';
+import {
+  computed,
+  inject,
+  Injectable,
+  linkedSignal,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductSortField } from '../enums/ProductSortField';
 import { SortOrder } from '../enums/SortOrder';
+import { IProduct } from '../interfaces/IProduct';
+import { IProductCategory } from '../interfaces/IProductCategory';
+import { IProductQuery } from '../interfaces/IProductQuery';
 import { ProductApiService } from './product-api.service';
 
 @Injectable()
 export class ProductService {
 
-  private destroyRef: DestroyRef = inject(DestroyRef);
   private productApiService: ProductApiService = inject(ProductApiService);
 
-  products: WritableSignal<IProduct[]> = signal<IProduct[]>([]);
-  categories: WritableSignal<IProductCategory[]> = signal<IProductCategory[]>([]);
-  search: WritableSignal<string> = signal<string>('');
-  selectedCategory: WritableSignal<string | null> = signal<string | null>(null);
-  skip: WritableSignal<number> = signal<number>(0);
-  limit: WritableSignal<number> = signal<number>(10);
-  sortField: WritableSignal<ProductSortField> = signal<ProductSortField>(ProductSortField.TITLE);
-  sortOrder: WritableSignal<SortOrder> = signal<SortOrder>(SortOrder.ASC);
-  totalRecords: WritableSignal<number> = signal<number>(0);
-  isLoading: WritableSignal<boolean> = signal<boolean>(false);
+  private searchSignal: WritableSignal<string> = signal<string>('');
+  private selectedCategorySignal: WritableSignal<string | null> = signal<string | null>(null);
+  private limitSignal: WritableSignal<number> = signal<number>(10);
+  private sortFieldSignal: WritableSignal<ProductSortField> = signal<ProductSortField>(
+    ProductSortField.TITLE,
+  );
 
-  constructor() {
-    combineLatest([
-      toObservable(this.search),
-      toObservable(this.selectedCategory),
-      toObservable(this.skip),
-      toObservable(this.limit),
-      toObservable(this.sortField),
-      toObservable(this.sortOrder),
-    ])
-      .pipe(
-        switchMap(([search, category, skip, limit, sortField, sortOrder]) =>
-          this.getProductsRequest(search, category, skip, limit, sortField, sortOrder),
-        ),
-        tap((r: IProductResponse) => {
-          this.products.set(r.products);
-          this.totalRecords.set(r.total);
-        }),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe();
-  }
+  private sortOrderSignal: WritableSignal<SortOrder> = signal<SortOrder>(SortOrder.ASC);
+  private skipSignal: WritableSignal<number> = linkedSignal(() => {
+    this.searchSignal();
+    this.selectedCategorySignal();
+    this.limitSignal();
+    this.sortFieldSignal();
+    this.sortOrderSignal();
+
+    return 0;
+  });
+
+  private productsUrl: Signal<string> = computed(() => {
+    const category: string | null = this.selectedCategorySignal();
+
+    if (category) {
+      return `/category/${ category }`;
+    }
+
+    return this.searchSignal() ? '/search' : '';
+  });
+
+  private productsResource = rxResource({
+    params: () => ({
+      url: this.productsUrl(),
+      query: this.getQuery(),
+    }),
+    stream: ({ params }) => this.productApiService.getProducts(params.url, params.query),
+  });
+
+  private categoriesResource = rxResource({
+    stream: () => this.productApiService.getCategories(),
+  });
+
+  readonly products: Signal<IProduct[]> = computed(() =>
+    this.productsResource.hasValue() ? this.productsResource.value().products : [],
+  );
+
+  readonly categories: Signal<IProductCategory[]> = computed(() =>
+    this.categoriesResource.hasValue() ? this.categoriesResource.value() : [],
+  );
+
+  readonly search: Signal<string> = this.searchSignal.asReadonly();
+  readonly selectedCategory: Signal<string | null> = this.selectedCategorySignal.asReadonly();
+  readonly skip: Signal<number> = this.skipSignal.asReadonly();
+  readonly limit: Signal<number> = this.limitSignal.asReadonly();
+  readonly sortField: Signal<ProductSortField> = this.sortFieldSignal.asReadonly();
+  readonly sortOrder: Signal<SortOrder> = this.sortOrderSignal.asReadonly();
+  readonly totalRecords: Signal<number> = computed(() =>
+    this.productsResource.hasValue() ? this.productsResource.value().total : 0,
+  );
+
+  readonly isLoading: Signal<boolean> = this.productsResource.isLoading;
 
   setSearch(search: string): void {
-    this.search.set(search.trim());
-    this.skip.set(0);
-  }
+    const searchValue: string = search.trim();
 
-  setCategory(category: string | null): void {
-    this.selectedCategory.set(category);
-    this.skip.set(0);
-  }
-
-  setSorting(sortField: ProductSortField, sortOrder: SortOrder): void {
-    this.sortField.set(sortField);
-    this.sortOrder.set(sortOrder);
-    this.skip.set(0);
-  }
-
-  loadCategories(): void {
-    this.productApiService
-      .getCategories()
-      .pipe(
-        tap((c: IProductCategory[]) => this.categories.set(c)),
-        catchError(() => {
-          this.categories.set([]);
-          return EMPTY;
-        }),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe();
-  }
-
-  private getProductsRequest(
-    search: string,
-    category: string | null,
-    skip: number,
-    limit: number,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    this.isLoading.set(true);
-
-    return this.getProducts(search, category, skip, limit, sortField, sortOrder).pipe(
-      catchError(() => {
-        this.products.set([]);
-        this.totalRecords.set(0);
-        return EMPTY;
-      }),
-      finalize(() => this.isLoading.set(false)),
-    );
-  }
-
-  private getProducts(
-    search: string,
-    category: string | null,
-    skip: number,
-    limit: number,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    switch (true) {
-      case search.length > 0 && category !== null:
-        return this.productApiService
-          .getAllProductsBySearch(search, sortField, sortOrder)
-          .pipe(
-            map((r: IProductResponse) =>
-              this.filterProductsByCategory(r.products, category, skip, limit),
-            ),
-          );
-      case search.length > 0:
-        return this.productApiService.getProductsBySearch(
-          search,
-          limit,
-          skip,
-          sortField,
-          sortOrder,
-        );
-      case category !== null:
-        return this.productApiService.getProductsByCategory(
-          category,
-          limit,
-          skip,
-          sortField,
-          sortOrder,
-        );
-      default:
-        return this.productApiService.getProducts(limit, skip, sortField, sortOrder);
+    this.searchSignal.set(searchValue);
+    if (searchValue) {
+      this.selectedCategorySignal.set(null);
     }
   }
 
-  private filterProductsByCategory(
-    products: IProduct[],
-    category: string,
-    skip: number,
-    limit: number,
-  ): IProductResponse {
-    const filteredProducts: IProduct[] = products.filter((p: IProduct) => p.category === category);
-    const productsForPage: IProduct[] = filteredProducts.filter(
-      (_: IProduct, index: number) => index >= skip && index < skip + limit,
-    );
+  setCategory(category: string | null): void {
+    this.selectedCategorySignal.set(category);
+  }
 
+  setPagination(skip: number, limit: number): void {
+    if (limit !== this.limitSignal()) {
+      this.limitSignal.set(limit);
+      return;
+    }
+
+    this.skipSignal.set(skip);
+  }
+
+  setSorting(sortField: ProductSortField, sortOrder: SortOrder): void {
+    this.sortFieldSignal.set(sortField);
+    this.sortOrderSignal.set(sortOrder);
+  }
+
+  private getQuery(): IProductQuery {
     return {
-      products: productsForPage,
-      total: filteredProducts.length,
-      skip,
-      limit,
+      q: this.searchSignal(),
+      limit: this.limitSignal(),
+      skip: this.skipSignal(),
+      sortBy: this.sortFieldSignal(),
+      order: this.sortOrderSignal(),
     };
   }
 

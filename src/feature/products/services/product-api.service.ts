@@ -1,71 +1,37 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BaseApiService } from '../../../core/services/base-api.service';
 import { IProduct } from '../interfaces/IProduct';
 import { IProductCategory } from '../interfaces/IProductCategory';
+import { IProductQuery } from '../interfaces/IProductQuery';
 import { IProductResponse } from '../interfaces/IProductResponse';
-import { ProductSortField } from '../enums/ProductSortField';
-import { SortOrder } from '../enums/SortOrder';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductApiService {
+export class ProductApiService extends BaseApiService {
 
-  private http: HttpClient = inject(HttpClient);
-  private readonly productsUrl: string = 'https://dummyjson.com/products';
+  key = 'products';
 
-  getProducts(
-    limit: number,
-    skip: number,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(this.productsUrl, {
-      params: { limit, skip, sortBy: sortField, order: sortOrder },
-    });
-  }
+  getProducts(url = '', params?: IProductQuery): Observable<IProductResponse> {
+    const queryParams: string = this.getParams([
+      ['q', params?.q],
+      ['limit', params?.limit],
+      ['skip', params?.skip],
+      ['sortBy', params?.sortBy],
+      ['order', params?.order],
+    ]);
+    const query: string = queryParams ? `?${ queryParams }` : '';
 
-  getProductsBySearch(
-    search: string,
-    limit: number,
-    skip: number,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${ this.productsUrl }/search`, {
-      params: { q: search, limit, skip, sortBy: sortField, order: sortOrder },
-    });
-  }
-
-  getAllProductsBySearch(
-    search: string,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${ this.productsUrl }/search`, {
-      params: { q: search, limit: 0, sortBy: sortField, order: sortOrder },
-    });
-  }
-
-  getProductsByCategory(
-    category: string,
-    limit: number,
-    skip: number,
-    sortField: ProductSortField,
-    sortOrder: SortOrder,
-  ): Observable<IProductResponse> {
-    return this.http.get<IProductResponse>(`${ this.productsUrl }/category/${ category }`, {
-      params: { limit, skip, sortBy: sortField, order: sortOrder },
-    });
+    return this.http.get<IProductResponse>(this.getUrl(`${ url }${ query }`));
   }
 
   getProductById(productId: number): Observable<IProduct> {
-    return this.http.get<IProduct>(`${ this.productsUrl }/${ productId }`);
+    return this.http.get<IProduct>(this.getUrl(`/${ productId }`));
   }
 
   getCategories(): Observable<IProductCategory[]> {
-    return this.http.get<IProductCategory[]>(`${ this.productsUrl }/categories`);
+    return this.http.get<IProductCategory[]>(this.getUrl('/categories'));
   }
 
 }

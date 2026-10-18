@@ -66,8 +66,6 @@ export class ProductCatalogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.loadCategories();
-
     this.searchControl.valueChanges
       .pipe(
         debounceTime(300),
@@ -79,8 +77,13 @@ export class ProductCatalogComponent implements OnInit {
   }
 
   onNextPage(event: TableLazyLoadEvent): void {
-    this.productService.skip.set(event.first ?? 0);
-    this.productService.limit.set(event.rows ?? 10);
+    this.productService.setPagination(event.first ?? 0, event.rows ?? 10);
+  }
+
+  onCategoryChange(category: string | null): void {
+    this.searchControl.setValue('', { emitEvent: false });
+    this.productService.setSearch('');
+    this.productService.setCategory(category);
   }
 
   onSortFieldChange(sortField: ProductSortField): void {

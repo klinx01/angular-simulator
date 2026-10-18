@@ -6,7 +6,6 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
-import { TAX_RATE } from '../constants/tax-rate';
 import { CartService } from '../services/cart.service';
 import { ICartItem } from '../interfaces/ICartItem';
 
@@ -29,8 +28,6 @@ export class CartComponent {
   private router: Router = inject(Router);
   cartService: CartService = inject(CartService);
   mockData: ICartItem[] = Array(10).fill(1);
-  readonly taxRate: number = TAX_RATE;
-
   redirectToCatalog(): void {
     this.router.navigate(['/products']);
   }
