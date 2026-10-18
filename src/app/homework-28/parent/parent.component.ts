@@ -8,7 +8,6 @@ import { ChildComponent } from '../child/child.component';
   styleUrl: './parent.component.scss',
 })
 export class ParentComponent {
-
   user = {
     name: 'Alex',
     age: 20,
@@ -25,5 +24,4 @@ export class ParentComponent {
       name: 'Eugene',
     };
   }
-
 }

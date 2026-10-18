@@ -8,13 +8,12 @@ type QueryParam = [string, QueryParamValue];
 
 @Injectable()
 export abstract class BaseApiService {
-
   protected http: HttpClient = inject(HttpClient);
   private appConfig: IAppConfig = inject(APP_CONFIG);
   abstract key: string;
 
   protected getUrl(url: string): string {
-    return `${ this.appConfig.apiUrl }/${ this.key }${ url }`;
+    return `${this.appConfig.apiUrl}/${this.key}${url}`;
   }
 
   protected getParams(params: QueryParam[]): string {
@@ -26,10 +25,9 @@ export abstract class BaseApiService {
 
   private getParam(name: string, value: QueryParamValue): string {
     if (value !== null && value !== undefined && value !== '') {
-      return `${ name }=${ value }`;
+      return `${name}=${value}`;
     }
 
     return '';
   }
-
 }

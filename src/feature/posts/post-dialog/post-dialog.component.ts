@@ -10,7 +10,6 @@ import { IEditPost } from '../interfaces/IEditPost';
   styleUrl: './post-dialog.component.scss',
 })
 export class PostDialogComponent implements OnInit {
-
   private ref: DynamicDialogRef = inject(DynamicDialogRef);
   private dynamicDialogConfig: DynamicDialogConfig<IEditPost, IEditPost> = inject(
     DynamicDialogConfig<IEditPost, IEditPost>,
@@ -37,5 +36,4 @@ export class PostDialogComponent implements OnInit {
   onClose(): void {
     this.ref.close();
   }
-
 }

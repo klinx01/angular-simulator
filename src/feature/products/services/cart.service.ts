@@ -11,7 +11,6 @@ import { CartApiService } from './cart-api.service';
   providedIn: 'root',
 })
 export class CartService {
-
   private cartApiService: CartApiService = inject(CartApiService);
   private messageService: MessageService = inject(MessageService);
 
@@ -158,5 +157,4 @@ export class CartService {
     this.cartIdSignal.set(null);
     this.messageService.showSuccess('Корзина удалена');
   }
-
 }

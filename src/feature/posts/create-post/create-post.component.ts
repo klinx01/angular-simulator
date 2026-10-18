@@ -12,7 +12,6 @@ import { tap } from 'rxjs';
   styleUrl: './create-post.component.scss',
 })
 export class CreatePostComponent {
-
   private fb: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
   private postApiService: PostApiService = inject(PostApiService);
@@ -41,5 +40,4 @@ export class CreatePostComponent {
   onBack(): void {
     this.router.navigate(['/posts']);
   }
-
 }

@@ -5,7 +5,6 @@ import { IGradientConfiguration } from '../../core/interfaces/IGradientConfigura
   selector: '[appGradientBorderDirective]',
 })
 export class GradientBorderDirective {
-
   @Input() gradientConfiguration: IGradientConfiguration = {};
 
   private timeoutId!: number;
@@ -35,5 +34,4 @@ export class GradientBorderDirective {
   get gradientThickness(): string {
     return this.gradientConfiguration.thickness ?? '2px';
   }
-
 }

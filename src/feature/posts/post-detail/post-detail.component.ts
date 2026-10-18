@@ -9,12 +9,10 @@ import { IPost } from '../interfaces/IPost';
   styleUrl: './post-detail.component.scss',
 })
 export class PostDetailComponent implements OnInit {
-
   private route: ActivatedRoute = inject(ActivatedRoute);
   post!: IPost;
 
   ngOnInit(): void {
     this.post = this.route.snapshot.data['postDetail'];
   }
-
 }

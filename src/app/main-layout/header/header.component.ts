@@ -26,7 +26,6 @@ import { IAppConfig } from '../../../core/interfaces/IAppConfig';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   authService: AuthService = inject(AuthService);
@@ -82,5 +81,4 @@ export class HeaderComponent {
   showDate(): void {
     this.currentFunctionality = 'timer';
   }
-
 }

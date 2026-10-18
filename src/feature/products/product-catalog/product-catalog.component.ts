@@ -36,7 +36,6 @@ import { CartService } from '../services/cart.service';
   providers: [ProductService],
 })
 export class ProductCatalogComponent implements OnInit {
-
   private destroyRef: DestroyRef = inject(DestroyRef);
   private router: Router = inject(Router);
 
@@ -93,5 +92,4 @@ export class ProductCatalogComponent implements OnInit {
   onSortOrderChange(sortOrder: SortOrder): void {
     this.productService.setSorting(this.productService.sortField(), sortOrder);
   }
-
 }

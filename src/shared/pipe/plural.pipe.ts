@@ -6,7 +6,6 @@ import { IUser } from '../../feature/user-page-container/interfaces/IUser';
   name: 'plural',
 })
 export class PluralPipe implements PipeTransform {
-
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
   transform(
@@ -33,5 +32,4 @@ export class PluralPipe implements PipeTransform {
 
     return textFormThree;
   }
-
 }
