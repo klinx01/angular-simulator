@@ -61,6 +61,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_CONFIG,
       useValue: {
+        apiUrl: 'https://dummyjson.com',
         companyName: 'румтибет',
         enableLogs: true,
         enableNotifications: true,

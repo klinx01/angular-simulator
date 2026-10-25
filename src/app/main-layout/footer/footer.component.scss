@@ -135,14 +135,14 @@
 .email-input-container {
   position: relative;
   z-index: 10;
-  background-color: var(--background-container-email-color);
-  margin-bottom: -94px;
   display: flex;
+  height: 196px;
+  margin-bottom: -94px;
+  border-radius: 6px;
+  background-color: var(--background-container-email-color);
+  box-shadow: 0px 0px 15px 0px #18121e1f;
   align-items: center;
   justify-content: space-evenly;
-  height: 196px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 15px 0px #18121e1f;
 
   .relevant-info {
     width: 380px;
@@ -150,16 +150,12 @@
     .relevant {
       color: #f2be22;
     }
-
-    .mailings {
-      font-size: 26px;
-    }
   }
 
   .agreement {
-    margin-top: 8px;
-    width: 536px;
     display: flex;
+    width: 536px;
+    margin-top: 8px;
     align-items: end;
 
     span {
@@ -170,10 +166,10 @@
 
   .email-info-wrapper {
     display: flex;
-    justify-content: space-between;
     width: 536px;
     height: 72px;
     align-items: end;
+    justify-content: space-between;
 
     .email-input-wrapper {
       display: flex;
@@ -183,17 +179,17 @@
 
     .email-input {
       width: 280px;
-      background-color: var(--p-content-hover-background);
       height: 44px;
       border: none;
       border-radius: 4px;
+      background-color: var(--p-content-hover-background);
       padding: 16px;
     }
 
     .subscribe-btn {
-      background-color: var(--background-third-color) !important;
       width: 240px;
       height: 44px;
+      background-color: var(--background-third-color) !important;
     }
   }
 }
