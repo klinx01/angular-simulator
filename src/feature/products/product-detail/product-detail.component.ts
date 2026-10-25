@@ -34,6 +34,7 @@ import { CartService } from '../services/cart.service';
   styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent implements OnInit {
+
   private route: ActivatedRoute = inject(ActivatedRoute);
   private destroyRef: DestroyRef = inject(DestroyRef);
   private router: Router = inject(Router);
@@ -66,7 +67,7 @@ export class ProductDetailComponent implements OnInit {
       return 'Нет в наличии';
     }
 
-    return stock <= 10 ? `Осталось ${stock}` : `В наличии: ${stock}`;
+    return stock <= 10 ? `Осталось ${ stock }` : `В наличии: ${ stock }`;
   }
 
   getStockSeverity(stock: number): StockSeverity {
@@ -76,4 +77,5 @@ export class ProductDetailComponent implements OnInit {
 
     return stock <= 10 ? StockSeverity.WARN : StockSeverity.SUCCESS;
   }
+
 }

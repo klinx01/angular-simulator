@@ -17,6 +17,7 @@ import { ProductApiService } from './product-api.service';
 
 @Injectable()
 export class ProductService {
+
   private productApiService: ProductApiService = inject(ProductApiService);
 
   private searchSignal: WritableSignal<string> = signal<string>('');
@@ -41,7 +42,7 @@ export class ProductService {
     const category: string | null = this.selectedCategorySignal();
 
     if (category) {
-      return `/category/${category}`;
+      return `/category/${ category }`;
     }
 
     return this.searchSignal() ? '/search' : '';
@@ -115,4 +116,5 @@ export class ProductService {
       order: this.sortOrderSignal(),
     };
   }
+
 }

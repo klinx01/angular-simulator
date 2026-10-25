@@ -24,6 +24,7 @@ import { ICartItem } from '../interfaces/ICartItem';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
+
   private router: Router = inject(Router);
   cartService: CartService = inject(CartService);
   mockData: ICartItem[] = Array(10).fill(1);
@@ -34,4 +35,5 @@ export class CartComponent {
   redirectToDetailProduct(id: number): void {
     this.router.navigate(['/products/', id]);
   }
+
 }

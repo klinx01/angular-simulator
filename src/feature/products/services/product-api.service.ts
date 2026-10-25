@@ -10,6 +10,7 @@ import { IProductResponse } from '../interfaces/IProductResponse';
   providedIn: 'root',
 })
 export class ProductApiService extends BaseApiService {
+
   key = 'products';
 
   getProducts(url = '', params?: IProductQuery): Observable<IProductResponse> {
@@ -20,16 +21,17 @@ export class ProductApiService extends BaseApiService {
       ['sortBy', params?.sortBy],
       ['order', params?.order],
     ]);
-    const query: string = queryParams ? `?${queryParams}` : '';
+    const query: string = queryParams ? `?${ queryParams }` : '';
 
-    return this.http.get<IProductResponse>(this.getUrl(`${url}${query}`));
+    return this.http.get<IProductResponse>(this.getUrl(`${ url }${ query }`));
   }
 
   getProductById(productId: number): Observable<IProduct> {
-    return this.http.get<IProduct>(this.getUrl(`/${productId}`));
+    return this.http.get<IProduct>(this.getUrl(`/${ productId }`));
   }
 
   getCategories(): Observable<IProductCategory[]> {
     return this.http.get<IProductCategory[]>(this.getUrl('/categories'));
   }
+
 }

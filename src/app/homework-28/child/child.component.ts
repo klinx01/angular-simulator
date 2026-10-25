@@ -9,5 +9,7 @@ import { IUserCD } from '../IUserCD';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildComponent {
+
   @Input({ required: true }) user!: IUserCD;
+
 }

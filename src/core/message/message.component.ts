@@ -11,6 +11,8 @@ import { IAppConfig } from '../interfaces/IAppConfig';
   styleUrl: './message.component.scss',
 })
 export class MessageComponent {
+
   messageService: MessageService = inject(MessageService);
   appConfig: IAppConfig = inject(APP_CONFIG);
+
 }

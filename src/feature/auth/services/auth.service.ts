@@ -14,6 +14,7 @@ import { IAppConfig } from '../../../core/interfaces/IAppConfig';
   providedIn: 'root',
 })
 export class AuthService {
+
   private authApiService: AuthApiService = inject(AuthApiService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
@@ -76,4 +77,5 @@ export class AuthService {
     this.authUserSubject.next(null);
     this.router.navigate(['/login']);
   }
+
 }

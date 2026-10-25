@@ -19,6 +19,7 @@ import { PostService } from '../services/post.service';
   styleUrl: './post-list.component.scss',
 })
 export class PostsListComponent {
+
   postService: PostService = inject(PostService);
   private router: Router = inject(Router);
   private dialogService: DialogService = inject(DialogService);
@@ -81,4 +82,5 @@ export class PostsListComponent {
     this.postService.limit = event.rows ?? 10;
     this.postService.loadPosts();
   }
+
 }

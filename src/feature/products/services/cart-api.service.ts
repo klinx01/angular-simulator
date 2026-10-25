@@ -8,6 +8,7 @@ import { ICartProduct } from '../interfaces/ICartProduct';
   providedIn: 'root',
 })
 export class CartApiService extends BaseApiService {
+
   key = 'carts';
 
   addCart(products: ICartProduct[]): Observable<ICart> {
@@ -15,13 +16,14 @@ export class CartApiService extends BaseApiService {
   }
 
   updateCart(cartId: number, products: ICartProduct[]): Observable<ICart> {
-    return this.http.put<ICart>(this.getUrl(`/${cartId}`), {
+    return this.http.put<ICart>(this.getUrl(`/${ cartId }`), {
       merge: false,
       products,
     });
   }
 
   deleteCart(cartId: number): Observable<ICart> {
-    return this.http.delete<ICart>(this.getUrl(`/${cartId}`));
+    return this.http.delete<ICart>(this.getUrl(`/${ cartId }`));
   }
+
 }
