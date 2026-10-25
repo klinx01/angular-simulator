@@ -80,12 +80,6 @@ export class ProductCatalogComponent implements OnInit {
     this.productService.setPagination(event.first ?? 0, event.rows ?? 10);
   }
 
-  onCategoryChange(category: string | null): void {
-    this.searchControl.setValue('', { emitEvent: false });
-    this.productService.setSearch('');
-    this.productService.setCategory(category);
-  }
-
   onSortFieldChange(sortField: ProductSortField): void {
     this.productService.setSorting(sortField, this.productService.sortOrder());
   }

@@ -11,9 +11,10 @@ import { IProductResponse } from '../interfaces/IProductResponse';
 })
 export class ProductApiService extends BaseApiService {
 
-  key = 'products';
+  readonly key: string = 'products';
 
-  getProducts(url = '', params?: IProductQuery): Observable<IProductResponse> {
+  getProducts(params?: IProductQuery): Observable<IProductResponse> {
+    const url: string = this.getProductsUrl(params);
     const queryParams: string = this.getParams([
       ['q', params?.q],
       ['limit', params?.limit],
@@ -32,6 +33,14 @@ export class ProductApiService extends BaseApiService {
 
   getCategories(): Observable<IProductCategory[]> {
     return this.http.get<IProductCategory[]>(this.getUrl('/categories'));
+  }
+
+  private getProductsUrl(params?: IProductQuery): string {
+    if (params?.category) {
+      return `/category/${ params.category }`;
+    }
+
+    return params?.q ? '/search' : '';
   }
 
 }

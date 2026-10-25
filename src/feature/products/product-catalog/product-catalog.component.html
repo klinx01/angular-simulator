@@ -16,7 +16,7 @@
     placeholder="Все категории"
     [showClear]="true"
     [ngModel]="productService.selectedCategory()"
-    (ngModelChange)="onCategoryChange($event)"
+    (ngModelChange)="productService.setCategory($event)"
   />
 
   <label for="sort-field">Сортировка</label>

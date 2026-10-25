@@ -38,22 +38,18 @@ export class ProductService {
     return 0;
   });
 
-  private productsUrl: Signal<string> = computed(() => {
-    const category: string | null = this.selectedCategorySignal();
-
-    if (category) {
-      return `/category/${ category }`;
-    }
-
-    return this.searchSignal() ? '/search' : '';
-  });
+  private query: Signal<IProductQuery> = computed(() => ({
+    q: this.searchSignal(),
+    category: this.selectedCategorySignal() || undefined,
+    limit: this.limitSignal(),
+    skip: this.skipSignal(),
+    sortBy: this.sortFieldSignal(),
+    order: this.sortOrderSignal(),
+  }));
 
   private productsResource = rxResource({
-    params: () => ({
-      url: this.productsUrl(),
-      query: this.getQuery(),
-    }),
-    stream: ({ params }) => this.productApiService.getProducts(params.url, params.query),
+    params: () => this.query(),
+    stream: ({ params }) => this.productApiService.getProducts(params),
   });
 
   private categoriesResource = rxResource({
@@ -81,12 +77,7 @@ export class ProductService {
   readonly isLoading: Signal<boolean> = this.productsResource.isLoading;
 
   setSearch(search: string): void {
-    const searchValue: string = search.trim();
-
-    this.searchSignal.set(searchValue);
-    if (searchValue) {
-      this.selectedCategorySignal.set(null);
-    }
+    this.searchSignal.set(search.trim());
   }
 
   setCategory(category: string | null): void {
@@ -105,16 +96,6 @@ export class ProductService {
   setSorting(sortField: ProductSortField, sortOrder: SortOrder): void {
     this.sortFieldSignal.set(sortField);
     this.sortOrderSignal.set(sortOrder);
-  }
-
-  private getQuery(): IProductQuery {
-    return {
-      q: this.searchSignal(),
-      limit: this.limitSignal(),
-      skip: this.skipSignal(),
-      sortBy: this.sortFieldSignal(),
-      order: this.sortOrderSignal(),
-    };
   }
 
 }

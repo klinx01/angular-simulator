@@ -28,6 +28,7 @@ export class CartComponent {
   private router: Router = inject(Router);
   cartService: CartService = inject(CartService);
   mockData: ICartItem[] = Array(10).fill(1);
+
   redirectToCatalog(): void {
     this.router.navigate(['/products']);
   }

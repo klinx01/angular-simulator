@@ -11,7 +11,7 @@ export abstract class BaseApiService {
 
   protected http: HttpClient = inject(HttpClient);
   private appConfig: IAppConfig = inject(APP_CONFIG);
-  abstract key: string;
+  abstract readonly key: string;
 
   protected getUrl(url: string): string {
     return `${ this.appConfig.apiUrl }/${ this.key }${ url }`;
@@ -25,7 +25,7 @@ export abstract class BaseApiService {
   }
 
   private getParam(name: string, value: QueryParamValue): string {
-    if (value !== null && value !== undefined && value !== '') {
+    if (value) {
       return `${ name }=${ value }`;
     }
 

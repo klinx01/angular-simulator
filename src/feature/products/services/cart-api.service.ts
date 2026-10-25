@@ -9,7 +9,7 @@ import { ICartProduct } from '../interfaces/ICartProduct';
 })
 export class CartApiService extends BaseApiService {
 
-  key = 'carts';
+  readonly key: string = 'carts';
 
   addCart(products: ICartProduct[]): Observable<ICart> {
     return this.http.post<ICart>(this.getUrl('/add'), { userId: 1, products });
