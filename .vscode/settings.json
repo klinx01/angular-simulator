@@ -1,0 +1,6 @@
+{
+  "editor.hover.enabled": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.semanticHighlighting.enabled": true
+}

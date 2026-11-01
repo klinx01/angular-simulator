@@ -2,18 +2,41 @@ import { Routes } from '@angular/router';
 import { postDetailResolver } from '../feature/posts/post-detail.resolver';
 import { authGuard } from '../feature/auth/guards/auth.guard';
 import { adminGuard } from '../feature/auth/guards/admin.guard';
+import { productResolver } from '../feature/products/resolvers/product.resolver';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
       import('./main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
-    canActivate: [authGuard],
     children: [
       {
         path: '',
         loadComponent: () =>
           import('../feature/home-page/home-page.component').then((m) => m.HomePageComponent),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'products',
+        loadComponent: () =>
+          import('../feature/products/product-catalog/product-catalog.component').then(
+            (m) => m.ProductCatalogComponent,
+          ),
+      },
+      {
+        path: 'products/cart',
+        loadComponent: () =>
+          import('../feature/products/cart/cart.component').then((m) => m.CartComponent),
+      },
+      {
+        path: 'products/:id',
+        loadComponent: () =>
+          import('../feature/products/product-detail/product-detail.component').then(
+            (m) => m.ProductDetailComponent,
+          ),
+        resolve: {
+          productDetail: productResolver,
+        },
       },
       {
         path: 'users',

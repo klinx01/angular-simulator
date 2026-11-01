@@ -30,6 +30,15 @@ body:has(app-loader .background-loading) {
   --background-five-color: #fdfdfd;
   --background-six-color: #06030366;
   --background-container-email-color: #fdfdfd;
+  --text-primary-color: #172525;
+  --text-secondary-color: #667c7c;
+  --card-background-color: #ffffff;
+  --card-border-color: #e1e5e2;
+  --image-background-color: #f3f5f2;
+  --accent-color: #d8a613;
+  --stock-success-color: #2e805b;
+  --stock-warning-color: #9a6407;
+  --stock-danger-color: #ad4242;
 }
 
 .my-app-dark {
@@ -44,6 +53,15 @@ body:has(app-loader .background-loading) {
   --background-five-color: #1a3e3e;
   --background-six-color: #fdfdfd;
   --background-container-email-color: #06030366;
+  --text-primary-color: #eef4f3;
+  --text-secondary-color: #aebfbc;
+  --card-background-color: #1b1d1c;
+  --card-border-color: #343735;
+  --image-background-color: #242725;
+  --accent-color: #f2be22;
+  --stock-success-color: #69c697;
+  --stock-warning-color: #e6ad48;
+  --stock-danger-color: #ed8a8a;
 }
 
 .gray-color {

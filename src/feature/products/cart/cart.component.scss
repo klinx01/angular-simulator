@@ -1,0 +1,30 @@
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 60px 0px;
+
+  h1 {
+    text-align: center;
+    font-size: 48px;
+  }
+
+  .product-info {
+    color: var(--text-primary-color);
+    cursor: pointer;
+  }
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
