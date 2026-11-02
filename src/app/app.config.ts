@@ -21,6 +21,8 @@ import { authInterceptor } from '../feature/auth/interceptors/auth.interceptor';
 import { AuthService } from '../feature/auth/services/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { APP_CONFIG } from '../core/tokens/app-config.token';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 function getSavedTheme(): Preset<AuraBaseDesignTokens> | Preset<LaraBaseDesignTokens> {
   const savedTheme: string | null = localStorage.getItem('themeStyle');
@@ -70,6 +72,8 @@ export const appConfig: ApplicationConfig = {
       },
     },
     provideHttpClient(withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor])),
+    provideStore(),
+    provideEffects(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
