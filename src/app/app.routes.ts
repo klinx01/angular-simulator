@@ -3,6 +3,11 @@ import { postDetailResolver } from '../feature/posts/post-detail.resolver';
 import { authGuard } from '../feature/auth/guards/auth.guard';
 import { adminGuard } from '../feature/auth/guards/admin.guard';
 import { productResolver } from '../feature/products/resolvers/product.resolver';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { FeatureKey } from '../core/enums/FeatureKey';
+import { recipeReducer } from '../feature/recipes/state/recipe.reducer';
+import { RecipeEffects } from '../feature/recipes/state/recipe.effects';
 
 export const routes: Routes = [
   {
@@ -37,6 +42,14 @@ export const routes: Routes = [
         resolve: {
           productDetail: productResolver,
         },
+      },
+      {
+        path: 'recipes',
+        loadComponent: () =>
+          import('../feature/recipes/recipe-list/recipe-list.component').then(
+            (m) => m.RecipeListComponent,
+          ),
+        providers: [provideState(FeatureKey.RECIPES, recipeReducer), provideEffects(RecipeEffects)],
       },
       {
         path: 'users',

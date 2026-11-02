@@ -44,6 +44,7 @@ export class HeaderComponent {
     { id: 'users', name: 'Пользователи', path: '/users' },
     { id: 'posts', name: 'Список постов', path: '/posts' },
     { id: 'products', name: 'Продукты', path: '/products' },
+    { id: 'recipes', name: 'Рецепты', path: '/recipes' },
   ];
 
   constructor() {
